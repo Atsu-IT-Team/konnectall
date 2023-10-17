@@ -1,0 +1,96 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model AddressAttributeSearchModel
+
+<div class="card card-default">
+    <div class="card-header">
+        @T("Admin.Address.AddressAttributes")
+    </div>
+    <div class="card-body">
+        <p>
+            <em>@T("Admin.Address.AddressAttributes.Description")</em>
+        </p>
+        @await Html.PartialAsync("Table", new DataTablesModel
+        {
+            Name = "addressattributes-grid",
+            UrlRead = new DataUrl("List", "AddressAttribute", null),
+            Length = Model.PageSize,
+            LengthMenu = Model.AvailablePageSizes,
+            ColumnCollection = new List<ColumnProperty>
+            {
+                new ColumnProperty(nameof(AddressAttributeModel.Name))
+                {
+                    Title = T("Admin.Address.AddressAttributes.Fields.Name").Text,
+                    Width = "300"
+                },
+                new ColumnProperty(nameof(AddressAttributeModel.AttributeControlTypeName))
+                {
+                    Title = T("Admin.Address.AddressAttributes.Fields.AttributeControlType").Text,
+                    Width = "200"
+                },
+                new ColumnProperty(nameof(AddressAttributeModel.IsRequired))
+                {
+                    Title = T("Admin.Address.AddressAttributes.Fields.IsRequired").Text,
+                    Width = "100",
+                    ClassName = NopColumnClassDefaults.CenterAll,
+                    Render = new RenderBoolean()
+                },
+                new ColumnProperty(nameof(AddressAttributeModel.DisplayOrder))
+                {
+                    Title = T("Admin.Address.AddressAttributes.Fields.DisplayOrder").Text,
+                    Width = "100",
+                    ClassName =  NopColumnClassDefaults.CenterAll
+                },
+                new ColumnProperty(nameof(AddressAttributeValueModel.Id))
+                {
+                    Title = T("Admin.Common.Edit").Text,
+                    Width = "80",
+                    Render = new RenderButtonEdit(new DataUrl("~/Admin/AddressAttribute/Edit/"))
+                }
+            }
+        })
+    </div>
+    <div class="card-footer">
+        <a asp-action="Create" asp-controller="AddressAttribute" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+    </div>
+</div>

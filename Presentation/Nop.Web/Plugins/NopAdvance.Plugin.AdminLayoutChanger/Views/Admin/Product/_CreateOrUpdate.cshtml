@@ -1,0 +1,95 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model ProductModel
+
+@{
+    var showTour = ViewBag.ShowTour ?? false;
+
+    string verticalTab = (TabLayout)adminLayoutChangerSettings.TabLayoutId == TabLayout.Vertical ? "vertically-tab" : "";
+}
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-md-12 clearfix">
+                    <div class="float-left">
+                        @await Component.InvokeAsync("SettingMode", new { modeName = "product-advanced-mode" })
+                    </div>
+                    @if (!Model.IsLoggedInAsVendor)
+                    {
+                        <button type="button" class="btn btn-info float-left mx-2" id="product-editor-settings" data-toggle="modal" data-target="#productsettings-window">
+                            <i class="fas fa-cog"></i>
+                            @T("Admin.Configuration.Settings.ProductEditor.Button")
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <nop-tabs id="product-cards" class="@verticalTab">
+                <nop-tab asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Admin.Catalog.Products.Info")"  asp-default="true" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Info", Model)</nop-tab>
+                <nop-tab asp-name="product-price" asp-icon="fas fa-dollar-sign" asp-title="@T("Admin.Catalog.Products.Price")" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Prices", Model)</nop-tab>
+                <nop-tab asp-name="product-shipping" asp-icon="fas fa-truck" asp-title="@T("Admin.Catalog.Products.Shipping")"  asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Shipping", Model)</nop-tab>
+                <nop-tab asp-name="product-inventory" asp-icon="fas fa-sitemap" asp-title="@T("Admin.Catalog.Products.Inventory")" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Inventory", Model)</nop-tab>
+                <nop-tab asp-name="product-pictures" asp-icon="far fa-images" asp-title="@T("Admin.Catalog.Products.Pictures")"  asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Pictures", Model)</nop-tab>
+                <nop-tab asp-name="product-product-attributes" asp-icon="fas fa-paperclip" asp-title="@T("Admin.Catalog.Products.ProductAttributes")" asp-advanced="@(!Model.ProductEditorSettingsModel.ProductAttributes)">@await Html.PartialAsync("_CreateOrUpdate.ProductAttributes", Model)</nop-tab>
+                <nop-tab asp-name="product-specification-attributes" asp-icon="fas fa-cog" asp-title="@T("Admin.Catalog.Attributes.SpecificationAttributes")" asp-advanced="@(!Model.ProductEditorSettingsModel.SpecificationAttributes)">@await Html.PartialAsync("_CreateOrUpdate.SpecificationAttributes", Model)</nop-tab>
+                <nop-tab asp-name="product-giftcard" asp-icon="fas fa-gift" asp-title="@T("Admin.Catalog.Products.GiftCard")" asp-advanced="@(!Model.ProductEditorSettingsModel.IsGiftCard)">@await Html.PartialAsync("_CreateOrUpdate.GiftCard", Model)</nop-tab>
+                <nop-tab asp-name="product-downloadable" asp-icon="fas fa-download" asp-title="@T("Admin.Catalog.Products.DownloadableProduct")" asp-advanced="@(!Model.ProductEditorSettingsModel.DownloadableProduct)">@await Html.PartialAsync("_CreateOrUpdate.DownloadableProduct", Model)</nop-tab>
+                <nop-tab asp-name="product-rental" asp-icon="far fa-calendar-alt" asp-title="@T("Admin.Catalog.Products.Rental")"  asp-advanced="@(!Model.ProductEditorSettingsModel.IsRental)">@await Html.PartialAsync("_CreateOrUpdate.Rental", Model)</nop-tab>
+                <nop-tab asp-name="product-recurring" asp-icon="fas fa-redo-alt" asp-title="@T("Admin.Catalog.Products.RecurringProduct")"  asp-advanced="@(!Model.ProductEditorSettingsModel.RecurringProduct)">@await Html.PartialAsync("_CreateOrUpdate.Recurring", Model)</nop-tab>
+                <nop-tab asp-name="product-seo" asp-icon="fas fa-search-plus" asp-title="@T("Admin.Common.SEO")" asp-advanced="@(!Model.ProductEditorSettingsModel.Seo)">@await Html.PartialAsync("_CreateOrUpdate.Seo", Model)</nop-tab>
+                <nop-tab asp-name="product-related-products" asp-icon="fas fa-object-group" asp-title="@T("Admin.Catalog.Products.RelatedProducts")"  asp-advanced="@(!Model.ProductEditorSettingsModel.RelatedProducts)">@await Html.PartialAsync("_CreateOrUpdate.RelatedProducts", Model)</nop-tab>
+                <nop-tab asp-name="product-crosssells-products" asp-icon="fas fa-random" asp-title="@T("Admin.Catalog.Products.CrossSells")" asp-advanced="@(!Model.ProductEditorSettingsModel.CrossSellsProducts)">@await Html.PartialAsync("_CreateOrUpdate.CrossSellsProducts", Model)</nop-tab>
+
+                @if (Model.Id > 0)
+                {
+                    <nop-tab asp-name="product-purchased-with-orders" asp-icon="fas fa-cart-arrow-down" asp-title="@T("Admin.Catalog.Products.PurchasedWithOrders")" asp-advanced="@(!Model.ProductEditorSettingsModel.PurchasedWithOrders)">@await Html.PartialAsync("_CreateOrUpdate.PurchasedWithOrders", Model)</nop-tab>
+                    <nop-tab asp-name="product-stock-quantity-history" asp-icon="fas fa-history" asp-title="@T("Admin.Catalog.Products.StockQuantityHistory")" asp-advanced="@(!Model.ProductEditorSettingsModel.StockQuantityHistory)">@await Html.PartialAsync("_CreateOrUpdate.StockQuantityHistory", Model)</nop-tab>
+                }
+
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.ProductDetailsBlock, additionalData = Model })
+            </nop-tabs>
+        </div>
+    </div>
+</section>

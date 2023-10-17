@@ -1,0 +1,194 @@
+﻿@using Nop.Core.Domain.Seo
+@inject SeoSettings seoSettings
+
+@{
+    Layout = "_ColumnsApps";
+    ViewBag.BodyClass = "home";
+    //title
+    if (!string.IsNullOrEmpty(seoSettings.HomepageTitle))
+    {
+        NopHtml.AddTitleParts(seoSettings.HomepageTitle);
+    }
+
+    //meta
+    if (!string.IsNullOrEmpty(seoSettings.HomepageDescription))
+    {
+        NopHtml.AddMetaDescriptionParts(seoSettings.HomepageDescription);
+    }
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-home-page");
+}
+<div class="page-body">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeProducts })
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeBestSellers })
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeNews })
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforePoll })
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBottom })
+</div>
+@section HomePageSlider{
+        <div class="slider">
+        <img src="../images/banner/home-banner.png" class="slid-img">
+        <div class="overly">
+        </div>
+        <div class="container">
+            <div class="container content-slid">
+                <div class="separate-line"></div>
+                <h1 class="title-slider">
+                    @T("home.Banner.DescriptionMessage")
+                </h1>
+                <h4 class="menu-slider">
+                    @T("home.Banner.Item.Technology")
+                    <span>|</span>
+                    @T("home.Banner.Item.Catalogue")
+                    <span>|</span>
+                    @T("home.Banner.Item.Dropshipping")
+                    <span>|</span>
+                    @T("home.Banner.Item.Fulfillment")
+                    <span>|</span>
+                    @T("home.Banner.Item.MarketplaceOperation")
+                </h4>
+            </div>
+        </div>
+    </div>
+}
+<div class="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-4">
+                <div class="content-service">
+                    <h4 class="title-service text-black text-center">
+                        @T("home.Solutions.Title.DropShipping")
+                    </h4>
+                    <div class="desc-service text-black text-center">
+                       @T("home.Solutions.DropShipping")
+                    </div>
+                    <a href="#" class="btn btn-primary">@T("global.SeeMore")</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-4">
+                <div class="content-service">
+                    <h4 class="title-service text-black text-center">
+                        @T("home.Solutions.Title.Brands")
+                    </h4>
+                    <div class="desc-service text-black text-center">
+                        @T("home.Solutions.Brands")
+                    </div>
+                    <a href="#" class="btn btn-primary">@T("global.SeeMore")</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-4">
+                <div class="content-service">
+                    <h4 class="title-service text-black font-semibold text-center">
+                       @T("home.Solutions.Title.Auctions")
+                    </h4>
+                    <div class="desc-service text-black text-center">
+                        @T("home.Solutions.Auctions")
+                    </div>
+                    <a href="#" class="btn btn-primary">@T("global.SeeMore")</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Component.InvokeAsync("OnlineSales")
+
+<div class="black-friday">
+    <img src="../images/black-friday.png">
+    <div class="container">
+        <div class="content-text">
+            <div class="text-left text-white text-big">Pre Black Friday Offer</div>
+            <h4 class="text-left text-white">Marketplace connectors with a discount of up to 75%</h4>
+            <a href="#" class="button btn-second text-center text-black">@T("global.shopnow")</a>
+        </div>
+    </div>
+</div>
+
+@await Component.InvokeAsync("HomepageCategories")
+
+@await Component.InvokeAsync("NewsletterBox")
+
+<div class="channels">
+    <div class="container">
+        <h2 class="sec-title text-black font-semibold text-center">@T("home.OnlineChannels.Title")</h2>
+        <div class="sec-desc">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/carrefour.png">
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/decathlon.png">
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/lacoste.png">
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/almarai.png">
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/nedec.png">
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/nofa.png">
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/carrefour.png">
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/decathlon.png">
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/lacoste.png">
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/almarai.png">
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/nedec.png">
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-2">
+                    <div class="channel-img">
+                        <img class="img-channel" src="../images/channels/nofa.png">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

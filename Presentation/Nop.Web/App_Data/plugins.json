@@ -1,0 +1,150 @@
+﻿{
+  "InstalledPluginNames": [
+    "Obsolete field, using only for compatibility"
+  ],
+  "InstalledPlugins": [
+    {
+      "SystemName": "Payments.PayPalCommerce",
+      "Version": "1.10.2"
+    },
+    {
+      "SystemName": "Payments.PayPalStandard",
+      "Version": "1.71"
+    },
+    {
+      "SystemName": "DiscountRequirement.MustBeAssignedToCustomerRole",
+      "Version": "1.39"
+    },
+    {
+      "SystemName": "CurrencyExchange.ECB",
+      "Version": "1.32"
+    },
+    {
+      "SystemName": "Misc.Sendinblue",
+      "Version": "3.38"
+    },
+    {
+      "SystemName": "Misc.WebApi.Frontend",
+      "Version": "1.0"
+    },
+    {
+      "SystemName": "MultiFactorAuth.GoogleAuthenticator",
+      "Version": "1.11"
+    },
+    {
+      "SystemName": "Payments.CheckMoneyOrder",
+      "Version": "1.49"
+    },
+    {
+      "SystemName": "Payments.Manual",
+      "Version": "1.58"
+    },
+    {
+      "SystemName": "Pickup.PickupInStore",
+      "Version": "1.45"
+    },
+    {
+      "SystemName": "Shipping.EasyPost",
+      "Version": "1.13"
+    },
+    {
+      "SystemName": "Shipping.FixedByWeightByTotal",
+      "Version": "2.35"
+    },
+    {
+      "SystemName": "Shipping.UPS",
+      "Version": "1.70"
+    },
+    {
+      "SystemName": "Tax.Avalara",
+      "Version": "2.62"
+    },
+    {
+      "SystemName": "Tax.FixedOrByCountryStateZip",
+      "Version": "1.43"
+    },
+    {
+      "SystemName": "Widgets.AccessiBe",
+      "Version": "1.17"
+    },
+    {
+      "SystemName": "Widgets.FacebookPixel",
+      "Version": "1.13.1"
+    },
+    {
+      "SystemName": "Widgets.GoogleAnalytics",
+      "Version": "1.72"
+    },
+    {
+      "SystemName": "Widgets.NivoSlider",
+      "Version": "1.45"
+    },
+    {
+      "SystemName": "Widgets.What3words",
+      "Version": "1.00"
+    },
+    {
+      "SystemName": "ExternalAuth.Facebook",
+      "Version": "1.73"
+    },
+    {
+      "SystemName": "NopAdvance.Core",
+      "Version": "1.1"
+    },
+    {
+      "SystemName": "NopAdvance.Plugin.AdminLayoutChanger",
+      "Version": "2.10"
+    },
+    {
+      "SystemName": "Widgets.nopplustawkchat",
+      "Version": "1.41"
+    },
+    {
+      "SystemName": "Widgets.SkypeChat",
+      "Version": "1.33"
+    },
+    {
+      "SystemName": "Admin.GKSCore",
+      "Version": "1.00"
+    },
+    {
+      "SystemName": "Widgets.UserNotify",
+      "Version": "0.95"
+    },
+    {
+      "SystemName": "Widgets.SmartargetLuckyWheel",
+      "Version": "1.00"
+    },
+    {
+      "SystemName": "NopAdvance.Plugin.SmartSlider",
+      "Version": "1.0"
+    },
+    {
+      "SystemName": "NopStation.Core",
+      "Version": "4.50.1.0"
+    },
+    {
+      "SystemName": "NopStation.Plugin.Widgets.AnywhereSlider",
+      "Version": "4.50.1.0"
+    },
+    {
+      "SystemName": "NopStation.Plugin.Widgets.Announcement",
+      "Version": "4.50.1.0"
+    },
+    {
+      "SystemName": "Widgets.qBoSlider",
+      "Version": "1.4.1"
+    },
+    {
+      "SystemName": "Nop.Front.Api",
+      "Version": "4.5.0"
+    },
+    {
+      "SystemName": "Konnectall.Plugin.Payment",
+      "Version": "1.58"
+    }
+  ],
+  "PluginNamesToUninstall": [],
+  "PluginNamesToDelete": [],
+  "PluginNamesToInstall": []
+}

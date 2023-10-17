@@ -1,0 +1,15 @@
+﻿{
+  "Group": "NopAdvance",
+  "FriendlyName": "Admin Layout Changer",
+  "SystemName": "NopAdvance.Plugin.AdminLayoutChanger",
+  "Version": "2.10",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "NopAdvance team",
+  "DisplayOrder": 1,
+  "FileName": "NopAdvance.Plugin.Misc.AdminLayoutChanger.dll",
+  "Description": "Change nopCommerce's admin layout and theme. Layout includes horizontal menu, tabs etc.",
+  "DependsOnSystemNames": [ "NopAdvance.Core" ],
+  "CoreVersion": "1.1",
+  "ProductUrl": "https://store.nopadvance.com/admin-layout-changer-plugin-for-nopcommerce",
+  "HelpUrl": "https://docs.nopadvance.com/admin-layout-changer-plugin.html"
+}

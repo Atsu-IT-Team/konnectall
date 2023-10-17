@@ -1,0 +1,22 @@
+﻿@model AnnouncementModel
+
+<style>
+    marquee h1, marquee h2, marquee h3, marquee h4, marquee h5, marquee h6, marquee p, marquee div, marquee ul, marquee ol, marquee li {
+        display: inline;
+        color: unset;
+    }
+
+    marquee {
+        margin: 5px 0px;
+    }
+</style>
+
+@if (Model.AnnouncementItems.Any())
+{
+    <marquee width="100%" direction="@Model.Direction">
+        @foreach (var item in Model.AnnouncementItems)
+        {
+            <span style="color: @item.Color !important;">@Html.Raw(item.Content) <span style="color: initial !important; margin: 0px 5px 0px 5px; ">@Model.ItemSeparator</span></span>
+        }
+    </marquee>
+}

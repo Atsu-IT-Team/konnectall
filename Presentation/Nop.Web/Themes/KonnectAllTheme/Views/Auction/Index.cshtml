@@ -1,0 +1,1320 @@
+﻿@using Nop.Core.Domain.Seo
+@inject SeoSettings seoSettings
+
+@{
+    Layout = "_Root";
+    ViewBag.BodyClass = "auction-page";
+    //title
+    if (!string.IsNullOrEmpty(seoSettings.HomepageTitle))
+    {
+        NopHtml.AddTitleParts(seoSettings.HomepageTitle);
+    }
+
+    //meta
+    if (!string.IsNullOrEmpty(seoSettings.HomepageDescription))
+    {
+        NopHtml.AddMetaDescriptionParts(seoSettings.HomepageDescription);
+    }
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-home-page");
+}
+@section HomePageSlider{
+    <div class="slider">
+        <img alt="" src="./assets/img/banner/auction-banner.png" class="slid-img">
+        <div class="overly">
+        </div>
+        <div class="container">
+            <div class="container content-slid">
+                <h1 class="text-left text-capitalize">seasonal vegetable auction</h1>
+                <a class="btn btn-primary text-uppercase text-black" href="#"><span>shop now</span></a>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="container">
+    <div class="row first-section">
+        <div class="col-sm-3">
+            <div class="auction-all first-auct">
+                <span>All auctions</span>
+            </div>
+
+        </div>
+        <div class="col-sm-3">
+            <div class="auction-all current-auct">
+                <span>Current auction</span>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="auction-all upcomining-auct">
+                <span>Upcoming auction</span>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="auction-all ended-auct">
+                <span>Ended auction</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="services-content">
+        <div class="row">
+            <ul id="item">
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/clothes.png">
+                        </div>
+                        <div class="title-sec text-capitalize">clothes</div>
+                    </div>
+                </li>
+
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/cosmetics.png">
+                        </div>
+                        <div class="title-sec text-capitalize">cosmetics</div>
+                    </div>
+                </li>
+
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/nuits.png">
+                        </div>
+                        <div class="title-sec text-capitalize">nuits</div>
+                    </div>
+                </li>
+
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/devices.png">
+                        </div>
+                        <div class="title-sec text-capitalize">devices</div>
+                    </div>
+                </li>
+
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/chocolate.png">
+                        </div>
+                        <div class="title-sec text-capitalize">chocolate</div>
+                    </div>
+                </li>
+
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/drink.png">
+                        </div>
+                        <div class="title-sec text-capitalize">drinks</div>
+                    </div>
+                </li>
+
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/meat.png">
+                        </div>
+                        <div class="title-sec text-capitalize">meat</div>
+                    </div>
+                </li>
+
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/fourniture.png">
+                        </div>
+                        <div class="title-sec text-capitalize">furniture</div>
+                    </div>
+                </li>
+
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/candy.png">
+                        </div>
+                        <div class="title-sec text-capitalize">candy</div>
+                    </div>
+                </li>
+
+                <li class="myItem">
+                    <div class="services">
+                        <div class="img-service">
+                            <img alt="" src="../assets/img/auction/services/cleaning.png">
+                        </div>
+                        <div class="title-sec text-capitalize">cleaning</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="auction-categ">
+        <div class="slide">
+            <div class="sec-desc-categ1 slide-container">
+                <div id="slide-right" class="arrow-prev">&lt;</div>
+
+                <div class="" id="slider">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img1.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">clothes</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img2.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">drinks</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img3.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">nuits</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img1.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">clothes</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img2.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">drinks</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img4.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">cosmetic</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="slide-left" class="arrow-next">&gt;</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<middle-banner>
+    <section class="container middle-banner">
+        <img alt="" src="../assets/img/b2b-category/banner-middle.png" class="banner-middle">
+
+        <div class="content-banner">
+            <div class="number text-yellow-light font-bold">25</div>
+            <h3 class="percent text-uppercase text-yellow-light">% off</h3>
+            <div class="line-separate"></div>
+            <div class="desc-content">
+                <h3 class="text-capitalize text-white">fresh green vegetables</h3>
+                <a href="#" class="btn-sm-white">
+                    <span class="text-white font-normal">shop now</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</middle-banner>
+
+<div class="container">
+    <div class="auction-categ">
+        <div class="slide">
+            <div class="sec-desc-categ1 slide-container">
+                <div id="arrow-next" class="arrow-prev">&lt;</div>
+
+                <div class="" id="slider1">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img1.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">clothes</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img2.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">drinks</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img3.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">nuits</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img1.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">clothes</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img2.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">drinks</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img4.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">cosmetic</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="arrow-prev" class="arrow-next">&gt;</div>
+            </div>
+
+            <div class="sec-desc-categ1 slide-container">
+                <div id="arrow-next1" class="arrow-prev">&lt;</div>
+
+                <div class="" id="slider2">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img1.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">clothes</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img2.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">drinks</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img3.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">nuits</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img1.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">clothes</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img2.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">drinks</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="categ-auction">
+                            <div class="card-section-1">
+                                <div class="card-section">
+                                    <div class="img">
+                                        <img alt="" src="../assets/img/auction/img4.png" class="auction-img">
+                                    </div>
+
+                                    <div class="details">
+                                        <div class="top-content">
+                                            <div class="current">
+                                                <span class="cur-attri text-capitalize text-black">current</span>
+                                                <span class="type-attri text-capitalize text-white">cosmetic</span>
+                                            </div>
+                                            <img alt="" src="../assets/img/auction/share-img.png" class="share-img">
+                                        </div>
+
+                                        <div class="bottom-content">
+                                            <div class="timing">
+                                                <div class="time-run num-day">
+                                                    <h4 class="number text-white">01</h4>
+                                                    <span class="text-capitalize text-time text-white">Days</span>
+                                                </div>
+                                                <div class="time-run num-hour">
+                                                    <h4 class="number text-white">23</h4>
+                                                    <span class="text-capitalize text-white">Hours</span>
+                                                </div>
+                                                <div class="time-run num-min">
+                                                    <h4 class="number text-white">59</h4>
+                                                    <span class="text-capitalize text-time text-white">Minute</span>
+                                                </div>
+                                                <div class="time-run num-sec">
+                                                    <h4 class="number text-white">12</h4>
+                                                    <span class="text-capitalize text-time text-white">Second</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="desc-auct">
+                                    <h5 class="text-uppercase text-left">Semantic Clothes</h5>
+                                    <div class="text-content">
+                                        For more information about the auction and the terms of participation, please see the details of the auction
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="numb-partici text-white">
+                                The number of participants: 55
+                            </div>
+                            <div class="participate text-white">
+                                Participate in the auction
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="arrow-prev1" class="arrow-next">&gt;</div>
+            </div>
+        </div>
+    </div>
+</div>
+<my-decoracrafts>
+    <section class="container decora-crafts">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 left-content">
+                <div></div>
+                <img src="../assets/img/b2b-category/decora-craft/chocola-cake.webp" class="img-decora" alt="chocola-cake">
+                <div class="content-decora-sect ">
+                    <div class="font-light text-white text-small">chocolate</div>
+                    <h2 class="text-white text-left">Chocolate Cake</h2>
+                    <a href="#" class="btn-sm-white">
+                        <span class="text-white font-normal">shop now</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 center-content">
+                <img src="../assets/img/b2b-category/decora-craft/decora-craft.webp" class="img-decora" alt="decora-craft">
+                <div class="content-decora-sect content-center">
+                    <div class="font-light text-white text-small">big &amp; fetch offers</div>
+                    <h2 class="text-white text-left">Decora &amp; Crafts</h2>
+                    <a href="#" class="btn-sm-white">
+                        <span class="text-white font-normal">shop now</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 right-content">
+                <img src="../assets/img/b2b-category/decora-craft/medical-equipement.webp" class="img-decora" alt="medical">
+                <div class="content-decora-sect ">
+                    <div class="font-light text-white text-small">medical equipement</div>
+                    <h2 class="text-white text-left">Stethoscope Scrubs</h2>
+                    <a href="#" class="btn-sm-white">
+                        <span class="text-white font-normal">shop now</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 mobile-content">
+            <img src="../assets/img/b2b-category/decora-craft/decora-craft.png" class="img-decora" alt="craft">
+            <div class="content-decora-sect content-center">
+                <div class="font-light text-white text-small">big &amp; fetch offers</div>
+                <h2 class="text-white text-left">Decora &amp; Crafts</h2>
+                <a href="#" class="btn-sm-white">
+                    <span class="btn-sm text-white  font-normal">shop now</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</my-decoracrafts>
+<our-clients>
+    <section class="container our-clients">
+        <div class="content-our-client">
+            <div class="title-sec">
+                <h4 class="text-black text-left">
+                    our clients
+                </h4>
+                <span class="line-after"></span>
+            </div>
+            <div class="brand-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/seara.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/zeem-corporation.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/esnad.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/inma.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/alkifeh-contacting.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/maaden.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/heights.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/united-group.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/jawhara-factory.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/bytes-future.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/railway-saudi-arabia.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/suw.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/elbath.png" class="logo-clients">
+                <img alt="" src="../assets/img/b2b-category/our-client/midicul.png" class="logo-clients">
+            </div>
+        </div>
+    </section>
+</our-clients>
+
+@await Component.InvokeAsync("NewsletterBox")
+
+@*<script>
+    $(document).ready(function(){
+       $("body").removeClass("home").addClass("auction-page");
+    });
+</script>*@

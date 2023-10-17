@@ -1,0 +1,14 @@
+﻿@model Nop.Web.Models.Catalog.CategorySimpleModel
+<div class="mega-menu-submenu">
+  <ul class="sub-menu">
+    <li class="menu-item">
+      <a href="@Url.RouteUrl("Category", new { SeName = Model.SeName })"
+            @Model.Name @if (Model.NumberOfProducts.HasValue)
+            {
+                <text> </text>
+                @T("Categories.TotalProducts", Model.NumberOfProducts.Value)
+            }</a
+    </li>
+  </ul>
+</div>
+

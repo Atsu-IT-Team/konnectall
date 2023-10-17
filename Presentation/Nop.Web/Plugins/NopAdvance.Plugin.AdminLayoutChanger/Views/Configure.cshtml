@@ -1,0 +1,219 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model ConfigurationModel
+@inject IGenericHelper genericHelper
+@using NopAdvance.Plugin.Misc.AdminLayoutChanger.Domain;
+@using Nop.Services;
+@using NopAdvance.Plugin.Core.Helpers
+@using NopAdvance.Plugin.Misc.AdminLayoutChanger.Models
+@using NopAdvance.Plugin.Core.Domain;
+@{
+    Layout = genericHelper.GetPluginConfigureLayout();
+    ViewBag.SystemName = PluginDefaults.SYSTEM_NAME;
+    ViewBag.PluginStatus = Model.PluginStatus;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName(SiteMapDefaults.CONFIGURE_MENU_SYSTEM_NAME);
+}
+<script>
+	$(document).ready(function () {
+        $("#@Html.IdFor(model => model.UseTabs)").click(toggleTabLayout);
+        
+        toggleTabLayout();
+	});
+	function toggleTabLayout() {
+        if ($('#@Html.IdFor(model => model.UseTabs)').is(':checked')) {
+            $('#pnlTabLayoutId').show();
+        } else {
+            $('#pnlTabLayoutId').hide();
+        }
+    }
+
+</script>
+@Html.Raw(Model.PluginDesc)
+<form id="admin-layout-changer-configure-form" asp-controller="@SiteMapDefaults.CONFIGURE_CONTROLLER_NAME" asp-action="@SiteMapDefaults.CONFIGURE_ACTION_NAME" method="post">
+    <div class="cards-group">
+        <div class="card card-default">
+            <div class="card-body">
+                <div class="callout bg-gray-light no-margin">
+                    <i class="fa fa-info"></i>
+                    <b>@Html.Raw(T(LocaleResourceDefaults.INFO_PAGE))</b>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3 col-lg-2">
+                        <nop-label asp-for="Enabled" />
+                    </div>
+                    <div class="col-md-9 col-lg-10">
+                        <nop-editor asp-for="Enabled" />
+                        <span asp-validation-for="Enabled"></span>
+                    </div>
+                </div>
+                @if (Model.PluginStatus == PluginLicenceStatusType.Registered || Model.PluginStatus == PluginLicenceStatusType.Trial)
+                {
+                    <div class="form-group row">
+                        <div class="col-md-3 col-lg-2">
+                            <nop-label asp-for="UseResponsiveMenu" />
+                        </div>
+                        <div class="col-md-9 col-lg-10">
+                            <nop-editor asp-for="UseResponsiveMenu" />
+                            <span asp-validation-for="UseResponsiveMenu"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3 col-lg-2">
+                            <nop-label asp-for="UseTabs" />
+                        </div>
+                        <div class="col-md-9 col-lg-10">
+                            <nop-editor asp-for="UseTabs" />
+                            <span asp-validation-for="UseTabs"></span>
+                        </div>
+                    </div>
+                    <nop-nested-setting asp-for="UseTabs">
+                        <div class="form-group row" id="pnlTabLayoutId">
+                            <div class="col-md-3 col-lg-2">
+                                <nop-label asp-for="TabLayoutId" />
+                            </div>
+                            <div class="col-md-9 col-lg-10">
+                                <nop-select asp-for="TabLayoutId" asp-items="@(await ((TabLayout)Model.TabLayoutId).ToSelectListAsync())" />
+                                <span asp-validation-for="TabLayoutId"></span>
+                            </div>
+                        </div>
+                    </nop-nested-setting>
+                }
+                <div class="form-group row">
+                    <div class="col-md-3 col-lg-2">
+                        <nop-label asp-for="LabelPositionId" />
+                    </div>
+                    <div class="col-md-9 col-lg-10">
+                        <nop-select asp-for="LabelPositionId" asp-items="@(await ((LabelPosition)Model.LabelPositionId).ToSelectListAsync())" />
+                        <span asp-validation-for="LabelPositionId"></span>
+                    </div>
+                </div>
+                @if (Model.PluginStatus == PluginLicenceStatusType.Registered || Model.PluginStatus == PluginLicenceStatusType.Trial)
+                {
+                    <div class="form-group row">
+                        <div class="col-md-3 col-lg-2">
+                            <nop-label asp-for="RemoveCopyRightFooter" />
+                        </div>
+                        <div class="col-md-9 col-lg-10">
+                            <nop-editor asp-for="RemoveCopyRightFooter" />
+                            <span asp-validation-for="RemoveCopyRightFooter"></span>
+                        </div>
+                    </div>
+                }
+                <div class="form-group row">
+                    <div class="col-md-3 col-lg-2"></div>
+                    <div class="col-md-9 col-lg-10">
+                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div> 
+            </div> 
+            <div class="card card-default">
+            <div class="card-body">
+            @*Gird for configure customer role wise*@
+            @await Html.PartialAsync("Table", new DataTablesModel
+                        {
+                            Name = "admin-layout-changer-configure-grid",
+                            UrlRead = new DataUrl("CustomerRoleWiseConfigureList", "NopAdvanceAdminLayoutChanger", null),
+                            Length = Model.ConfigurationSearchModel.PageSize,
+                            LengthMenu = Model.ConfigurationSearchModel.AvailablePageSizes,
+                            ColumnCollection = new List<ColumnProperty>
+                            {
+                                new ColumnProperty(nameof(ConfigurationModel.CustomerRole))
+                                {
+                                    Title = T(LocaleResourceDefaults.CUSTOMER_ROLE_ID).Text,
+                                },
+                                new ColumnProperty(nameof(ConfigurationModel.Published))
+                                {
+                                    Title = T(LocaleResourceDefaults.PUBLISHED).Text,
+                                          ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Render = new RenderBoolean()
+                                },
+                                new ColumnProperty(nameof(ConfigurationModel.AdminMiniLogoUrl))
+                                {
+                                    Title = T(LocaleResourceDefaults.MINI_LOGO_ID).Text,
+                                          ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Render = new RenderPicture()
+                                },
+                                new ColumnProperty(nameof(ConfigurationModel.AdminLargeLogoUrl))
+                                {
+                                    Title = T(LocaleResourceDefaults.LARGE_LOGO_ID).Text,
+                                          ClassName =  NopColumnClassDefaults.CenterAll,
+                                    Render = new RenderPicture()
+                                },
+                                new ColumnProperty(nameof(ConfigurationModel.AdminThemeType))
+                                {
+                                    Title = T(LocaleResourceDefaults.ADMIN_THEME_TYPE_ID).Text
+                                },
+                                new ColumnProperty(nameof(ConfigurationModel.CustomerRoleId))
+                                {
+                                    Title = T("Admin.Common.Edit").Text,
+                                    ClassName =  NopColumnClassDefaults.Button,
+                                    Render = new RenderCustom("renderColumnEdit")
+                                }
+                            }
+                        })
+                        <script>
+                function renderColumnEdit(data, type, row, meta) {
+                    return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/NopAdvanceAdminLayoutChanger/CustomerRoleWiseConfigurationEditPopup/")?customerRoleId='+row.CustomerRoleId+'&btnId=btnRefreshConfiguration&formId=admin-layout-changer-configure-form\', 1176, 811,  true); return false;\" class="btn btn-default"><i class="fas fa-pencil-alt"></i>@T("Admin.Common.Edit").Text</button>';
+                }
+            </script>
+            
+            @*Gird for configure customer role wise*@
+            </div>
+            <div class="card-footer">
+                <button type="submit" id="btnAddNewProduct" onclick="javascript:OpenWindow('@(Url.Action("CustomerRoleWiseConfigurationAddPopup", @SiteMapDefaults.CONFIGURE_CONTROLLER_NAME, new { roleId = 0, btnId = "btnRefreshConfiguration", formId = "admin-layout-changer-configure-form" }))', 1176, 811,  true); return false;" class="btn btn-primary">
+                    @T(@LocaleResourceDefaults.ADD_NEW_BUTTON)
+                </button>
+                <button type="submit" id="btnRefreshConfiguration" style="display: none"></button>
+                <script>
+                    $(document).ready(function () {
+                        $('#btnRefreshConfiguration').click(function () {
+                            //refresh page
+                            window.location.reload();
+                            //return false to don't reload a page
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</form>

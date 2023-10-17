@@ -1,0 +1,210 @@
+//main: ../../style.less
+
+
+/*--------------------------------------------------------------
+# login page style
+--------------------------------------------------------------*/
+
+.login-page {
+
+    .slider {
+        margin-bottom: 30px;
+
+        .slid-img {
+            min-height: 170px;
+            height: 100%;
+        }
+
+        .sidebar-title {
+            cursor: pointer;
+        }
+
+        .content-slid {
+            text-align: left;
+            align-items: end;
+
+            h2 {
+                font-weight: 400 !important;
+                margin-top: 0 !important;
+            }
+
+            h1 {
+                line-height: 0.5 !important;
+                margin: 0;
+                padding: 0;
+                color:#fff;
+            }
+
+            .btn-primary {
+                margin-top: 3.5rem;
+            
+                &:after {
+                    content: "";
+                    background-image: url('../../../images/banner/arrow-banner.png');
+                    display: inline-block;
+                    background-repeat: no-repeat;
+                    width: 35px;
+                    height: 20px;
+                    vertical-align: middle;
+                    transform: scale(0.6);
+                    margin-left: 5px;
+                    transition: all 0.4s;
+                    float: left;
+                    transform: rotate(180deg) scale(0.6);
+                }
+
+                &:hover:after {
+                    margin-left: 20px;
+                    background-image: url('assets/img/category/arrow-sidebar.png');
+                }
+            }
+        }
+    }
+
+    .account {
+        margin: 30px 0;
+
+        .left-content {
+            float: right;
+            direction: rtl;
+            @media(max-width: 991px) {
+                float: none;
+            }
+        }
+
+        @media(max-width:768px){
+            >div {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        .login-sec , .account-sec {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            direction: rtl;
+
+            @media (max-width:991px) {
+                padding: 10px;
+            }
+
+            h5{
+                margin-top: 0;
+                text-align: right !important;
+            }
+
+            a {
+                color: @gray-darck;
+                @media (max-width:991px) {
+                    font-size: 13px;
+                }
+            }
+
+            .remember{
+                display: flex;
+                align-items: center;
+            }
+
+            .toggle {
+                position: relative;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                box-sizing:border-box;
+                margin-left: 5px;
+              }
+              .toggle input[type="checkbox"] {
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 10;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                appearance: none;
+              }
+              .toggle label {
+                position: relative;
+                display: flex;
+                height: 100%;
+                align-items: center;
+                box-sizing:border-box;
+              }
+              .toggle label:before {
+                content: '';
+                display: inline-block;
+                box-sizing:border-box;
+                transition: 0.2s ease-in;
+                isolation: isolate;
+                position: relative;
+                height: 30px;
+                width: 75px;
+                border-radius: 15px;
+                border: 1px solid #ccc;
+              }
+              .toggle label:after {
+                content: '';
+                height: 30px;
+                width: 45px;
+                border-radius: 15px;
+                background: #1390c6;
+                position: absolute;
+                left: 0;
+                top: 0;
+                transition: transform 0.4s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+              }
+              .toggle input[type="checkbox"]:checked + label:after {
+                transform: translate3d(30px, 0, 0);
+              }
+    
+            input {
+                margin: 5px 0;
+            }
+
+            .btn-login{
+                position: absolute;
+                background-color: #414141;
+                color: #fff;
+                right: 20px;
+                left: 20px;
+                text-align: center;
+                font-size: 19px;
+            }
+
+            .btn-register{
+                position: absolute;
+                background-color: #1390c6;
+                color: #fff;
+                right: 20px;
+                left: 20px;
+                text-align: center;
+                font-size: 19px;
+                padding: 6px 12px;
+                border-radius: 5px;
+            }
+        }
+
+        .login-sec {
+            @media (max-width:768px) {
+                margin-bottom: 40px;
+            }
+        }
+
+        .account-sec {
+            @media (max-width:768px) {
+                margin-top: 40px;
+            }
+        }
+    
+        .link-sec {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+    }
+
+   
+}

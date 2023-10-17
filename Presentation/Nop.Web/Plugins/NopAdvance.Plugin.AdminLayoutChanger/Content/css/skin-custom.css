@@ -1,0 +1,109 @@
+/*
+ * Skin: Custom
+ * ----------
+ */
+
+.skin-custom .main-header.navbar.bg-dark{
+  background-color: %Primary-Color% !important;
+}
+.skin-custom .navbar-dark .navbar-nav .nav-link
+{
+  color: %Font-Color% !important;
+}
+.skin-custom .navbar-static-top.menu-custom
+{
+  background-color: %Primary-Color% !important;
+}
+.skin-custom .menu-custom .navbar-nav > li > a
+{
+  color: %Font-Color% !important;
+}
+
+.skin-custom [class*=sidebar-dark-] .sidebar a
+{
+  color: %Font-Color% !important;
+}
+
+.skin-custom .brand-link.navbar-dark
+{
+  background-color: %Primary-Color% !important;
+}
+
+.skin-custom.horizontally-menu .dropdown ul li.menu-open > a,
+.skin-custom.horizontally-menu .dropdown ul li > a.active
+{
+  color: %Primary-Color% !important;
+}
+
+.skin-custom .btn-primary,
+.skin-custom .bg-blue
+{
+  border-color: %Primary-Color% !important;
+  color: %Font-Color% !important;
+}
+
+.skin-custom .btn.bg-blue,
+.skin-custom .btn.bg-light-blue
+{
+  color: %Font-Color% !important;
+}
+
+.skin-custom .upload-picture-block .bg-gradient-green
+{
+  background: %Primary-Color% !important;
+  color: %Font-Color% !important;
+}
+
+.skin-custom .btn.bg-blue,
+.skin-custom .btn.bg-light-blue,
+.skin-custom .btn-primary,
+.skin-custom .bg-blue,
+.skin-custom .bg-light-blue,
+.skin-custom .label-primary
+{
+  color: %Font-Color% !important;
+  background-color: %Primary-Color% !important;
+}
+
+.skin-custom .bg-gradient-green.btn.active,
+.skin-custom .bg-gradient-green.btn:active,
+.skin-custom .bg-gradient-green.btn:not(:disabled):not(.disabled).active,
+.skin-custom .bg-gradient-green.btn:not(:disabled):not(.disabled):active,
+.skin-custom .upload-picture-block .bg-gradient-green.btn.active,
+.skin-custom .upload-picture-block .bg-gradient-green.btn:active,
+.skin-custom .upload-picture-block .bg-gradient-green:active,
+.skin-custom .upload-picture-block .bg-gradient-green:focus,
+.skin-custom .upload-picture-block .bg-gradient-green:hover
+{
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,0.20);
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.20);
+  background: %Secondary-Color% !important;
+  border-color: %Secondary-Color% !important;
+}
+
+.skin-custom .bg-blue.btn.active,
+.skin-custom .bg-blue.btn:active,
+.skin-custom .bg-blue.btn:not(:disabled):not(.disabled).active,
+.skin-custom .bg-blue.btn:not(:disabled):not(.disabled):active,
+.skin-custom .btn.bg-blue:hover,
+.skin-custom .btn.bg-light-blue:hover,
+.skin-custom .btn-primary:hover
+{
+  background: %Secondary-Color% !important;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,0.20);
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.20);
+  border-color: %Secondary-Color% !important;
+}
+
+.skin-custom [class*=sidebar-dark-]
+{
+  background-color: %Primary-Color% !important;
+}
+
+.skin-custom .sidebar-dark-primary .nav-sidebar.nav-legacy > .nav-item > .nav-link.active,
+.skin-custom .sidebar-light-primary .nav-sidebar.nav-legacy > .nav-item > .nav-link.active
+{
+  border-color: %Secondary-Color% !important;
+}
+
+.horizontally-menu .main-footer { margin-left: 0 !important; }

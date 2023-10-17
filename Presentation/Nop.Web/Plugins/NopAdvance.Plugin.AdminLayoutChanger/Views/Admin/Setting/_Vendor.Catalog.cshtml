@@ -1,0 +1,93 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model VendorSettingsModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="AllowCustomersToContactVendors_OverrideForStore" asp-input="AllowCustomersToContactVendors" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="AllowCustomersToContactVendors" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="AllowCustomersToContactVendors" />
+            <span asp-validation-for="AllowCustomersToContactVendors"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="AllowSearchByVendor_OverrideForStore" asp-input="AllowSearchByVendor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="AllowSearchByVendor" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="AllowSearchByVendor" />
+            <span asp-validation-for="AllowSearchByVendor"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="ShowVendorOnProductDetailsPage_OverrideForStore" asp-input="ShowVendorOnProductDetailsPage" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="ShowVendorOnProductDetailsPage" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="ShowVendorOnProductDetailsPage" />
+            <span asp-validation-for="ShowVendorOnProductDetailsPage"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="ShowVendorOnOrderDetailsPage_OverrideForStore" asp-input="ShowVendorOnOrderDetailsPage" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="ShowVendorOnOrderDetailsPage" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="ShowVendorOnOrderDetailsPage" />
+            <span asp-validation-for="ShowVendorOnOrderDetailsPage"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="VendorsBlockItemsToDisplay_OverrideForStore" asp-input="VendorsBlockItemsToDisplay" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="VendorsBlockItemsToDisplay" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="VendorsBlockItemsToDisplay" />
+            <span asp-validation-for="VendorsBlockItemsToDisplay"></span>
+        </div>
+    </div>
+</div>

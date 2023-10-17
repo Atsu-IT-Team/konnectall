@@ -1,0 +1,18 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "User Notify",
+  "SupportedVersions": [
+    "4.50"
+  ],
+  "Author": "GeoffkSoftware",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.UserNotify.dll",
+  "Description": "Displays a message to users in the Store",
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": [],
+  "DependsOnSystemNames": [
+    "Admin.GKSCore"
+  ],
+  "SystemName": "Widgets.UserNotify",
+  "Version": "0.95"
+}

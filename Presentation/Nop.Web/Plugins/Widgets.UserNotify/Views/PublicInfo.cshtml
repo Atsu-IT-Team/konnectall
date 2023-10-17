@@ -1,0 +1,23 @@
+﻿@using System.Text;
+@model Nop.Plugin.Widgets.UserNotify.Models.PublicInfoModel
+@{
+    Layout = "";
+}
+
+
+@{
+    // add html custom Homepage Message Bar
+    <style>
+        .userNotify {
+            background-color: @Model.backgroundcolor;
+            padding: 5px;
+        }
+        .userNotify a:link {
+            text-decoration: underline;
+        }
+    </style>
+    <div id="userNotify">
+        <div id="userNotifytext" class="userNotify">@Html.Raw(Model.messagetext)</div>
+    </div>
+
+}

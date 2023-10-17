@@ -1,0 +1,139 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model SiteMapNode
+@using Nop.Core.Domain.Localization
+@using Nop.Web.Framework.Menu
+@using Nop.Services.Helpers
+@inject IWorkContext workContext
+@inject LocalizationSettings localizationSettings
+@inject IUserAgentHelper userAgentHelper
+@{
+    var supportRtl = (await workContext.GetWorkingLanguageAsync()).Rtl && !localizationSettings.IgnoreRtlPropertyForAdminArea;
+    string url = null;
+    if (!string.IsNullOrEmpty(Model.ControllerName) && !string.IsNullOrEmpty(Model.ActionName))
+    {
+        url = Url.Action(Model.ActionName, Model.ControllerName, Model.RouteValues, null, null);
+    }
+    else if (!string.IsNullOrEmpty(Model.Url))
+    {
+        url = Model.Url.StartsWith("~/", StringComparison.Ordinal) ? Url.Content(Model.Url) : Model.Url;
+    }
+    var isActive = Model.ContainsSystemName(NopHtml.GetActiveMenuItemSystemName());
+    bool useHorizontalMenu = adminLayoutChangerSettings.UseResponsiveMenu && !userAgentHelper.IsMobileDevice();
+}
+@if (!string.IsNullOrEmpty(url))
+{
+    <li class="nav-item">
+
+        <a href="@url" @(isActive ? Html.Raw("class=\"nav-link active\"") : Html.Raw("class=\"nav-link\"")) @(Model.OpenUrlInNewTab ? Html.Raw(" target=\"_blank\"") : null)>
+            @if (!string.IsNullOrEmpty(Model.IconClass))
+            {
+                <text>
+                    <i class="nav-icon @Url.Content(Model.IconClass)"></i>
+                </text>
+            }
+
+            <p> @Model.Title</p>
+
+        </a>
+    </li>
+}
+else
+{
+    var childNodes = Model.ChildNodes.Where(x => x.Visible).ToList();
+    var hasChildNodes = childNodes.Any();
+    var liCssClass = "";
+
+
+    if (hasChildNodes && !useHorizontalMenu)
+    {
+        liCssClass = "nav-item has-treeview";
+    }
+    else if (hasChildNodes && useHorizontalMenu)
+    {
+        liCssClass = "dropdown";
+    }
+    if (isActive)
+    {
+        if (!String.IsNullOrEmpty(liCssClass))
+        {
+            liCssClass += " ";
+        }
+        liCssClass += "menu-open";
+    }
+
+    <li @(!String.IsNullOrEmpty(liCssClass) ? Html.Raw("class=\"" + liCssClass + "\"") : null)>
+
+        @*<a href="#" @(isActive ? Html.Raw("class=\"nav-link active\"") : Html.Raw("class=\"nav-link\""))>*@
+        <a class="@(useHorizontalMenu ? "" : "nav-link")" data-toggle="@(!useHorizontalMenu ? "" : "dropdown")" href="#">
+            @if (!string.IsNullOrEmpty(Model.IconClass))
+            {
+                <text>
+                    <i class="nav-icon @Url.Content(Model.IconClass)"></i>
+                </text>
+            }
+            <p>
+                @Model.Title
+                @if (supportRtl)
+                {
+                    <i class="right fas fa-angle-@(useHorizontalMenu ? "right" : "down")"></i>
+                    @*<i class="fa fa-angle-@(useHorizontalMenu ? "right" : "down") pull-right"></i>*@
+                }
+                else
+                {
+                    <i class="right fas fa-angle-@(!useHorizontalMenu ? "left" : "down") "></i>
+                    @*<i class="fa fa-angle-@(!useHorizontalMenu ? "left" : "down") pull-right"></i>*@
+                }
+            </p>
+        </a>
+        @if (hasChildNodes)
+        {
+
+            @*<ul class="nav nav-treeview">*@
+            <ul class="@(!useHorizontalMenu ? "nav nav-treeview" : "dropdown-menu")" role="menu">
+                @foreach (var childItem in childNodes)
+                {
+                    @await Html.PartialAsync("_MenuItem", childItem)
+                }
+            </ul>
+
+        }
+    </li>
+}

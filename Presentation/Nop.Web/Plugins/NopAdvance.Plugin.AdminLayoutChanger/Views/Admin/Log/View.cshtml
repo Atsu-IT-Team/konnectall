@@ -1,0 +1,155 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model LogModel
+
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.System.Log.ViewLogDetails").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Log");
+}
+
+<form asp-controller="Log" asp-action="View" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.System.Log.ViewLogDetails")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("Admin.System.Log.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <span id="log-delete" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+                @T("Admin.Common.Delete")
+            </span>
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.LogDetailsButtons, additionalData = Model })
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <p>
+                                @T("Admin.System.Log.PremiumSupport", OfficialSite.PremiumSupportServices + Utm.OnAdminLog)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div asp-validation-summary="All"></div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2">
+                                    <nop-label asp-for="LogLevel" />
+                                </div>
+                                <div class="col-md-9 col-lg-10">
+                                    <div class="form-text-row">@Model.LogLevel</div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2">
+                                    <nop-label asp-for="ShortMessage" />
+                                </div>
+                                <div class="col-md-9 col-lg-10">
+                                    <div class="form-text-row">@Html.Raw(Model.ShortMessage)</div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2">
+                                    <nop-label asp-for="FullMessage" />
+                                </div>
+                                <div class="col-md-9 col-lg-10">
+                                    <div class="form-text-row">@Html.Raw(Model.FullMessage)</div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2">
+                                    <nop-label asp-for="IpAddress" />
+                                </div>
+                                <div class="col-md-9 col-lg-10">
+                                    <div class="form-text-row">@Model.IpAddress</div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2">
+                                    <nop-label asp-for="CustomerId" />
+                                </div>
+                                <div class="col-md-9 col-lg-10">
+                                    @if (Model.CustomerId.HasValue)
+                                    {
+                                        <a asp-controller="Customer" asp-action="Edit" asp-route-id="@Model.CustomerId">@(!string.IsNullOrEmpty(Model.CustomerEmail) ? Model.CustomerEmail : T("Admin.Customers.Guest").Text)</a>
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2">
+                                    <nop-label asp-for="PageUrl" />
+                                </div>
+                                <div class="col-md-9 col-lg-10">
+                                    <div class="form-text-row">@Model.PageUrl</div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2">
+                                    <nop-label asp-for="ReferrerUrl" />
+                                </div>
+                                <div class="col-md-9 col-lg-10">
+                                    <div class="form-text-row">@Model.ReferrerUrl</div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2">
+                                    <nop-label asp-for="CreatedOn" />
+                                </div>
+                                <div class="col-md-9 col-lg-10">
+                                    <div class="form-text-row">@Model.CreatedOn</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<nop-delete-confirmation asp-model-id="@Model.Id" asp-button-id="log-delete" />

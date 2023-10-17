@@ -1,0 +1,96 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model CatalogSettingsModel
+
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.Configuration.Settings.Catalog").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Catalog settings");
+}
+
+@{
+    string verticalTab = (TabLayout)adminLayoutChangerSettings.TabLayoutId == TabLayout.Vertical ? "vertically-tab" : "";
+}
+
+
+<form asp-controller="Setting" asp-action="Catalog" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Configuration.Settings.Catalog")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.CatalogSettingsButtons, additionalData = Model })
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                @await Component.InvokeAsync("StoreScopeConfiguration")
+                @await Component.InvokeAsync("SettingMode")
+                <div asp-validation-summary="All"></div>
+
+                <nop-tabs id="catalogsettings-cards" class="@verticalTab">
+                    <nop-tab asp-name="catalogsettings-search" asp-icon="fas fa-search" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.Search")" asp-default="true" asp-advanced="false">@await Html.PartialAsync("_Catalog.Search", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-product-reviews" asp-icon="far fa-comment" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.ProductReviews")"  asp-advanced="false">@await Html.PartialAsync("_Catalog.ProductReviews", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-review-types" asp-icon="far fa-comments" asp-title="@T("Admin.Settings.ReviewType")"  asp-advanced="true">@await Html.PartialAsync("../ReviewType/List", Model.ReviewTypeSearchModel)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-performance" asp-icon="fas fa-chart-line" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.Performance")" asp-advanced="true">@await Html.PartialAsync("_Catalog.Performance", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-share" asp-icon="fas fa-share-square" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.Share")" asp-advanced="false">@await Html.PartialAsync("_Catalog.Share", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-compare-products" asp-icon="far fa-clone" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.Compare")" asp-advanced="true">@await Html.PartialAsync("_Catalog.CompareProducts", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-additional-sections" asp-icon="fas fa-plus" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.AdditionalSections")" asp-advanced="false">@await Html.PartialAsync("_Catalog.AdditionalSections", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-product-fields" asp-icon="fas fa-align-justify" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.ProductFields")"  asp-advanced="true">@await Html.PartialAsync("_Catalog.ProductFields", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-product-page" asp-icon="fas fa-file" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.ProductPage")" asp-advanced="true">@await Html.PartialAsync("_Catalog.ProductPage", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-catalog-pages" asp-icon="fas fa-th-list" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.CatalogPages")"  asp-advanced="true">@await Html.PartialAsync("_Catalog.CatalogPages", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-tags" asp-icon="fas fa-tag" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.Tags")"  asp-advanced="true">@await Html.PartialAsync("_Catalog.Tags", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-tax" asp-icon="fas fa-percent" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.Tax")" asp-advanced="true">@await Html.PartialAsync("_Catalog.Tax", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-export-import" asp-icon="fas fa-exchange-alt" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.ExportImport")"  asp-advanced="true">@await Html.PartialAsync("_Catalog.ExportImport", Model)</nop-tab>
+                    <nop-tab asp-name="catalogsettings-product-sorting" asp-icon="fas fa-sort" asp-title="@T("Admin.Configuration.Settings.Catalog.BlockTitle.ProductSorting")"  asp-advanced="true">@await Html.PartialAsync("_Catalog.ProductSorting", Model)</nop-tab>
+
+                    @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.CatalogSettingsDetailsBlock, additionalData = Model })
+                </nop-tabs>
+            </div>
+        </div>
+    </section>
+</form>

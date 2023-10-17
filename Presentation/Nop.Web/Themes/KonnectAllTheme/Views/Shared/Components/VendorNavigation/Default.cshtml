@@ -1,0 +1,21 @@
+﻿@model VendorNavigationModel
+@if (Model.Vendors.Count > 0)
+{
+    <section class="container our-clients">
+        <div class="content-our-client">
+            <div class="title-sec">
+                <h4 class="text-black text-left">
+                    @T("Vendors")
+                </h4>
+                <span class="line-after"></span>
+            </div>
+            <div class="brand-clients">
+                @foreach (var vendor in Model.Vendors)
+                {
+                    <img alt="@vendor.Name" src="@vendor.PictureUrl" class="logo-clients">
+                }
+            </div>
+        </div>
+    </section>
+
+}

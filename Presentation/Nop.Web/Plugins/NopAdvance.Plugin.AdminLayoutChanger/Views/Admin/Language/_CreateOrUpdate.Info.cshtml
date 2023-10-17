@@ -1,0 +1,190 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model LanguageModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="Name" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="Name" asp-required="true" />
+            <span asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="LanguageCulture" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            @{
+                var cultures = System.Globalization.CultureInfo.GetCultures(System.Globalization.CultureTypes.SpecificCultures)
+                    .OrderBy(x => x.EnglishName)
+                    .Select(x => new SelectListItem
+                    {
+                        Value = x.IetfLanguageTag,
+                        Text = $"{x.EnglishName}. {x.IetfLanguageTag}"
+                    });
+            }
+            <nop-select asp-for="LanguageCulture" asp-items="@cultures" />
+            <span asp-validation-for="LanguageCulture"></span>
+            <script>
+                $(document).ready(function() {
+                    $('#@Html.IdFor(model => model.LanguageCulture)').on('input change', function () {
+                        warningValidation('@Url.Action("LanguageCultureWarning")', '@Html.NameFor(model => model.LanguageCulture)', { currentCulture: '@(Model.LanguageCulture)', changedCulture: $(this).val() });
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="UniqueSeoCode" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="UniqueSeoCode" asp-required="true" />
+            <span asp-validation-for="UniqueSeoCode"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="FlagImageFileName" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="FlagImageFileName" asp-render-form-control-class="false" />
+            <span asp-validation-for="FlagImageFileName"></span>
+            <script>
+                $(function() {
+                    $('#FlagImageFileName').kendoDropDownList({
+                        dataTextField: "Text",
+                        dataValueField: "Value",
+                        valueTemplate:
+                            '<span class="image" style="background-image: url(\'@Url.Content("~/images/flags/#:data.Text#")\'); width: 16px; height: 11px;"></span><span>#:data.Value#</span>',
+                        template:
+                            '<span class="image" style="background-image: url(\'@Url.Content("~/images/flags/#:data.Text#")\'); width: 16px; height: 11px;"></span><span>#:data.Value#</span>',
+                        dataSource: {
+                            transport: {
+                                type: "json",
+                                read: {
+                                    url: "@Html.Raw(Url.Action("GetAvailableFlagFileNames", "Language"))",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: addAntiForgeryToken
+                                }
+                            }
+                        }
+                    }).data("kendoDropDownList");
+                });
+            </script>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="Rtl" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="Rtl"/>
+            <span asp-validation-for="Rtl"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="DefaultCurrencyId" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-select asp-for="DefaultCurrencyId" asp-items="Model.AvailableCurrencies" />
+            <span asp-validation-for="DefaultCurrencyId"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="SelectedStoreIds" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <div class="row">
+                <div class="col-md-3 col-lg-2">
+                    <nop-select asp-for="SelectedStoreIds" asp-items="Model.AvailableStores" asp-multiple="true" />
+                    <script>
+                        $(document).ready(function() {
+                            var storesIdsInput = $('#@Html.IdFor(model => model.SelectedStoreIds)').data("kendoMultiSelect");
+                            storesIdsInput.setOptions({
+                                autoClose: false,
+                                filter: "contains"
+                            });
+
+                            @if (Model.AvailableStores.Count == 0)
+                            {
+                                <text>
+                        storesIdsInput.setOptions({
+                            enable: false,
+                            placeholder: 'No stores available'
+                        });
+                        storesIdsInput._placeholder();
+                        storesIdsInput._enable();
+                        </text>
+                            }
+                        });
+                    </script>
+                </div>
+                <div class="col-md-9 col-lg-10">
+                    @await Component.InvokeAsync("MultistoreDisabledWarning")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="Published" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="Published" />
+            <span asp-validation-for="Published"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="DisplayOrder" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="DisplayOrder" />
+            <span asp-validation-for="DisplayOrder"></span>
+        </div>
+    </div>
+</div>

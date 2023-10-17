@@ -1,0 +1,64 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model SpecificationAttributeModel
+
+@{
+    string verticalTab = (TabLayout)adminLayoutChangerSettings.TabLayoutId == TabLayout.Vertical ? "vertically-tab" : "";
+}
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+
+            <nop-tabs id="specification-attribute-cards" class="@verticalTab">
+                <nop-tab asp-name="specification-attribute-info" asp-icon="fas fa-info" asp-title="@T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Info")" asp-default="true" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdateSpecificationAttribute.Info", Model)</nop-tab>
+                <nop-tab asp-name="specification-attribute-options" asp-icon="fas fa-object-group" asp-title="@T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.Options")"  asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdateSpecificationAttribute.Options", Model)</nop-tab>
+                @if (Model.Id > 0)
+                {
+                    <nop-tab asp-name="specification-attribute-usedbyproducts" asp-icon="fas fa-check-square" asp-title="@T("Admin.Catalog.Attributes.SpecificationAttributes.SpecificationAttribute.UsedByProducts")" asp-advanced="true">@await Html.PartialAsync("_CreateOrUpdateSpecificationAttribute.UsedByProducts", Model)</nop-tab>
+                }
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.SpecificationAttributeDetailsBlock, additionalData = Model })
+            </nop-tabs>
+        </div>
+    </div>
+</section>

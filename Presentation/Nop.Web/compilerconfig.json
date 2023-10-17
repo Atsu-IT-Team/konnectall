@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Themes/KonnectAllTheme/Content/less/styles.css",
+    "inputFile": "Themes/KonnectAllTheme/Content/less/styles.less"
+  },
+  {
+    "outputFile": "Themes/KonnectAllTheme/Content/less/rtl/styles.rtl.css",
+    "inputFile": "Themes/KonnectAllTheme/Content/less/rtl/styles.rtl.less"
+  }
+]

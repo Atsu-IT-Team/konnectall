@@ -1,0 +1,35 @@
+﻿@model IList<CategoryModel>
+
+@if (Model.Count > 0)
+{
+    <div class="categswiper">
+        <div class="container swiper mySwiper categories">
+            <div class="swiper-wrapper categories-all">
+                @foreach (var item in Model)
+                {
+                    <div class="swiper-slide content-categories">
+                        <div class="content">
+                            <div class="title text-black font-semibold">@item.Name</div>
+                            <ul class="desc">
+                              @foreach (var subCat in item.SubCategories)
+                              {
+                                <li>
+                                    <a href="#">@subCat.Name</a>
+                                </li>
+                              }
+                            </ul>
+                            <span><a href="#">@T("home.MoreCategories")</a></span>
+                        </div>
+                    </div>
+                }
+              
+                <!-- <div class="swiper-slide content-categories">Slide 17</div>
+                <div class="swiper-slide content-categories">Slide 18</div>
+                <div class="swiper-slide content-categories">Slide 19</div> -->
+            </div>
+            <div class="pagination-test swiper-pagination" style="width: 75px !important;"></div>
+        </div>
+    </div>
+
+
+}

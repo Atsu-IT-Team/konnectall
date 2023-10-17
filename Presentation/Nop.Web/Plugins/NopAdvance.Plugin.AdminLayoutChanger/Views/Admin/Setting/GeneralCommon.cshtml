@@ -1,0 +1,160 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model GeneralCommonSettingsModel
+
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.Configuration.Settings.GeneralCommon").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("General settings");
+}
+
+@{
+    string verticalTab = (TabLayout)adminLayoutChangerSettings.TabLayoutId == TabLayout.Vertical ? "vertically-tab" : "";
+}
+
+<form asp-controller="Setting" asp-action="GeneralCommon" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Configuration.Settings.GeneralCommon")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.GeneralCommonSettingsButtons, additionalData = Model })
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                @await Component.InvokeAsync("StoreScopeConfiguration")
+                @await Component.InvokeAsync("SettingMode")
+                <div asp-validation-summary="All"></div>
+
+                <nop-tabs id="generalcommon-cards" class="@verticalTab">
+                    <nop-tab asp-name="generalcommon-common" asp-icon="fas fa-info" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.Common")" asp-default="true" asp-advanced="false">@await Html.PartialAsync("_GeneralCommon.Common", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-top-menu-items" asp-icon="fas fa-level-up-alt" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.TopMenuItems")" asp-advanced="true">@await Html.PartialAsync("_GeneralCommon.TopMenuItems", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-footeritems" asp-icon="fas fa-level-down-alt" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.FooterItems")" asp-advanced="true">@await Html.PartialAsync("_GeneralCommon.FooterItems", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-socialmedia" asp-icon="fas fa-share-square" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.SocialMedia")" asp-advanced="false">@await Html.PartialAsync("_GeneralCommon.SocialMedia", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-favicon" asp-icon="far fa-images" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.FaviconAndAppIcons")" asp-advanced="false">@await Html.PartialAsync("_GeneralCommon.Favicon", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-sitemap" asp-icon="fas fa-sitemap" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.Sitemap")" asp-advanced="true">@await Html.PartialAsync("_GeneralCommon.Sitemap", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-seo" asp-icon="fas fa-search-plus" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.SEO")" asp-advanced="false">@await Html.PartialAsync("_GeneralCommon.Seo", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-minification" asp-icon="fas fa-compress" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.Minification")" asp-advanced="true">@await Html.PartialAsync("_GeneralCommon.Minification", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-security" asp-icon="fas fa-shield-alt" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.Security")" asp-advanced="true">@await Html.PartialAsync("_GeneralCommon.Security", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-captcha" asp-icon="fas fa-lock" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.Captcha")" asp-advanced="true">@await Html.PartialAsync("_GeneralCommon.Captcha", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-pdf" asp-icon="far fa-file-pdf" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.Pdf")" asp-advanced="true">@await Html.PartialAsync("_GeneralCommon.Pdf", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-localization" asp-icon="fas fa-globe" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.Localization")" asp-advanced="true">@await Html.PartialAsync("_GeneralCommon.Localization", Model)</nop-tab>
+                    <nop-tab asp-name="generalcommon-adminarea" asp-icon="fas fa-clipboard" asp-title="@T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.AdminArea")" asp-advanced="true">@await Html.PartialAsync("_GeneralCommon.AdminArea", Model)</nop-tab>
+
+                    @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.GeneralCommonDetailsBlock, additionalData = Model })
+                </nop-tabs>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#@Html.IdFor(model => model.LocalizationSettings.LoadAllLocaleRecordsOnStartup)").click(toggleLoadAllLocaleRecordsOnStartup);
+            toggleLoadAllLocaleRecordsOnStartup();
+
+            $("#@Html.IdFor(model => model.LocalizationSettings.SeoFriendlyUrlsForLanguagesEnabled)").click(toggleSeoFriendlyUrlsForLanguagesEnabled);
+        });
+
+        function toggleLoadAllLocaleRecordsOnStartup() {
+            warningValidation('@Url.Action("DistributedCacheHighTrafficWarning", "Setting")',
+                '@Html.NameFor(model => model.LocalizationSettings.LoadAllLocaleRecordsOnStartup)',
+                {
+                    loadAllLocaleRecordsOnStartup: $('#@Html.IdFor(model => model.LocalizationSettings.LoadAllLocaleRecordsOnStartup)').is(':checked')
+                });
+        }
+
+        function toggleSeoFriendlyUrlsForLanguagesEnabled() {
+            warningValidation('@Url.Action("SeoFriendlyUrlsForLanguagesEnabledWarning", "Setting")',
+                '@Html.NameFor(model => model.LocalizationSettings.SeoFriendlyUrlsForLanguagesEnabled)',
+                {
+                    seoFriendlyUrlsForLanguagesEnabled: $('#@Html.IdFor(model => model.LocalizationSettings.SeoFriendlyUrlsForLanguagesEnabled)').is(':checked')
+                });
+        }
+    </script>
+</form>
+
+@*upload favicon and app icons form*@
+<div id="uploadicons-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="uploadiconsarchive-window-title">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="uploadicons-window-title">@T("Admin.Configuration.Settings.GeneralCommon.FaviconAndAppIcons.UploadIcons")</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form asp-controller="Setting" asp-action="UploadIcons" method="post" enctype="multipart/form-data">
+                <div class="form-horizontal">
+                    <div class="modal-body">
+                        <ul class="common-list">
+                            <li>
+                                @string.Format(T("Admin.Configuration.Settings.GeneralCommon.FaviconAndAppIcons.UploadIcons.Hint").Text, Model.ActiveStoreScopeConfiguration)
+                            </li>
+                        </ul>
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <div class="label-wrapper">
+                                    <label class="col-form-label">
+                                        @T("Admin.Configuration.Settings.GeneralCommon.FaviconAndAppIcons.UploadIcons.FileExtensions")
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="file" id="iconsfile" name="iconsfile" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="upload-icons">
+                            @T("Admin.Configuration.Settings.GeneralCommon.FaviconAndAppIcons.UploadIcons")
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,246 @@
+//main: ../../style.less
+
+
+/*--------------------------------------------------------------
+# about us style
+--------------------------------------------------------------*/
+
+.about-us {
+    direction: rtl;
+
+    .slider {
+        .slid-img {
+            height: 250px;
+        }
+    }
+
+    .our-history {
+        position: relative;
+        background-color: @gray-light;
+        padding: 40px 0;
+
+        @media (max-width:768px) {
+            padding: 20px 0;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            border-top: 20px solid #ffffff;
+            border-right: 20px solid transparent;
+            border-left: 20px solid transparent;
+            top: 0;
+        }
+
+        h2 {
+            font-weight: 400 !important;
+        }
+
+        .history {
+            position: relative;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+
+            @media (max-width:1200px) {
+                flex-direction: column;
+            }
+
+            .text-big {
+                font-size: 9rem !important;
+                font-weight: 700;
+                color: #ccc;
+                right: 0;
+                position: absolute;
+                opacity: 0.3;
+                top: -43px;
+                left: 15rem;
+
+                @media (max-width:1200px) {
+                    font-size: 7rem !important;
+                    top: -20px;
+                }
+
+                @media (max-width:991px) {
+                    font-size: 7rem !important;
+                    top: 2px;
+                }
+            }
+        }
+
+        .img-history {
+            display: flex;
+
+            @media (max-width:576px) {
+                display: block;
+            }
+
+            .img-sect {
+                transform: scale(0.93);
+            }
+        }
+
+        .discover {
+            margin-right: 15px;
+            margin-left: 15px;
+
+            .progress-bar-history {
+                margin: 0 0 32px;
+                margin-top: 40px;
+                width: 93%;
+                display: block;
+
+                .progress-bar-item {
+                    margin: 0 0 10px;
+                    display: inline-block;
+                    position: relative;
+                    text-align: center;
+                    vertical-align: top;
+                    width: 16%;
+                    cursor: pointer;
+
+                    @media (max-width:768px) {
+                        display: block;
+                        width: 50%;
+                        float: left;
+                        margin: 0 0 50px;
+                    }
+
+                    &:first-child {
+                        border-radius: 6px 0 0 6px;
+
+                        > span {
+                            text-align: right;
+
+                            &:before {
+                                right: 0;
+                            }
+                        }
+
+                        label {
+                            right: 0;
+                        }
+                    }
+
+                    &.active {
+
+                        label {
+                            color: @black-color;
+                        }
+
+                        > span {
+                            color: @black-color;
+
+                            &::before {
+                                height: 25px;
+                                width: 25px;
+                                background-color: @primary-color;
+                                top: -3px;
+                            }
+                        }
+                    }
+
+                    &:before {
+                        content: '';
+                        background: @black-color;
+                        top: 8px;
+                        height: 4px;
+                        right: 0;
+                        position: absolute;
+                        width: 103%;
+                    }
+
+                    > span {
+                        display: inline-block;
+                        padding-top: 23px;
+                        width: 100%;
+                        word-wrap: break-word;
+                        color: @gray-color1;
+                        font-weight: 300;
+                        font-size: 16px;
+
+                        &:before {
+                            //background: #f7dae2;
+                            //height: 38px;
+                            //width: 38px;
+                            //margin-left: -19px;
+                            height: 20px;
+                            width: 20px;
+                            border: 1px solid @black-color;
+                            border-radius: 50%;
+                            content: '';
+                            left: 50%;
+                            position: absolute;
+                            top: 0;
+                            background-color: @white-color;
+                        }
+                    }
+
+                    label {
+                        display: block;
+                        max-width: 100%;
+                        margin-bottom: 5px;
+                        font-weight: 300;
+                        position: absolute;
+                        top: -30px;
+                        left: 40%;
+                        color: @gray-color1;
+                    }
+                }
+            }
+            /*.sect-radio {
+                display: flex;
+                align-items: center;
+    
+                span.line {
+                    width: 100px;
+                    height: 2px;
+                    background-color: red;
+                    display: inline-block;
+                    padding-top: 1px;
+                    margin-top: 3px;
+                  }
+            }
+            
+         /*   form {
+                label {
+                    position: relative;
+    
+                    &:before {
+                        content:'';
+                        width: 16px;
+                        height: 16px;
+                        border: 1px solid #000;
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background-color: white;
+                    }
+                }
+    
+                input[type="radio"] {
+                    display: none;
+                }
+    
+                input[type="radio"]:checked + label:after {
+                    content: '';
+                    background-color: blue;
+                    width: 10px;
+                    height: 10px;
+                    position: absolute;
+                    top: 5px;
+                    left: 3px;
+                }
+            }*/
+        }
+    }
+
+    .our-vision {
+        ul {
+            list-style : url('../../../images/list-style.png');
+            padding-left: 15px;
+        }
+    }
+}

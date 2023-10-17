@@ -1,0 +1,77 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model MeasureSearchModel
+
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.Configuration.Shipping.Measures").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Measures");
+
+    string verticalTab = (TabLayout)adminLayoutChangerSettings.TabLayoutId == TabLayout.Vertical ? "vertically-tab" : "";
+}
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("Admin.Configuration.Shipping.Measures")
+    </h1>
+    <div class="float-right">
+        &nbsp;
+        @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.MeasureListButtons, additionalData = Model })
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Measures", Docs.Measures + Utm.OnAdmin)" />
+             
+            <nop-tabs id="category-cards" class="@verticalTab">
+                <nop-tab asp-name="measures-dimensions" asp-icon="fas fa-cog" asp-title="@T("Admin.Configuration.Shipping.Measures.Dimensions")" asp-default="true" asp-advanced="false">@await Html.PartialAsync("Dimensions", Model)</nop-tab>
+                <nop-tab asp-name="measures-weights" asp-icon="fas fa-truck" asp-title="@T("Admin.Configuration.Shipping.Measures.Weights")" asp-advanced="false">@await Html.PartialAsync("Weights", Model)</nop-tab>
+
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.MeasureListBlock })
+            </nop-tabs>
+        </div>
+    </div>
+</section>
+    <nop-action-confirmation asp-button-id="btnMarkAsPrimaryDimension" asp-additional-confirm="Admin.Configuration.Shipping.Measures.AdditionalConfirm" />
+    <nop-action-confirmation asp-button-id="btnMarkAsPrimaryWeight" asp-additional-confirm="Admin.Configuration.Shipping.Measures.AdditionalConfirm" />
+

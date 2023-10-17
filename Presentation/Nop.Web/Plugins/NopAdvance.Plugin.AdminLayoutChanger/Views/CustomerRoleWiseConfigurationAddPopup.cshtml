@@ -1,0 +1,313 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model ConfigurationModel
+
+@inject IGenericHelper genericHelper
+
+@{
+    Layout = "_AdminPopupLayout";
+
+    //page title
+    ViewBag.PageTitle = T(LocaleResourceDefaults.ADD_NEW_TITLE).Text;
+}
+
+@if (ViewBag.RefreshPage == true)
+{
+    <script>
+        try {window.opener.document.forms['@(Context.Request.Query["formId"])'].@(Context.Request.Query["btnId"]).click();}
+        catch (e){}
+        window.close();
+    </script>
+}
+else
+{
+<form asp-controller="@SiteMapDefaults.CONFIGURE_CONTROLLER_NAME" asp-action="CustomerRoleWiseConfigurationAddPopup"
+      asp-route-btnId="@Context.Request.Query["btnId"]"
+      asp-route-formId="@Context.Request.Query["formId"]">
+ 
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T(LocaleResourceDefaults.ADD_NEW_TITLE)
+        </h1>
+        <div class="float-right">
+            &nbsp;
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                    <div class="card card-default card-search card-popup">
+                        <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-md-3 col-lg-2">
+                                        <nop-label asp-for="Published" />
+                                    </div>
+                                    <div class="col-md-9 col-lg-10">
+                                        <nop-editor asp-for="Published" />
+                                        <span asp-validation-for="Published"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3 col-lg-2">
+                                        <nop-label asp-for="CustomerRoleId" />
+                                    </div>
+                                    <div class="col-md-9 col-lg-10">
+                                        <nop-select asp-for="CustomerRoleId" asp-items="Model.AvailableCustomerRoles" />
+                                        <span asp-validation-for="CustomerRoleId"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row" id="pnlAdminMiniLogoId">
+                                    <div class="col-md-3 col-lg-2">
+                                        <nop-label asp-for="AdminMiniLogoId" />
+                                    </div>
+                                    <div class="col-md-9 col-lg-10">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <nop-editor asp-for="AdminMiniLogoId" />
+                                                <span asp-validation-for="AdminMiniLogoId"></span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="callout bg-gray-light no-margin">@T(LocaleResourceDefaults.MINI_LOGO_ID_INFO)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3 col-lg-2">
+                                        <nop-label asp-for="AdminLargeLogoId" />
+                                    </div>
+                                    <div class="col-md-9 col-lg-10">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <nop-editor asp-for="AdminLargeLogoId" />
+                                                <span asp-validation-for="AdminLargeLogoId"></span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="callout bg-gray-light no-margin">@T(LocaleResourceDefaults.LARGE_LOGO_ID_INFO)</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3 col-lg-2">
+                                        <nop-label asp-for="AdminThemeTypeId" />
+                                    </div>
+                                    <div class="col-md-9 col-lg-10">
+                                        <nop-select asp-for="AdminThemeTypeId" asp-items="Model.AvailableAdminThemeTypes" />
+                                    </div>
+                                </div>
+                                <div class="form-group row" id="pnlPreDefined">
+                                    <div class="col-md-3 col-lg-2">
+                                        <nop-label asp-for="AdminThemeId" />
+                                    </div>
+                                    <div class="col-md-9 col-lg-10">
+                                        <div class="main-header-colorpicker" id="admin-themeid">
+                                            <nop-select asp-for="AdminThemeId" asp-items="@(await ((AdminTheme)Model.AdminThemeId).ToSelectListAsync())" />
+                                            <span asp-validation-for="AdminThemeId"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (Model.PluginStatus == PluginLicenceStatusType.Registered || Model.PluginStatus == PluginLicenceStatusType.Trial)
+                                {
+                                    <div id="pnlCustom">
+                                        <div class="form-group row">
+                                            <div class="col-md-3 col-lg-2">
+                                                <nop-label asp-for="PrimaryColor" />
+                                            </div>
+                                            <div class="col-md-9 col-lg-10">
+                                                <div class="main-header-colorpicker" id="primary-color">
+                                                    <nop-editor asp-for="PrimaryColor" />
+                                                    <span asp-validation-for="PrimaryColor"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3 col-lg-2">
+                                                <nop-label asp-for="SecondaryColor" />
+                                            </div>
+                                            <div class="col-md-9 col-lg-10">
+                                                <div class="main-header-colorpicker" id="secondary-color">
+                                                    <nop-editor asp-for="SecondaryColor" />
+                                                    <span asp-validation-for="SecondaryColor"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-3 col-lg-2">
+                                                <nop-label asp-for="FontColor" />
+                                            </div>
+                                            <div class="col-md-9 col-lg-10">
+                                                <div class="main-header-colorpicker" id="font-color">
+                                                    <nop-editor asp-for="FontColor" />
+                                                    <span asp-validation-for="FontColor"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2"></div>
+                                <div class="col-md-9 col-lg-10">
+                                    <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                                </div>
+                            </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @if (Model.PluginStatus == PluginLicenceStatusType.Registered || Model.PluginStatus == PluginLicenceStatusType.Trial)
+    {
+        <script>
+            $(document).ready(function () {
+                $("#@Html.IdFor(model => model.FontColor)").kendoColorPicker({buttons: false});
+                $("#@Html.IdFor(model => model.SecondaryColor)").kendoColorPicker({buttons: false});
+                $("#@Html.IdFor(model => model.PrimaryColor)").kendoColorPicker({ buttons: false });
+                
+                $("#@Html.IdFor(model => model.AdminThemeTypeId)").change(toggleAdminThemeType);
+                
+                toggleAdminThemeType();
+                CheckChangeAdminTheme();
+            });
+            function toggleAdminThemeType() {
+                var predefinedThemeId = "@((int)AdminThemeType.PredefinedTheme)";
+                var customThemeId = "@((int)AdminThemeType.CustomTheme)";
+
+                var selectedAdminThemeTypeId = $("#@Html.IdFor(model => model.AdminThemeTypeId)").val();
+                if (!selectedAdminThemeTypeId || selectedAdminThemeTypeId == predefinedThemeId) {
+                    $('#pnlPreDefined').show();
+                    $('#pnlCustom').hide();
+                } else if (selectedAdminThemeTypeId == customThemeId) {
+                    $('#pnlPreDefined').hide();
+                    $('#pnlCustom').show();
+                }
+            }
+            
+            function CheckChangeAdminTheme() {
+                 var predefinedThemeId = "@((int)AdminThemeType.PredefinedTheme)";
+                var customThemeId = "@((int)AdminThemeType.CustomTheme)";
+                var selectedAdminThemeTypeId = $("#@Html.IdFor(model => model.AdminThemeTypeId)").val();
+                if (!selectedAdminThemeTypeId || selectedAdminThemeTypeId == predefinedThemeId) {
+                    if ($(this).prop("checked") == false) { 
+                        $("#@Html.IdFor(model => model.AdminThemeId)").prop('disabled', 'disabled');
+                    }
+                } else if (selectedAdminThemeTypeId == customThemeId) {
+                    if ($(this).prop("checked") == false) { 
+                    }
+                }
+            }
+        </script>
+
+        <style type="text/css" asp-location="Head">
+            .main-header-colorpicker .k-widget.k-colorpicker.k-header {
+                width: 65px !important;
+                margin-left: 1.5px;
+            }
+
+            .main-header-colorpicker .k-icon.k-i-arrow-s {
+                position: relative;
+                right: -15px;
+            }
+
+            .main-header-colorpicker .k-select {
+                width: 100% !important;
+                padding-left: 0px !important;
+            }
+
+            .main-header-colorpicker .k-colorpicker .k-selected-color {
+                position: relative;
+                z-index: 1;
+                height: 96%;
+                margin-left: -1px;
+                top: 1px;
+            }
+
+            .main-header-colorpicker .k-picker-wrap.k-state-default {
+                width: 40px;
+                padding-right: 15px;
+            }
+
+            .main-header-colorpicker .k-icon:before {
+                right: -22px;
+            }
+
+            .main-header-colorpicker .k-widget.k-colorpicker.k-header {
+                width: 65px !important;
+                margin-left: 1.5px;
+            }
+
+            .main-header-colorpicker .k-icon.k-i-arrow-s {
+                position: relative;
+                right: -15px;
+            }
+
+            .main-header-colorpicker .k-select {
+                width: 100% !important;
+                padding-left: 0px !important;
+            }
+
+            .main-header-colorpicker .k-colorpicker .k-selected-color {
+                position: relative;
+                z-index: 1;
+                margin-left: -1px;
+            }
+
+            .main-header-colorpicker.disbale-active {
+                position: relative;
+            }
+
+                .main-header-colorpicker.disbale-active:after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(255,255,255,0.5);
+                    z-index: 1;
+                }
+        </style>
+    }
+</form>
+}

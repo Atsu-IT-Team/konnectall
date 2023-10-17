@@ -1,0 +1,233 @@
+﻿@model Nop.Plugin.Widgets.UserNotify.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<script>
+    $(document).ready(function () {
+        // Add minus icon for collapse element which is open by default
+        $(".collapse.show").each(function () {
+            alert("add -");
+            $(this).prev(".card-tools").find(".fa").addClass("fa-minus").removeClass("fa-plus");
+        });
+
+        // Toggle plus minus icon on show hide of collapse element
+        $(".collapse").on('show.bs.collapse', function () {
+            $(this).prev(".card-tools").find(".fa").removeClass("fa-plus").addClass("fa-minus");
+        }).on('hide.bs.collapse', function () {
+            $(this).prev(".card-tools").find(".fa").removeClass("fa-minus").addClass("fa-plus");
+        });
+    });
+
+</script>
+
+<script src="https://cdn.tiny.cloud/1/3gw89zu26uciezhfwxi0htn3l1kp2grljb92mjehg7gqqgyy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#messagetext',
+        plugins: 'link autoresize code',
+        toolbar: 'undo redo | styleselect | fontsizeselect | bold italic | forecolor | alignleft aligncenter alignright | link ',
+        color_map: [
+            'FFFFFF', 'White',
+            '292F33', 'Black',
+            '66757F', 'Dk Gray',
+            'CCD6DD', 'Gray',
+            'E1E8ED', 'Lt Gray',
+            'EA4335', 'Red',
+            '4285F4', 'Blue',
+            '34A853', 'Green',
+            'FBBC05', 'Orange',
+            '55ACEE', 'Lt Blue'
+        ],
+        content_style: "body {font-size: 18pt;text-align: center;}",
+        max_height: 175
+    }).then(function () {
+        var bgcolval1 = $('#backgroundcolor').val();
+        $('.tox-edit-area__iframe').css({ 'background-color': bgcolval1 });
+    });
+</script>
+
+
+<form asp-controller="WidgetsUserNotify" asp-action="Configure" method="post">
+
+ <!-- *********************************************************************************************** -->
+<!-- *********************************************************************************************** -->
+<!-- *******  license key / trial processing ------------------------------------------------------- -->
+<!-- *******  includes script for restrictions when trial license or no license -------------------- -->
+
+<script>
+function trialLicenseRestrictions() {
+    //alert("trialLicense Restrictions");
+    document.getElementById("clearsearchlog").disabled = true;
+}
+</script>
+
+<script>
+function noLicenseRestrictions() {
+    //alert("noLicense Restrictions");
+    $('button[type="submit"]').attr('disabled', true);
+    $('input[type="submit"]').attr('disabled', true);
+    //document.getElementById("clearsearchactivity").disabled = true; 
+    //document.getElementById("clearsearchlog").disabled = true; 
+
+    $('#ValidateLicense').attr('disabled', false)
+}
+</script>
+
+<!-- -------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!--    <section class="content" id="licensechecksection">
+        <div class="container-fluid">
+
+            <div class="cards-group" id="licensecheckcard">
+                await Html.PartialAsync("licensecheck.cshtml", Model)
+            </div>
+        </div>
+    </section>
+-->
+<!-- *******  license key / trial processing ------------------------------------------------------- -->
+<!-- *********************************************************************************************** -->
+<!-- *********************************************************************************************** -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="cards-group">
+                <div class="card card-default">
+
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserNotify.options")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="messagetext_OverrideForStore" asp-input="messagetext" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="messagetext" />
+                            </div>
+                            <div class="col-md-9">
+                                <textarea id="messagetext" name="messagetext">@Model.messagetext</textarea>
+                                <span asp-validation-for="messagetext"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="backgroundcolor_OverrideForStore" asp-input="backgroundcolor" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="backgroundcolor" />
+                            </div>
+                            <div class="col-md-3">
+                                <nop-select asp-for="backgroundcolor" asp-items="@Model.backgroundcolorValues" />
+                                <span asp-validation-for="backgroundcolor"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <div id="backgroundcolor-swatch" style="width: 20px;height: 20px;margin: 5px;border: 1px solid black;"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="targetusers_OverrideForStore" asp-input="targetusers" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="targetusers" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="targetusers" asp-items="@Model.targetusersValues" />
+                                <span asp-validation-for="targetusers"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="selectedwidgetzone_OverrideForStore" asp-input="selectedwidgetzone" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="selectedwidgetzone" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="selectedwidgetzone" asp-items="@Model.selectedwidgetzoneValues" />
+                                <span asp-validation-for="selectedwidgetzone"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="fromdatetime_OverrideForStore" asp-input="fromdatetime" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="fromdatetime" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="fromdatetime" />
+                                <span asp-validation-for="fromdatetime"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="todatetime_OverrideForStore" asp-input="todatetime" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="todatetime" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="todatetime" />
+                                <span asp-validation-for="todatetime"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ////////////////////////////////////////////////////////////  SAVE   ///////////////////////////////////////////////////////////////////  -->
+
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- ////////////////////////////////////////////////////////////  HELP   ///////////////////////////////////////////////////////////////////  -->
+                <div class="accordian">
+                    <div class="card card-default">
+                        <div class="card-header" data-toggle="collapse" data-target="#collapse4">
+                            <div class="card-title">
+                                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse4"><i class="fa fa-plus"></i> </button>
+                                <i class="far fa-question-circle">
+                                </i>
+                                @T("Plugins.Widgets.UserNotify.help")
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div id="collapse4" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        @T("Plugins.Widgets.UserNotify.helptext")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</form>
+
+<script>
+    $(document).ready(function () {
+        // set swatch & editbg to selected color at startup
+        //var bgcolval1 = $('#backgroundcolor :selected').val();
+        var bgcolval1 = $('#backgroundcolor').val();
+        $("#backgroundcolor-swatch").css("background", bgcolval1);
+        $('.tox-edit-area__iframe').css({ 'background-color': bgcolval1 });
+    })
+</script>
+
+<script>
+    $("#backgroundcolor").on('change', function () {
+        // set swatch to selected color
+        var bgcolval = $('#backgroundcolor :selected').val();
+        $("#backgroundcolor-swatch").css("background", bgcolval);
+        $('.tox-edit-area__iframe').css({ 'background-color': bgcolval });
+    })
+</script>

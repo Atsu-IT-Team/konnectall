@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Payment methods",
+  "FriendlyName": "MyFatoorah-KonnectAll",
+  "SystemName": "Payments.MyFatoorah.KonnectAll",
+  "Version": "1.0.1",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "MyFatoorah",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Payments.MyFatoorah.dll",
+  "Description": "This plugin allows paying with MyFatoorah-KonnectAll"
+}

@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Administration",
+  "FriendlyName": "GKS Core",
+  "SystemName": "Admin.GKSCore",
+  "Version": "1.00",
+  "SupportedVersions": ["4.50"],
+  "Author": "GeoffkSoftware",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Admin.GKSCore.dll",
+  "Description": "Core Module for GKS"
+}

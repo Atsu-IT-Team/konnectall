@@ -1,0 +1,27 @@
+﻿@model TopMenuModel.CategoryLineModel 
+ <div class="col-md-6">
+        <div class="menu-item-mega">
+            <a href="@Url.RouteUrl("Category", new { SeName = Model.Category.SeName })" class="dropdown-toggle">
+                @Model.Category.Name
+                @if (Model.Category.NumberOfProducts.HasValue)
+                {
+                    <span class="head-number op-number">
+                        @if(Model.Category.NumberOfProducts.Value < 0)
+                        {
+                            @:0@(Model.Category.NumberOfProducts.Value)
+                        }
+                        @T("Categories.TotalProducts", Model.Category.NumberOfProducts.Value)
+                    </span>
+                    <span>&nbsp;</span>
+                }
+            </a>
+        </div>
+        @if(Model.Category.SubCategories.Count > 0)
+        {
+        foreach (var item in Model.Category.SubCategories)
+        {
+            @await Html.PartialAsync("_SubCategoryLine.TopMenuLarge", Model.Category)
+        }
+        }
+       
+</div>

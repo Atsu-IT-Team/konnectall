@@ -1,0 +1,133 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model ShoppingCartSettingsModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="ShowDiscountBox_OverrideForStore" asp-input="ShowDiscountBox" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="ShowDiscountBox" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="ShowDiscountBox" />
+            <span asp-validation-for="ShowDiscountBox"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="ShowGiftCardBox_OverrideForStore" asp-input="ShowGiftCardBox" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="ShowGiftCardBox" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="ShowGiftCardBox" />
+            <span asp-validation-for="ShowGiftCardBox"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="AllowCartItemEditing_OverrideForStore" asp-input="AllowCartItemEditing" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="AllowCartItemEditing" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="AllowCartItemEditing" />
+            <span asp-validation-for="AllowCartItemEditing"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="MaximumShoppingCartItems_OverrideForStore" asp-input="MaximumShoppingCartItems" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="MaximumShoppingCartItems" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="MaximumShoppingCartItems" />
+            <span asp-validation-for="MaximumShoppingCartItems"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="CartsSharedBetweenStores_OverrideForStore" asp-input="CartsSharedBetweenStores" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="CartsSharedBetweenStores" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="CartsSharedBetweenStores" />
+            <span asp-validation-for="CartsSharedBetweenStores"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="ShowProductImagesOnShoppingCart_OverrideForStore" asp-input="ShowProductImagesOnShoppingCart" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="ShowProductImagesOnShoppingCart" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="ShowProductImagesOnShoppingCart" />
+            <span asp-validation-for="ShowProductImagesOnShoppingCart"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="DisplayCartAfterAddingProduct_OverrideForStore" asp-input="DisplayCartAfterAddingProduct" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="DisplayCartAfterAddingProduct" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="DisplayCartAfterAddingProduct" />
+            <span asp-validation-for="DisplayCartAfterAddingProduct"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="CrossSellsNumber_OverrideForStore" asp-input="CrossSellsNumber" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="CrossSellsNumber" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="CrossSellsNumber" />
+            <span asp-validation-for="CrossSellsNumber"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="GroupTierPricesForDistinctShoppingCartItems_OverrideForStore" asp-input="GroupTierPricesForDistinctShoppingCartItems" asp-store-scope="@Model.ActiveStoreScopeConfiguration"/>
+            <nop-label asp-for="GroupTierPricesForDistinctShoppingCartItems"/>
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="GroupTierPricesForDistinctShoppingCartItems" />
+            <span asp-validation-for="GroupTierPricesForDistinctShoppingCartItems"></span>
+        </div>
+    </div>
+</div>

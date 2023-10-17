@@ -1,0 +1,93 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model CatalogSettingsModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="AllowProductSorting_OverrideForStore" asp-input="AllowProductSorting" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="AllowProductSorting" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="AllowProductSorting" />
+            <span asp-validation-for="AllowProductSorting"></span>
+        </div>
+    </div>
+
+    @await Html.PartialAsync("Table", new DataTablesModel
+    {
+        Name = "sortoptions-grid",
+        UrlRead = new DataUrl("SortOptionsList", "Setting",  null),
+        UrlUpdate = new DataUrl("SortOptionUpdate", "Setting", null),
+        Length = Model.SortOptionSearchModel.PageSize,
+        LengthMenu = Model.SortOptionSearchModel.AvailablePageSizes,
+        ColumnCollection = new List<ColumnProperty>
+            {
+                new ColumnProperty(nameof(SortOptionModel.Name))
+                {
+                    Title = T("Admin.Configuration.Settings.Catalog.SortOptions.Name").Text
+                },
+                new ColumnProperty(nameof(SortOptionModel.DisplayOrder))
+                {
+                    Title = T("Admin.Configuration.Settings.Catalog.SortOptions.DisplayOrder").Text,
+                    Width = "100",
+                    ClassName = NopColumnClassDefaults.CenterAll,
+                    Editable = true,
+                    EditType = EditType.Number
+                },
+                new ColumnProperty(nameof(SortOptionModel.IsActive))
+                {
+                    Title = T("Admin.Configuration.Settings.Catalog.SortOptions.IsActive").Text,
+                    Width = "100",
+                    ClassName = NopColumnClassDefaults.CenterAll,
+                    Render = new RenderBoolean(),
+                    Editable = true,
+                    EditType = EditType.Checkbox
+                },
+                new ColumnProperty(nameof(SortOptionModel.Id))
+                {
+                    Title = T("Admin.Common.Edit").Text,
+                    Width = "200",
+                    ClassName =  NopColumnClassDefaults.Button,
+                    Render = new RenderButtonsInlineEdit()
+                }
+            }
+    })
+</div>

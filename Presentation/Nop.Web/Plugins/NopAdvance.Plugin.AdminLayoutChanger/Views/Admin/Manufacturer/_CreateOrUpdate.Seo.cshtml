@@ -1,0 +1,146 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model ManufacturerModel
+
+<div class="card-body">
+    @(await Html.LocalizedEditorAsync<ManufacturerModel, ManufacturerLocalizedModel>("manufacturer-seo-localized",
+    @<div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="@Model.Locales[item].SeName" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="@Model.Locales[item].SeName" />
+                <span asp-validation-for="@Model.Locales[item].SeName"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="@Model.Locales[item].MetaTitle" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="@Model.Locales[item].MetaTitle" />
+                <span asp-validation-for="@Model.Locales[item].MetaTitle"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="@Model.Locales[item].MetaKeywords" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="@Model.Locales[item].MetaKeywords" />
+                <span asp-validation-for="@Model.Locales[item].MetaKeywords"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="@Model.Locales[item].MetaDescription" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-textarea asp-for="@Model.Locales[item].MetaDescription"></nop-textarea>
+                <span asp-validation-for="@Model.Locales[item].MetaDescription"></span>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#@Html.IdFor(model => model.Locales[item].SeName)').on('input change', function () {
+                    var parameters = {
+                        entityId: '@Model.Id',
+                        entityName: 'Manufacturer',
+                        seName: $(this).val()
+                    };
+                    warningValidation('@Url.Action("UrlReservedWarning", "Common")', '@Html.NameFor(model => model.Locales[item].SeName)', parameters);
+                });
+            });
+        </script>
+        <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+    </div>
+,
+    @<div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="SeName" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeName" />
+                <span asp-validation-for="SeName"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="MetaTitle" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="MetaTitle" />
+                <span asp-validation-for="MetaTitle"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="MetaKeywords" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="MetaKeywords" />
+                <span asp-validation-for="MetaKeywords"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="MetaDescription" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-textarea asp-for="MetaDescription"></nop-textarea>
+                <span asp-validation-for="MetaDescription"></span>
+            </div>
+        </div>
+        <script>
+              $(document).ready(function () {
+                  $('#@Html.IdFor(model => model.SeName)').on('input change', function () {
+                      var parameters = {
+                          entityId: '@Model.Id',
+                          entityName: 'Manufacturer',
+                          seName: $(this).val()
+                      };
+                      warningValidation('@Url.Action("UrlReservedWarning", "Common")', '@Html.NameFor(model => model.SeName)', parameters);
+                  });
+              });
+        </script>
+    </div>))
+</div>

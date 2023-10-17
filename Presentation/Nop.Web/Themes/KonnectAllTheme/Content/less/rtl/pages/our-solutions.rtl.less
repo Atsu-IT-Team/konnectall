@@ -1,0 +1,61 @@
+//main: ../../style.less
+
+
+/*--------------------------------------------------------------
+# join the team style
+--------------------------------------------------------------*/
+
+.our-solutions {
+    direction: rtl;
+
+    .slider {
+        .slid-img {
+            height: 250px;
+        }
+    }
+
+    .bar-menu {
+        background-color: @gray-dark2;
+        padding: 1rem 0;
+
+        .menu-slider {
+            display: flex;
+            justify-content: space-between;
+
+            @media (max-width: 1200px) {
+                display: block;
+            }
+
+            &:hover a {
+                filter: blur(0.9px);
+                opacity: .5;
+                transform: scale(.98);
+                box-shadow: none;
+            }
+
+            &:hover a:hover {
+                transform: scale(1);
+                filter: blur(0px);
+                opacity: 1;
+                box-shadow: 0 8px 20px 0px rgba(0,0,0,0.125);
+                color: #fcd500;
+            }
+
+            span {
+                font-weight: 300;
+            }
+
+            a {
+                color: #9e9e9e;
+
+                &:hover, &:active, &:focus {
+                    color: #fcd500;
+                }
+
+                @media (max-width: 1200px) {
+                    padding: 0 9px;
+                }
+            }
+        }
+    }
+}

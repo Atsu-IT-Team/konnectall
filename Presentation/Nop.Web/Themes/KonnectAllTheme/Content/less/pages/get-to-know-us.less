@@ -1,0 +1,299 @@
+//main: ../../style.less
+
+
+/*--------------------------------------------------------------
+#  get to know us style
+--------------------------------------------------------------*/
+
+.content-page {
+
+    .get-to-know-us {
+
+        .slider {
+            position: relative;
+
+            .slid-img {
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                position: relative;
+                display: block;
+                width: 100%;
+                max-height: 700px;
+                min-height: 350px;
+            }
+
+            .overly {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: @gray-light3;
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                opacity: 0.3;
+            }
+
+            .content-slid {
+                position: absolute;
+                height: 100%;
+                top: 0;
+                text-align: center;
+                padding: 1rem 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+
+                @media (max-width:768px) {
+                    width: 100%;
+                }
+
+                .separate-line {
+                    width: 96px;
+                    height: 8px;
+                    border-radius: 4px;
+                    margin-bottom: 7px;
+                    background-color: @primary-color;
+                }
+
+                .title-slider {
+                    font-size: 28px !important;
+                    padding: 15px 30px;
+                    border-radius: 1rem;
+                    color: @black-color;
+                    background-color: @white-color;
+                    max-width: fit-content;
+                    margin: 30px;
+
+                    @media (max-width: 991px) {
+                        margin: 20px;
+                        font-size: 20px !important;
+                        padding: 10px 20px;
+                    }
+
+                    @media (max-width: 768px) {
+                        margin: 10px;
+                        font-size: 1rem !important;
+                        padding: 7px 14px;
+                    }
+                }
+
+                .menu-slider {
+                    color: @white-color;
+                    font-size: 18px;
+
+                    span {
+                        background-color: @white-color;
+                        margin: 0 24px;
+                        padding: 0;
+                        font-size: 10px;
+                    }
+
+                    @media (max-width: 768px) {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+
+        .panel {
+            display: none;
+        }
+
+        .panel.show {
+            display: block !important;
+        }
+
+        .global {
+            margin: 80px 0;
+
+            @media (max-width: 768px) {
+                margin: 30px 0;
+            }
+
+            .row {
+                display: flex;
+                align-items: center;
+
+                @media (max-width: 768px) {
+                    display: unset;
+                }
+
+                h3.title {
+                    position: relative;
+
+                    &:before {
+                        content: "";
+                        width: 60px;
+                        height: 5px;
+                        border-radius: 4px;
+                        margin-bottom: 7px;
+                        background-color: @primary-color;
+                        position: absolute;
+                        left: 50%;
+                        bottom: 0;
+                    }
+                }
+
+                .img-global {
+
+                    @media (max-width:768px) {
+                        margin-right: 15px;
+                    }
+
+                    .global-img {
+                        max-width: 100%;
+                        box-shadow: 15px -12px @primary-color;
+                        border-radius: 8px;
+
+                        @media (max-width: 768px) {
+                            margin-top: 5rem;
+                        }
+                    }
+                }
+            }
+
+            .accordeon-container {
+                margin-top: 20px;
+
+                .accordeon-item {
+
+                    .accordeon-title {
+                        margin: 5px 0;
+                        padding: 5px;
+                        background-color: @gray-light1;
+                        text-transform: capitalize;
+
+                        h5 {
+                            cursor: pointer;
+                            position: relative;
+                            margin: 0;
+                            text-align: left;
+                            padding: 5px 10px;
+                            font-weight: 400 !important;
+
+                            &:after {
+                                content: '+';
+                                position: absolute;
+                                right: 7px;
+                            }
+                        }
+
+                        &.active {
+
+                            h5:after {
+                                content: '-';
+                            }
+                        }
+                    }
+
+                    .accordeon-content {
+                        display: none;
+                        padding: 10px 15px;
+                    }
+                }
+            }
+        }
+
+        .statistic {
+            background-color: @gray-light;
+            padding: 70px 0;
+            position: relative;
+
+            @media (max-width: 768px) {
+                padding: 35px 0;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                border-top: 20px solid @gray-light;
+                border-right: 20px solid transparent;
+                border-left: 20px solid transparent;
+                bottom: -20px;
+                transform: translateX(-50%);
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                left: 50%;
+                border-top: 20px solid @white-color;
+                border-right: 20px solid transparent;
+                border-left: 20px solid transparent;
+                top: 0;
+                transform: translateX(-50%);
+            }
+
+            .content-statistic {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                @media (max-width:768px) {
+                    margin: 20px 0;
+                }
+
+                .statistic-icon {
+                    max-width: 95px;
+                    max-height: 75px;
+
+                    &:hover {
+                        transform: perspective(600px) rotateX(10deg) rotateY(-10deg);
+                    }
+                }
+
+                h2 {
+                    margin-bottom: 0;
+                }
+
+                .title {
+                    font-size: 16px;
+                    color: @black-color;
+                    font-weight: 300 !important;
+                }
+            }
+        }
+
+        .bar-menu {
+            background-color: @primary-color;
+            padding: 15px 0;
+
+            h4 {
+                color: @white-color;
+
+                span {
+                    padding: 0 1rem;
+                }
+            }
+        }
+
+        .services {
+            background-color: @gray-light;
+            padding: 70px 0;
+            position: relative;
+
+            @media (max-width: 768px) {
+                padding: 30px 0;
+            }
+
+            .content-services {
+                background-color: @white-color;
+                border-radius: 10px;
+                padding: 18px;
+
+                @media (max-width: 768px) {
+                    margin: 15px 0;
+                }
+
+                h4 {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

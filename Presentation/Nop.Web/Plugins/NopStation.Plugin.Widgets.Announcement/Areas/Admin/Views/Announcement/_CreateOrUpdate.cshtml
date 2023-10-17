@@ -1,0 +1,156 @@
+@model AnnouncementItemModel
+
+<style type="text/css">
+    .color-input {
+        display: none;
+    }
+
+    .k-picker-wrap.k-state-default span.k-select {
+        display: none;
+    }
+</style>
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Name" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Name" asp-required="true" />
+                                <span asp-validation-for="Name"></span>
+                            </div>
+                        </div>
+                        @(await Html.LocalizedEditorAsync<AnnouncementItemModel, AnnouncementItemLocalizedModel>("announcementitem-localized",
+                        @<div>
+                             <div class="form-group row">
+                                  <div class="col-md-3">
+                                      <nop-label asp-for="@Model.Locales[item].Content" />
+                                  </div>
+                                  <div class="col-md-9">
+                                      <nop-textarea asp-for="@Model.Locales[item].Content" />
+                                      <span asp-validation-for="@Model.Locales[item].Content"></span>
+                                  </div>
+                             </div>
+                             <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+                        </div>
+                        ,
+                        @<div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="Content" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-textarea asp-for="Content" asp-required="true" />
+                                    <span asp-validation-for="Content"></span>
+                                </div>
+                            </div>
+                        </div>))
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="DisplayOrder" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="DisplayOrder" />
+                                <span asp-validation-for="DisplayOrder"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Color" />
+                            </div>
+                            <div class="col-md-9">
+                                <input type="color" id="@Html.IdFor(model => model.Color)Picker" value="@Html.ValueFor(model => model.Color)" />
+                                <div class="color-input">
+                                    <nop-editor asp-for="Color" />
+                                </div>
+                                <span asp-validation-for="Color"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="Active" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Active" />
+                                <span asp-validation-for="Active"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="DisplayStartDate" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="DisplayStartDate" />
+                                <span asp-validation-for="DisplayStartDate"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="DisplayEndDate" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="DisplayEndDate" />
+                                <span asp-validation-for="DisplayEndDate"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="SelectedStoreIds" />
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <nop-select asp-for="SelectedStoreIds" asp-items="Model.AvailableStores" asp-multiple="true" />
+                                        <script>
+                                            $(document).ready(function() {
+                                                var storesIdsInput = $('#@Html.IdFor(model => model.SelectedStoreIds)').data("kendoMultiSelect");
+                                                storesIdsInput.setOptions({
+                                                    autoClose: false,
+                                                    filter: "contains"
+                                                });
+
+                                                @if (Model.AvailableStores.Count == 0)
+                                                {
+                                                    <text>
+                                                        storesIdsInput.setOptions({
+                                                            enable: false,
+                                                            placeholder: 'No stores available'
+                                                        });
+                                                        storesIdsInput._placeholder();
+                                                        storesIdsInput._enable();
+                                                    </text>
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="col-md-8">
+                                        @await Component.InvokeAsync("MultistoreDisabledWarning")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#@Html.IdFor(model => model.Color)Picker").kendoColorPicker({
+            buttons: false,
+            change: function (e) {
+                $("#@Html.IdFor(model => model.Color)").val(e.value);
+            }
+        });
+    });
+</script>

@@ -1,0 +1,49 @@
+﻿@model Nop.Plugin.Widgets.nopplustawkchat.Models.ConfigurationModel
+@using Nop.Web.Framework;
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<div class="form-horizontal">
+    <form asp-controller="Widgetsnopplustawkchat" asp-action="Configure" method="post">
+        <div class="cards-group">
+            <div class="card card-default">
+                <div class="card-body">
+                    @Html.Raw(T("Plugins.Widgets.nopplustawkchat.Note").Text)
+                </div>
+            </div>
+            <div class="card card-default">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <nop-override-store-checkbox asp-for="Script_OverrideForStore" asp-input="TawkScript" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                            <nop-label asp-for="TawkScript" />
+                        </div>
+                        <div class="col-md-9">
+                            <nop-textarea asp-for="TawkScript" />
+                            <span asp-validation-for="TawkScript"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <nop-label asp-for="Headmetatag">
+                        </div>
+                        <div class="col-md-9">
+                            <nop-editor asp-for="Headmetatag" asp-disabled="true" />
+                            <span asp-validation-for="Headmetatag"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            &nbsp;
+                        </div>
+                        <div class="col-md-9">
+                            <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

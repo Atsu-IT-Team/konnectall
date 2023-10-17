@@ -1,0 +1,188 @@
+﻿@model CategoryModel
+@using Nop.Core.Domain.Common
+@using Nop.Core.Domain.Seo
+@inject Nop.Core.IWebHelper webHelper
+@inject SeoSettings seoSettings
+@inject CommonSettings commonSettings
+@{
+    Layout = "_ColumnsTwo";
+    //title
+    NopHtml.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    NopHtml.AddMetaDescriptionParts(Model.MetaDescription);
+    NopHtml.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-category-page");
+
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl("Category", new { SeName = Model.SeName }, webHelper.GetCurrentRequestProtocol()).ToLowerInvariant();
+        NopHtml.AddCanonicalUrlParts(categoryUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+
+    var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
+
+        var currentProductId = 0;
+    if (Url.ActionContext.RouteData.Values["controller"].ToString().Equals("product", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.ActionContext.RouteData.Values["action"].ToString().Equals("productdetails", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentProductId = Convert.ToInt32(Url.ActionContext.RouteData.Values["productId"].ToString());
+    }
+
+        //current category ID
+    var currentCategoryId = 0;
+    if (Url.ActionContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.ActionContext.RouteData.Values["action"].ToString().Equals("category", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentCategoryId = Convert.ToInt32(Url.ActionContext.RouteData.Values["categoryId"].ToString());
+    }
+}
+
+
+@section CategoryDetailsAfterBreadcrumb {
+
+    <div class="slider" style="position: relative">
+        @*<img alt="" src="./assets/img/banner/banner-category.png" class="slid-img">     
+        <div class="overly">
+        </div>
+        <div class="container">
+            <div class="container content-slid">
+                <h2 class="text-white">Baverage</h2>
+                <h1 class="text-white">Coffee Collection</h1>
+                <a class="btn btn-primary text-black" href="#"><span>SHOP NOW</span></a>
+            </div>
+        </div>*@
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsAfterBreadcrumb, additionalData = Model })
+    </div>
+   
+
+}
+
+@section TopBanner {
+    <div class="banner-top" style="position: relative">
+       @* <img alt="" src="./assets/img/category/banner-middle.png">*@
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeFilters, additionalData = Model })        
+    </div>
+}
+
+@section left {
+    @*@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBefore })*@
+    @await Html.PartialAsync("_CatalogFilters", Model.CatalogProductsModel)
+    @*@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfter })*@
+    @await Component.InvokeAsync("CategoryNavigation", new { currentCategoryId = currentCategoryId, currentProductId = currentProductId })
+
+}
+
+
+@section Breadcrumb {
+    @if (Model.DisplayCategoryBreadcrumb)
+    {
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul class="items">
+                    @{
+                        int position = 1;
+                    }
+                    <li class="item 0">
+                        <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")" title="Go to the home page" class="text-capitalize">@T("Categories.Breadcrumb.Top")</a>
+                    </li>
+
+                    @foreach (var cat in Model.CategoryBreadcrumb)
+                    {
+                        <li class="item 1">
+                            @{
+                                var isLastCategory = cat.Id == Model.Id;
+                            }
+                            @if (isLastCategory)
+                            {
+                                <i class="fas fa-solid fa-chevron-right"></i>
+                                @cat.Name
+                            }
+                            else
+                            {
+                                <i class="fas fa-solid fa-chevron-right"></i>
+                                <a href="@Url.RouteUrl("Category", new { SeName = cat.SeName })" title="@cat.Name">@cat.Name</a>
+
+                            }
+                        </li>
+                        position++;
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+}
+@*@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsAfterBreadcrumb, additionalData = Model })*@
+
+<div class="row">
+
+    <div class="banner">
+        <img alt="" src="./assets/img/category/banner-categ.png" class="categ-img">
+    </div>
+    <div class="toolbar toolbar-products">
+        <div class="filter-toggle" id="filter-toggle" onclick="filterToggle();">
+            <i class="fas fa-filter"></i>
+            <span>filter</span>
+        </div>
+
+        <div class="left-toolbar">
+            <strong>sort By :</strong>
+            <form action="" method="get">
+                <select name="orderby" class="orderby" aria-label="Commande">
+                    @foreach (var item in Model.CatalogProductsModel.AvailableSortOptions)
+                    {
+                        <option value="popularity">@item.Text</option>
+                    }
+
+                </select>
+            </form>
+        </div>
+
+        <div class="right-toolbar">
+            <div class="per-page-selector">
+                <select>
+                    @foreach (var item in Model.CatalogProductsModel.PageSizeOptions)
+                    {
+                        <option value="popularity">show @item.Text</option>
+                    }
+                </select>
+            </div>
+            <div class="mode">
+                <div class="mybtn fas fa-list" onclick="Button(0); List();"></div>
+                <div class="mybtn Active fas fa-th-large" onclick="Button(1); Grid();"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        
+        @{
+            var catalogProductsViewData1 = new ViewDataDictionary(ViewData);
+            catalogProductsViewData1["fetchUrl"] = Html.Raw(Url.Action("GetCategoryProducts", "Catalog", new { categoryId = Model.Id }));
+        }
+        @await Html.PartialAsync("_CatalogProducts", Model.CatalogProductsModel, catalogProductsViewData1) 
+
+        <div class="banner-middle">
+            <img alt="" src="./assets/img/category/banner-categ2.png" class="categ-img">
+        </div>
+
+        @{
+            var catalogProductsViewData = new ViewDataDictionary(ViewData);
+            catalogProductsViewData["fetchUrl"] = Html.Raw(Url.Action("GetCategoryProducts", "Catalog", new { categoryId = Model.Id }));
+        }
+        @await Html.PartialAsync("_CatalogProducts", Model.CatalogProductsModel, catalogProductsViewData)
+
+    </div>
+
+   
+</div>
+
+
+
+
+
+
+
+
+
+

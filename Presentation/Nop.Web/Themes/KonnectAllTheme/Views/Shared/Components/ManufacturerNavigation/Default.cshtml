@@ -1,0 +1,66 @@
+﻿@model ManufacturerNavigationModel
+
+@if (Model.Manufacturers.Count > 0)
+{
+    <div class="sidebar-inner Brand">
+        <div class="sidebar-item accordeon-item">
+            <div class="sidebar-title accordeon-title">
+                <h5 class="text-left">@T("Manufacturers")</h5>
+            </div>
+
+            <ul class="sidebar-content accordeon_content show">
+                @foreach (var manufacturer in Model.Manufacturers)
+                {
+                    <li class="@(manufacturer.IsActive ? "active" : "inactive")">
+                        <input type=checkbox method="post" name="checked">
+                        <a href="@Url.RouteUrl("Manufacturer", new { SeName = manufacturer.SeName })">@manufacturer.Name</a>
+                    </li>
+                }
+            </ul>
+            @if (Model.TotalManufacturers > Model.Manufacturers.Count)
+            {
+                <div class="view-all text-center">
+                    <a href="@Url.RouteUrl("ManufacturerList")">@T("Manufacturers.ViewAll")</a>
+                </div>
+            }
+
+            @* <ul class="sidebar-content accordeon_content show">
+        <li>
+        <input type=checkbox method="post" name="checked">
+        Elegant Auto Group
+        </li>
+
+        </ul>*@
+        </div>
+    </div>
+
+   @* <div class="sidebar-inner Manufacturers">
+        <div class="sidebar-item">
+            <div class="sidebar-title">
+                <h5 class="text-left">
+                    <strong>@T("Manufacturers")</strong>
+                </h5>
+            </div>
+            <div class="sidebar-content">
+                <div class="filter-content">
+
+                    <ul class="sidebar-content">
+                        @foreach (var manufacturer in Model.Manufacturers)
+                        {
+                            <li class="@(manufacturer.IsActive ? "active" : "inactive")">
+                                <a href="@Url.RouteUrl("Manufacturer", new { SeName = manufacturer.SeName })">@manufacturer.Name</a>
+                            </li>
+                        }
+                    </ul>
+                    @if (Model.TotalManufacturers > Model.Manufacturers.Count)
+                    {
+                        <div class="view-all text-center">
+                            <a href="@Url.RouteUrl("ManufacturerList")">@T("Manufacturers.ViewAll")</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+*@
+}

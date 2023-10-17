@@ -1,0 +1,78 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model TemplatesModel
+
+@inject IEventPublisher eventPublisher
+
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.System.Templates").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Templates");
+}
+
+@{
+    string verticalTab = (TabLayout)adminLayoutChangerSettings.TabLayoutId == TabLayout.Vertical ? "vertically-tab" : "";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="content-header clearfix">
+                    <h3 class="float-left">
+                        @T("Admin.System.Templates")
+                    </h3>
+                </div>
+            </div>
+
+            <nop-doc-reference asp-string-resource="@T("Admin.Documentation.Reference.Templates", Docs.Templates + Utm.OnAdmin)" />
+
+            <nop-tabs id="templates-cards" class="@verticalTab">
+                <nop-tab asp-name="templates-category" asp-icon="fas fa-sitemap" asp-title="@T("Admin.System.Templates.Category")" asp-default="true" >@await Html.PartialAsync("_List.Category", Model)</nop-tab>
+                <nop-tab asp-name="templates-manufacturer" asp-icon="fas fa-industry" asp-title="@T("Admin.System.Templates.Manufacturer")" >@await Html.PartialAsync("_List.Manufacturer", Model)</nop-tab>
+                <nop-tab asp-name="templates-product" asp-icon="fas fa-cube" asp-title="@T("Admin.System.Templates.Product")" >@await Html.PartialAsync("_List.Product", Model)</nop-tab>
+                <nop-tab asp-name="templates-topic" asp-icon="fas fa-book" asp-title="@T("Admin.System.Templates.Topic")" >@await Html.PartialAsync("_List.Topic", Model)</nop-tab>
+
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.TemplatesDetailsBlock, additionalData = Model })
+            </nop-tabs>
+        </div>
+    </div>
+</section>

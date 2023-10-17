@@ -1,0 +1,65 @@
+﻿@model ConfigurationModel
+
+@{
+    NopHtml.SetActiveMenuItemSystemName("Announcement.Configure");
+    ViewBag.PageTitle = T("Admin.NopStation.Announcement.Configuration").Text;
+}
+
+<form asp-controller="Announcement" asp-action="Configure" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.NopStation.Announcement.Configuration")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                @await Component.InvokeAsync("StoreScopeConfiguration")
+                <div asp-validation-summary="All"></div>
+                <div class="cards-group">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <nop-override-store-checkbox asp-for="EnablePlugin_OverrideForStore" asp-input="EnablePlugin" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="EnablePlugin" />
+                                </div>
+                                <div class="col-md-8">
+                                    <nop-editor asp-for="EnablePlugin" />
+                                    <span asp-validation-for="EnablePlugin"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <nop-override-store-checkbox asp-for="WidgetZone_OverrideForStore" asp-input="WidgetZone" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="WidgetZone" />
+                                </div>
+                                <div class="col-md-8">
+                                    <nop-editor-check asp-for="WidgetZone" />
+                                    <span asp-validation-for="WidgetZone"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <nop-override-store-checkbox asp-for="ItemSeparator_OverrideForStore" asp-input="ItemSeparator" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="ItemSeparator" />
+                                </div>
+                                <div class="col-md-8">
+                                    <nop-editor-check asp-for="ItemSeparator" />
+                                    <span asp-validation-for="ItemSeparator"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

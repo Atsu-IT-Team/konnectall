@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="English">
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Info">
+        <Value>Note: Application will restart on configuration change for "Enabled", "Use responsive menu" and "Use tabs" settings.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger">
+        <Value>Admin Layout Changer</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure">
+        <Value>Configure</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Help">
+        <Value>Help</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.Enabled">
+        <Value>Enabled</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.Enabled.Hint">
+        <Value>Check/Uncheck to enable/disable plugin. Note: This will restart application on save.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.LabelPositionId">
+        <Value>Form label position</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.LabelPositionId.Hint">
+        <Value>Please choose the form label's position to be displayed on.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.MiniLogoId">
+        <Value>Admin mini logo</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.MiniLogoId.Hint">
+        <Value>Admin mini Logo. This displays mini logo on top-left corner of website when side menu is slided left.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.MiniLogoId.Info">
+        <Value>Image dimensions 50px x 50px (Width x Height). In case of top menu in desktop, mini logo will display on mobile or tablate.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.LargeLogoId">
+        <Value>Admin large logo</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.LargeLogoId.Hint">
+        <Value>Admin large Logo. This displays logo on top-left corner of admin website.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.LargeLogoId.Info">
+        <Value>Image dimensions 200px x 50px (Width x Height).</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.UseResponsiveMenu">
+        <Value>Use top menu in desktop</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.UseResponsiveMenu.Hint">
+        <Value>Enable this to use top menu in desktop. On mobile device, it will get back to left side menu. Note: This will restart application on save.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.UseTabs">
+        <Value>Use tabs</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.UseTabs.Hint">
+        <Value>Use tabs instead of panel on edit and configuration pages. Note: This will restart application on save.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.TabLayout">
+        <Value>Tab layout</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.TabLayout.Hint">
+        <Value>Choose from vertical or horizontal tab layout.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.AdminTheme">
+        <Value>Admin theme</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.AdminTheme.Hint">
+        <Value>Choose best available theme color for your nopCommerce admin.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.RemoveCopyRightFooter">
+        <Value>Remove admin copyright</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.RemoveCopyRightFooter.Hint">
+        <Value>Check to remove admin copyright from footer.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.AllCustomerRole">
+        <Value>All roles</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.UsePreDefineTheme">
+        <Value>Use pre define theme</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.UsePreDefineTheme.Hint">
+        <Value>Select if you want to use pre define theme, if you want to use custom color selection then dont select it.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.PrimaryColor">
+        <Value>Primary Color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.PrimaryColor.Hint">
+        <Value>Select primary color.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.SecondaryColor">
+        <Value>Secondary color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.SecondaryColor.Hint">
+        <Value>Select secondary color.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.FontColor">
+        <Value>Font color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.FontColor.Hint">
+        <Value>Select font color.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.Published">
+        <Value>Published</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.Published.Hint">
+        <Value>Check to enable admin layout changer settings for selected customer role.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarBgColor">
+        <Value>Main header backgorund color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarBgColor.Hint">
+        <Value>Select main header backgorund color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarAnchorColor">
+        <Value>Main header anchor color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarAnchorColor.Hint">
+        <Value>Select main header anchor color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarActiveAnchorColor">
+        <Value>Main header active anchor color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarActiveAnchorColor.Hint">
+        <Value>Select main header active anchor color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarToggleColor">
+        <Value>Main header sidebar toggle color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarToggleColor.Hint">
+        <Value>Select main header sidebar toggle color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarToggleColorHover">
+        <Value>Main header sidebar toggle hover color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarToggleColorHover.Hint">
+        <Value>Select main header sidebar toggle hover color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarToggleColorHoverBgColor">
+        <Value>Main header sidebar toggle hover backgournd color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarToggleColorHoverBgColor.Hint">
+        <Value>Select main header sidebar toggle hover backgournd color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarDropDownMenuAnchorColor">
+        <Value>Main header sidebar dropdown anchor color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarDropDownMenuAnchorColor.Hint">
+        <Value>Select main header sidebar dropdown anchor color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarDropDownMenuAnchorHoverBgColor">
+        <Value>Main header sidebar dropdown anchor hover color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderNavbarSidebarDropDownMenuAnchorHoverBgColor.Hint">
+        <Value>Select main header sidebar dropdown anchor hover color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderLogoBgColor">
+        <Value>Main header logo background color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderLogoBgColor.Hint">
+        <Value>Select main header logo background color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderLogoColor">
+        <Value>Main header logo color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderLogoBgColor.Hint">
+        <Value>Select main header logo color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderLogoHoverBgColor">
+        <Value>Main header logo hover backgorund color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderLogoHoverBgColor.Hint">
+        <Value>Select main header logo hover backgorund color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderUserHeaderBgColor">
+        <Value>Main header user header backgorund color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.MainHeaderUserHeaderBgColor.Hint">
+        <Value>Select main header user header backgorund color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.WrapperBgColor">
+        <Value>Wrapper backgorund color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.WrapperBgColor.Hint">
+        <Value>Select wrapper backgorund color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.InfoAnchorColor">
+        <Value>Info anchor color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.InfoAnchorColor.Hint">
+        <Value>Select Info anchor color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuHeaderColor">
+        <Value>Sidebar menu header color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuHeaderColor.Hint">
+        <Value>Select sidebar menu header color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuHeaderBgColor">
+        <Value>Sidebar menu header backgorund color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuHeaderBgColor.Hint">
+        <Value>Select sidebar menu header backgorund color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuAnchorColor">
+        <Value>Sidebar menu anchor color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuAnchorColor.Hint">
+        <Value>Select sidebar menu anchor color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuAnchorBgColor">
+        <Value>Sidebar menu anchor backgorund color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuAnchorBgColor.Hint">
+        <Value>Select sidebar menu anchor backgorund color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuActiveAnchorBorderColor">
+        <Value>Sidebar menu active anchor color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuActiveAnchorBorderColor.Hint">
+        <Value>Select sidebar menu active anchor color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuTreeViewMenuBgColor">
+        <Value>Sidebar menu tree view menu backgorund color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuTreeViewMenuBgColor.Hint">
+        <Value>Select sidebar menu tree view menu backgorund color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarAnchorColor">
+        <Value>Sidebar anchor color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarAnchorColor.Hint">
+        <Value>Select sidebar anchor color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuTreeViewMenuAnchorColor">
+        <Value>Sidebar menu tree view menu anchor color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuTreeViewMenuAnchorColor.Hint">
+        <Value>Select sidebar menu tree view menu anchor color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuTreeViewMenuActiveAnchorColor">
+        <Value>Sidebar menu tree view menu active anchor color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarMenuTreeViewMenuActiveAnchorColor.Hint">
+        <Value>Select sidebar menu tree view menu active anchor color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputBgColor">
+        <Value>Sidebar form input background color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputBgColor.Hint">
+        <Value>Select sidebar form input background color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputColor">
+        <Value>Sidebar form input color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputColor.Hint">
+        <Value>Select sidebar form input color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputFocusBgColor">
+        <Value>Sidebar form input foucs background color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputFocusBgColor.Hint">
+        <Value>Select sidebar form input foucs background color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputFocusColor">
+        <Value>Sidebar form input foucs background color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputFocusColor.Hint">
+        <Value>Select sidebar form input foucs background color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputFocusBorderColor">
+        <Value>Sidebar form input foucs border color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormInputFocusBorderColor.Hint">
+        <Value>Select sidebar form input foucs border color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormButtonColor">
+        <Value>Sidebar form input foucs border color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.SidebarFormButtonColor.Hint">
+        <Value>Select sidebar form input foucs border color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.TopNavLogoBgColor">
+        <Value>Top navigation logo background color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.TopNavLogoBgColor.Hint">
+        <Value>Select top navigation logo background color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.TopNavLogoColor">
+        <Value>Top navigation logo color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.TopNavLogoColor.Hint">
+        <Value>Select top navigation logo color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.TopNavLogoHoverBgColor">
+        <Value>Top navigation logo hover color</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.TopNavLogoHoverBgColor.Hint">
+        <Value>Select top navigation logo hover color.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.AdminThemeTypeId">
+        <Value>Admin theme type</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.AdminThemeTypeId.Hint">
+        <Value>Select admin theme option.</Value>
+    </LocaleResource>
+    <LocaleResource Name="Enums.NopAdvance.Plugin.Misc.AdminLayoutChanger.Domain.AdminTheme.Dark">
+        <Value>Dark Default</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.AddNew.Button">
+        <Value>Add new customer role wise configuration</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.AddNew.Title">
+        <Value>Add configuration customer role wise</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.CustomerRoleId">
+        <Value>Customer role</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Configure.Fields.CustomerRoleId.Hint">
+        <Value>Select customer role on which you want to apply these changes.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.AdminLayoutChanger.Admin.Free.Expired.Notification">
+        <Value>Use top menu in desktop, Use tabs, Remove copy right features work only in paid and trial version.</Value>
+    </LocaleResource>
+</Language>

@@ -1,0 +1,170 @@
+﻿@using Nop.Core.Domain.Seo
+@inject SeoSettings seoSettings
+
+@{
+    Layout = "_Root";
+    ViewBag.BodyClass = "join-the-team";
+    //title
+    if (!string.IsNullOrEmpty(seoSettings.HomepageTitle))
+    {
+        NopHtml.AddTitleParts(seoSettings.HomepageTitle);
+    }
+
+    //meta
+    if (!string.IsNullOrEmpty(seoSettings.HomepageDescription))
+    {
+        NopHtml.AddMetaDescriptionParts(seoSettings.HomepageDescription);
+    }
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-home-page");
+}
+@section HomePageSlider{
+    <div class="slider">
+        <img alt="" src="./assets/img/banner/join-team-banner.png" class="slid-img">
+        <div class="overly">
+        </div>
+        <div class="container">
+            <div class="container content-slid">
+                <div class="separate-line"></div>
+                <h2 class="title-slider">
+                    @T("topMenu.KnowUs.WhatIs")
+                </h2>
+                <h4 class="menu-slider">
+                    shop from one place
+                </h4>
+            </div>
+        </div>
+    </div>
+}
+<section class="content-page">
+   
+
+    <div class="first-section">
+        <div class="container">
+            <div class="row">
+                <div class="accordeon-container">
+                    <div class="accordeon-item">
+                        <div class="accordion">
+                            <h5>Sales Specialist</h5>
+                        </div>
+                        <div class="panel">
+                            <p>
+                                Lorem ipsum dolor sit eiusamet, consectetur adipiscing elit,
+                                sed do eius mod tempor incididunt ut labore et dolore magna aliqua.
+                                us in metus vulputate eu scelerisque felis. Vel pretium vu
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordeon-item">
+                        <div class="accordion">
+                            <h5>Designer Senior</h5>
+                        </div>
+                        <div class="panel">
+                            <p>
+                                Lorem ipsum dolor sit eiusamet, consectetur adipiscing elit,
+                                sed do eius mod tempor incididunt ut labore et dolore magna aliqua.
+                                us in metus vulputate eu scelerisque felis. Vel pretium vu
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordeon-item">
+                        <div class="accordion">
+                            <h5>Busniess Developer (Big Translation)</h5>
+                        </div>
+                        <div class="panel">
+                            <p>
+                                Lorem ipsum dolor sit eiusamet, consectetur adipiscing elit,
+                                sed do eius mod tempor incididunt ut labore et dolore magna aliqua.
+                                us in metus vulputate eu scelerisque felis. Vel pretium vu
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordeon-item">
+                        <div class="accordion">
+                            <h5>Sales Account Manager</h5>
+                        </div>
+                        <div class="panel">
+                            <p>
+                                Lorem ipsum dolor sit eiusamet, consectetur adipiscing elit,
+                                sed do eius mod tempor incididunt ut labore et dolore magna aliqua.
+                                us in metus vulputate eu scelerisque felis. Vel pretium vu
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordeon-item">
+                        <div class="accordion">
+                            <h5>Odoo developer</h5>
+                        </div>
+                        <div class="panel">
+                            <p>
+                                Lorem ipsum dolor sit eiusamet, consectetur adipiscing elit,
+                                sed do eius mod tempor incididunt ut labore et dolore magna aliqua.
+                                us in metus vulputate eu scelerisque felis. Vel pretium vu
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="second-section">
+        <div class="container">
+            <div class="title-sec">
+                <h4 class="text-black text-left">
+                    the big familly grows, will you join the challenge?
+                </h4>
+                <span class="line-after"></span>
+            </div>
+            <p>
+                Please fill in the following form. If you have problems uploading documents, please email them to hiring@konnectall.com.
+            </p>
+
+            <form action="" method="POST">
+                <div class="row field">
+                    <div class="col-md-6">
+                        <label for="firstname" class=""> Name* </label>
+                        <input type="text" name="firstname" id="firstname" placeholder="Name" class="" />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastname" class=""> Last name* </label>
+                        <input type="text" name="lastname" id="lastname" placeholder="lastname" class="" />
+                    </div>
+                </div>
+                <div class="formbold-input-flex field">
+                    <label for="email" class=""> Mail </label>
+                    <input type="email" name="email" id="email" placeholder="E-mail" class="" />
+                </div>
+                <div class="formbold-input-flex field">
+                    <label for="phone" class=""> Phone </label>
+                    <input type="text" name="phone" id="phone" placeholder="Phone" class="" />
+                </div>
+                <div class="field">
+                    <label for="">DOCUMENTS*</label>
+                    <P>Please upload your resume, current certificates and a short motivation letter (max. 20 MB in total).</P>
+                </div>
+                <div class="row file-upload field">
+                    <div class="col-md-6 formbold-input-flex upload-left">
+                        <label for="photo">CV*</label>
+                        <input type="file" id="photo" name="photo" class="upload-hide">
+                        <p class="content-file">Click to select multiple files or drag and drop them</p>
+                    </div>
+                    <div class="col-md-6 formbold-input-flex upload-right">
+                        <label for="photo">OTHER*</label>
+                        <input type="file" id="photo" name="photo" class="upload-hide">
+                        <p class="content-file">Click to select multiple files or drag and drop them</p>
+                    </div>
+                </div>
+                <div>
+                    <input type=checkbox method="post" name="checked"> I confirm that i have read and understood the <a href="#">Data Protection Declaration</a>.*
+                </div>
+                <a href="#" class="btn btn-primary">Submit application </a>
+            </form>
+        </div>
+    </div>
+    <my-newsletter></my-newsletter>
+</section>

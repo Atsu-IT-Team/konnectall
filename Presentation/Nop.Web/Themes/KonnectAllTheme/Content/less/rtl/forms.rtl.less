@@ -1,0 +1,407 @@
+// main: ../../style.less
+
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+
+/* Buttons */
+button, .button, .btn, input[type="button"], input[type="reset"], input[type="submit"], .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce div.product form.cart .button {
+    display: inline-block;
+    font-size: 0.625rem;
+    line-height: 1.4;
+    font-style: normal;
+    font-weight: 300;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 22px;
+    outline: 0;
+    text-decoration: none !important;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    white-space: nowrap;
+}
+
+.btn-account {
+    padding: 6px 12px;
+    background-color: @primary-color;
+    color: @black-color;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 300 !important;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+}
+
+.btn-login {
+    border: 1px solid #ccc !important;
+    color: @black-color;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 300 !important;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+}
+
+.btn.disabled, .woocommerce div.product form.cart .button.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none !important;
+}
+
+/* Primary button */
+.btn-primary, input[type="submit"].btn-primary, .woocommerce a.button, .product a.button, .xoo-wsc-ft-btn, .product-loop-item .product .button, .woocommerce div.product form.cart .single_add_to_cart_button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .checkout-button, .woocommerce button {
+    background-color: @white-color;
+    color: @black-color;
+    position: relative;
+    z-index: 1;
+    padding: 10px 22px !important;
+    border-color: unset !important;
+
+    &:before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: @black-color;
+        color: @primary-color;
+        z-index: -1;
+        transition: transform 0.7s;
+        transform-origin: 100% 0;
+        transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+        transform: scaleX(0);
+        border-radius: 3px;
+    }
+
+    &:hover:before {
+        transform: scaleX(1);
+    }
+}
+
+.btn-primary {
+    padding: 13px 20px;
+    font-size: 14px;
+    line-height: 1;
+    // color: @black-color !important;
+    background-color: @primary-color !important;
+    text-align: center;
+    text-transform: capitalize;
+    border-radius: 5px;
+    font-weight: 300;
+    border-color: transparent !important;
+
+    &:hover {
+        background-color: transparent;
+    }
+}
+
+.btn-second {
+    background-color: @white-color;
+    padding: 10px 60px;
+    width: fit-content;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    color: @black-color;
+
+    &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 101%;
+        background-color: @black-color;
+        z-index: -1;
+        transition: transform 0.7s;
+        transform-origin: 0 0;
+        transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+        transform: scaleX(0);
+        border-radius: 10px;
+    }
+
+    &:hover:before {
+        transform: scaleX(1);
+    }
+
+    &:hover {
+        color: @white-color !important;
+    }
+
+    @media (max-width:991px) {
+        padding: 8px 50px;
+        font-size: 16px;
+    }
+
+    @media (max-width:768px) {
+        padding: 5px 30px;
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+}
+
+
+
+
+
+
+/* btn-radio */
+.radio {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.radio-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid @black-color;
+    border-radius: 50%;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .checkmark {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: @primary-color;
+        display: none;
+    }
+
+    input {
+        display: none;
+
+        &:checked + .checkmark {
+            display: inline-block;
+        }
+    }
+}
+
+
+/* btn-checkbox */
+.checkbox-btn {
+    width: 16px;
+    height: 16px;
+    box-shadow: inset 0 0 0px 1px #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .checkmark {
+        width: 16px;
+        height: 16px;
+        background-color: @primary-color;
+        box-shadow: inset 0 0 0px 3px @white-color;
+        display: none;
+
+        &::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            border: 1px solid @black-color;
+        }
+    }
+
+    input {
+        display: none;
+
+        &:checked + .checkmark {
+            display: inline-block;
+        }
+    }
+}
+
+
+/* Other buttons */
+
+.btn-all-category {
+    position: relative;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+
+    &::after {
+        content: '';
+        background-image: url("../../images/arrow-right-black.svg");
+        background-repeat: no-repeat;
+        display: inline-block;
+        transition-property: width;
+        transition-duration: 1s;
+        width: 16px;
+        height: 10px;
+        margin-left: 10px;
+        vertical-align: middle;
+        transition: transform 250ms;
+    }
+
+    &:hover:after, &:active:after {
+        transform: translateX(20px);
+    }
+
+    &.best-sellers::after {
+        background-image: url("../../images/arrow-right-yellow.svg");
+    }
+
+    &.best-sellers:hover:after, &.best-sellers:active:after {
+        transform: unset;
+    }
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-lg {
+    font-size: 18px;
+    padding: 16px 32px;
+}
+
+.btn-sm-white {
+    position: relative;
+    display: flex;
+    text-transform: uppercase;
+
+    &:after {
+        content: "";
+        background-image: url('assets/img/category/arrow-sidebar.png');
+        width: 35px;
+        height: 20px;
+        display: inline-block;
+        background-repeat: no-repeat;
+        margin-right: 5px;
+        transition: all 0.4s;
+        transform: rotate(180deg) scale(0.6);
+    }
+
+    &:hover:after {
+        margin-right: 20px;
+    }
+}
+
+.btn-border {
+    margin: 10px 0;
+    padding: 6px;
+    width: fit-content;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.btn-sm-black {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    border: none;
+
+    &:after {
+        content: "";
+        background-image: url('assets/img/banner/arrow-banner.png');
+        width: 35px;
+        height: 20px;
+        //transform: scale(0.6);
+        display: inline-block;
+        background-repeat: no-repeat;
+        margin-left: 5px;
+        transition: all 0.4s;
+        transform: rotate(180deg) scale(0.6);
+    }
+
+    &:hover:after {
+        margin-right: 20px;
+    }
+}
+
+.btn-sm {
+    font-size: 14px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    position: relative;
+    /*::after {
+        content: "";
+        background-image: url('assets/img/category/arrow-sidebar.png');
+        display: inline-block;
+        background-repeat: no-repeat;
+        width: 32px;
+        height: 20px;
+        vertical-align: middle;
+        transform: scale(0.6);
+        margin-left: 5px;
+        transition: all 0.4s;
+      }*/
+
+    &:hover {
+        padding-left: 10px;
+    }
+}
+
+/* Other forms */
+select {
+    /* -webkit-appearance: none;
+    -ms-progress-appearance: none;
+    appearance: none;*/
+}
+
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="number"], input[type="tel"], input[type="range"], input[type="date"], input[type="month"], input[type="week"], input[type="time"], input[type="datetime"], input[type="datetime-local"], input[type="color"], select, textarea, select {
+    background-color: #FFF;
+    color: #000;
+    border: 1px solid #CCC;
+    font-size: 16px;
+    border-radius: 0;
+    padding: 9px 12px;
+    //margin-bottom: 1rem;
+    width: 100%;
+    max-width: 100%;
+    outline: 0;
+    -webkit-transition: border 300ms ease-out;
+    transition: border 300ms ease-out;
+    border-radius: 5px;
+}
+
+input[type="text"]::placeholder, input[type="email"]::placeholder, input[type="url"]::placeholder, input[type="password"]::placeholder, input[type="search"]::placeholder, input[type="number"]::placeholder, input[type="tel"]::placeholder, input[type="range"]::placeholder, input[type="date"]::placeholder, input[type="month"]::placeholder, input[type="week"]::placeholder, input[type="time"]::placeholder, input[type="datetime"]::placeholder, input[type="datetime-local"]::placeholder, input[type="color"]::placeholder, textarea::placeholder, select::placeholder {
+    color: #777;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="number"]:focus, input[type="tel"]:focus, input[type="range"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="color"]:focus, textarea:focus, select:focus {
+    color: #222;
+    border-color: #afafaf;
+}
+
+#dots-item {
+    text-align: center;
+
+    .dot {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 10px;
+        cursor: pointer;
+        background-color: transparent;
+        background-color: #ccc;
+        width: 12px;
+        height: 12px;
+
+        &.active {
+            background-color: @primary-color !important;
+        }
+
+        &:hover {
+            background-color: @primary-color;
+        }
+    }
+}

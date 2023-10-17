@@ -1,0 +1,123 @@
+//main: ../../style.less
+
+
+/*--------------------------------------------------------------
+# join the team style
+--------------------------------------------------------------*/
+
+.join-the-team {
+
+  .slider {
+    .slid-img {
+      min-height: 200px;
+    }
+
+    .content-slid {
+      @media (max-width:768px) {
+        width: 100%;
+      }
+    }
+  }
+
+    .first-section {
+        margin-bottom: 40px;
+
+        .accordeon-container {
+          margin-left: 15px;
+          margin-right: 15px;
+
+          .accordeon_content {
+            display: none;
+            padding: 0 15px;
+          }
+        } 
+    }
+
+    .second-section {
+      background-color: @gray-light;
+      padding: 50px 0;
+      position: relative;
+
+      @media (max-width:768px) {
+        padding: 25px 0;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        border-bottom: 20px solid @gray-light;
+        border-right: 20px solid transparent;
+        border-left: 20px solid transparent;
+        top: -20px;
+        transform: translateX(-50%);
+      }
+
+      label {
+        font-weight: 400;
+        text-transform: uppercase;
+        margin: 10px 0 !important;
+
+        @media (max-width:768) {
+          font-size: 11px;
+        }
+      }
+
+      .field {
+        padding-top: 1.7rem;
+      }
+
+        .file-upload {
+
+          .upload-left , .upload-right {
+            position: relative;
+            padding-bottom: 1rem;
+
+            @media (max-width:991px) {
+              margin-right: 15px;
+              margin-bottom: 5px;
+            }
+
+            @media (max-width:768px) {
+              margin-bottom: 15px;
+            }
+
+            @media (max-width:576px) {
+              margin-bottom: 30px;
+            }
+           
+            .upload-hide {
+              position: relative;
+              padding: 5rem;
+              opacity: 0;
+              z-index: 10;
+              width: 100%;
+              cursor: pointer;
+            }
+            
+            .content-file {
+              position: absolute;
+              top: 35px;
+              border: 1px dashed #ccc;
+              padding: 5rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 95%;
+              left: 0;
+              background-color: @white-color;
+              border-radius: 8px;
+              margin-left: 15px;
+              cursor: pointer;
+            }
+          }
+        }
+
+        .btn.btn-primary {
+          margin-top: 1rem;
+          color: @white-color !important;
+          background-color: #0075bb !important;
+        }
+    }
+}
+    

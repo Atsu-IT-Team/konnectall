@@ -1,0 +1,34 @@
+﻿@model CurrencySelectorModel
+@inject Nop.Core.IWebHelper webHelper
+
+@if (Model.AvailableCurrencies.Count > 1)
+{
+
+    var returnUrl = webHelper.GetRawUrl(Context.Request);
+    var currencies = await Model.AvailableCurrencies.SelectAwait(async x => new SelectListItem
+                {
+                    Text = x.Name,
+                    Value = Url.RouteUrl("ChangeCurrency", new { customercurrency = x.Id, returnUrl }, webHelper.GetCurrentRequestProtocol()),
+                    Selected = x.Id.Equals(Model.CurrentCurrencyId)
+                }).ToListAsync();
+
+ 
+    <span class="current">
+        @currencies.FirstOrDefault(x=>x.Selected).Text
+        <i class="fas fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </span>
+    <ul>
+        @foreach (var item in currencies)
+        {
+            @if (item.Selected)
+            {
+                <li class="actived"><a href="javascript:setLocation('@item.Value');" class="woocs_flag_view_item woocs_flag_view_item_current" data-currency="@item.Value">@item.Text</a></li>
+            }
+            else
+            {
+                <li> <a href="javascript:setLocation('@item.Value');" class="woocs_flag_view_item" data-currency="@item.Value">@item.Text</a></li>
+            }
+        }
+       
+    </ul>
+}

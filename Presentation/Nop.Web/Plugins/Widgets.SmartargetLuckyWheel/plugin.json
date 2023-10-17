@@ -1,0 +1,16 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Smartarget Lucky Wheel",
+  "SupportedVersions": [
+    "4.50"
+  ],
+  "Author": "Erez from Smartarget",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.SmartargetLuckyWheel.dll",
+  "Description": "Allow customers to spin the lucky wheel and convert them to leads",
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": [],
+  "DependsOnSystemNames": [],
+  "SystemName": "Widgets.SmartargetLuckyWheel",
+  "Version": "1.00"
+}

@@ -1,0 +1,38 @@
+﻿@using Nop.Core.Domain.Seo
+@inject SeoSettings seoSettings
+
+@{
+    Layout = "_Root";
+    ViewBag.BodyClass = "get-to-know-us";
+
+    //title
+    if (!string.IsNullOrEmpty(seoSettings.HomepageTitle))
+    {
+        NopHtml.AddTitleParts(seoSettings.HomepageTitle);
+    }
+
+    //meta
+    if (!string.IsNullOrEmpty(seoSettings.HomepageDescription))
+    {
+        NopHtml.AddMetaDescriptionParts(seoSettings.HomepageDescription);
+    }
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-home-page");
+}
+@section HomePageSlider{
+    <div class="slider">
+        <img alt="" src="./assets/img/banner/our-solution-banner.png" class="slid-img">
+        <div class="overly">
+        </div>
+        <div class="container">
+            <div class="container content-slid">
+                <div class="separate-line"></div>
+                <h4 class="menu-slider">
+                    @T("home.OurSolutions.Title")
+                </h4>
+            </div>
+        </div>
+    </div>
+}
+@await Component.InvokeAsync("OnlineSales")

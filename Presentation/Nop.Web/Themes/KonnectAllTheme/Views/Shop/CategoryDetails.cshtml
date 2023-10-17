@@ -1,0 +1,97 @@
+﻿@model CategoryModel
+@using Nop.Core.Domain.Common
+@using Nop.Core.Domain.Seo
+@inject Nop.Core.IWebHelper webHelper
+@inject SeoSettings seoSettings
+@inject CommonSettings commonSettings
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@functions {
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+@{
+    string parentCategId = Model.Id.ToString();
+}
+
+<input type="hidden" id="RequestVerificationToken" name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
+<section class="container beverages">
+    <div class="head-beverage">
+        <div class="title-sec">
+            <h4 class="text-black text-left">
+                @Model.Name
+            </h4>
+            <span class="line-after"></span>
+        </div>
+        <div class="right-section">
+            <div id="arrow-next" class="arrow-next">&lt;</div>
+            <div id="arrow-prev" class="arrow-prev">></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 banner-beverage">
+            <img alt="" src="@Model.PictureModel.FullSizeImageUrl" class="beverage-banner" style="min-height:700px">
+
+            <div class="content-banner-beverage">
+                <div class="font-light text-black-light text-capitalize text-small">for your need</div>
+                <h2 class="text-black-light text-left text-capitalize">@Model.Name</h2>
+                <span class="font-light text-black-light text-small">from <h2 class="text-red text-uppercase font-normal">sar 5.00</h2></span>
+                <a href="@Url.RouteUrl("Category", new { SeName = @Model.SeName })" class="btn-sm-black btn-border">
+                    <span class="btn-sm text-black-light  font-normal">@T("global.shopnow")</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row brand-beverages">
+                <div class="row">
+                    <div class="slide-container">
+                        <div id="slider1">
+                            @foreach (var item in Model.SubCategories)
+                            {
+                                var bgImg = item.PictureModel.FullSizeImageUrl.Contains(".svg") ? "background-color: #ccc" : string.Empty; 
+                                <div class="beverages-brand" id="divSubCategory" onclick="ShowProductsOfCategory_details(@parentCategId,@item.Id)">
+
+                                    <div class="img-brand" >
+                                        <img alt="@item.PictureModel.AlternateText" class="prod-img" style="@bgImg" src="@item.PictureModel.FullSizeImageUrl" title="@item.PictureModel.Title">
+                                    </div>
+                                    <div class="product-details text-capitalize">
+                                        <h6>@item.Name</h6>
+                                    </div>
+
+                                </div>
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div data-type="SubCategories" id="@parentCategId">
+                    @if (Model.SubCategories != null && Model.SubCategories.Count > 0)
+                    {
+                        var selectedCat = Model.SubCategories[0].Id;
+                        @await Component.InvokeAsync("HomepageProducts", new { categoryId = selectedCat })
+
+                    }
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+

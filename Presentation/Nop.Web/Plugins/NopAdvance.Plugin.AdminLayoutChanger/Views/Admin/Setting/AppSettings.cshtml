@@ -1,0 +1,117 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model AppSettingsModel
+
+@{
+    ViewBag.PageTitle = T("Admin.Configuration.AppSettings").Text;
+    NopHtml.SetActiveMenuItemSystemName("App settings");
+
+    string verticalTab = (TabLayout)adminLayoutChangerSettings.TabLayoutId == TabLayout.Vertical ? "vertically-tab" : "";
+}
+
+<form asp-controller="Setting" asp-action="AppSettings" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Configuration.AppSettings")
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+            @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.AppSettingsButtons, additionalData = Model })
+        </div>
+    </div>
+    <div class="content">
+        <div class="form-horizontal">
+            @await Component.InvokeAsync("SettingMode")
+            <div asp-validation-summary="All"></div>
+            <div class="container-fluid">
+                <div class="cards-group">
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <p>
+                                @T("Admin.Configuration.AppSettings.Description", Docs.AppSettings)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nop-tabs id="app-settings-cards" class="@verticalTab">
+                <nop-tab asp-name="app-settings-data" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Data")" asp-default="true" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Data", Model)</nop-tab>
+                <nop-tab asp-name="app-settings-cache" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Cache")" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Cache", Model)</nop-tab>
+                <nop-tab asp-name="app-settings-distributed-cache" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.DistributedCache")" asp-advanced="false">@await Html.PartialAsync("_AppSettings.DistributedCache", Model)</nop-tab>
+                <nop-tab asp-name="app-settings-hosting" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Hosting")" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Hosting", Model)</nop-tab>
+                <nop-tab asp-name="app-settings-azure-blob" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.AzureBlob")" asp-advanced="false">@await Html.PartialAsync("_AppSettings.AzureBlob", Model)</nop-tab>
+                <nop-tab asp-name="app-settings-installation" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Installation")" asp-advanced="true">@await Html.PartialAsync("_AppSettings.Installation", Model)</nop-tab>
+                <nop-tab asp-name="app-settings-plugin" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Plugin")" asp-advanced="true">@await Html.PartialAsync("_AppSettings.Plugin", Model)</nop-tab>
+                <nop-tab asp-name="app-settings-common" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.Common")" asp-advanced="false">@await Html.PartialAsync("_AppSettings.Common", Model)</nop-tab>
+                <nop-tab asp-name="app-settings-web-optimizer" asp-icon="fas fa-cogs" asp-title="@T("Admin.Configuration.AppSettings.WebOptimizer")" asp-advanced="false">@await Html.PartialAsync("_AppSettings.WebOptimizer", Model)</nop-tab>
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.AppSettingsBlock, additionalData = Model })
+            </nop-tabs>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            checkEnvironmentVariables();
+        });
+
+        function checkEnvironmentVariables() {
+            var warningElem = "<span class='field-validation-custom warning'>@T("Admin.Configuration.AppSettings.EnvironmentVariablesWarning")</span>";
+            
+            @foreach (var controlId in Model.EnvironmentVariables)
+            {
+                <text>
+                var control = $("#@controlId");
+                var widget = kendo.widgetInstance(control);
+                if (widget)
+                {
+                    //because kendo fields have a original structure of elements, we are forced to add a warning for them in a special way
+                    control.parent().parent().after(warningElem);
+                }
+                else
+                {
+                    control.after(warningElem);
+                }
+                </text>
+            }
+        }
+    </script>
+</form>

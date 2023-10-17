@@ -1,0 +1,166 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model EmailAccountModel
+
+<div asp-validation-summary="ModelOnly"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.EmailAccountDetailsTop, additionalData = Model })
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="form-group row" id="email-area">
+                            <div class="col-md-3 col-lg-2">
+                                <nop-label asp-for="Email"/>
+                            </div>
+                            <div class="col-md-9 col-lg-10">
+                                <nop-editor asp-for="Email" asp-required="true"/>
+                                <span asp-validation-for="Email"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="display-name-area">
+                            <div class="col-md-3 col-lg-2">
+                                <nop-label asp-for="DisplayName"/>
+                            </div>
+                            <div class="col-md-9 col-lg-10">
+                                <nop-editor asp-for="DisplayName" asp-required="true"/>
+                                <span asp-validation-for="DisplayName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="host-area">
+                            <div class="col-md-3 col-lg-2">
+                                <nop-label asp-for="Host"/>
+                            </div>
+                            <div class="col-md-9 col-lg-10">
+                                <nop-editor asp-for="Host"/>
+                                <span asp-validation-for="Host"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="port-area">
+                            <div class="col-md-3 col-lg-2">
+                                <nop-label asp-for="Port"/>
+                            </div>
+                            <div class="col-md-9 col-lg-10">
+                                <nop-editor asp-for="Port"/>
+                                <span asp-validation-for="Port"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="username-area">
+                            <div class="col-md-3 col-lg-2">
+                                <nop-label asp-for="Username"/>
+                            </div>
+                            <div class="col-md-9 col-lg-10">
+                                <nop-editor asp-for="Username"/>
+                                <span asp-validation-for="Username"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="password-area">
+                            <div class="col-md-3 col-lg-2">
+                                <nop-label asp-for="Password"/>
+                            </div>
+                            <div class="col-md-9 col-lg-10">
+                                <div class="input-group">
+                                    <nop-editor asp-for="Password" html-attributes="@(new { autocomplete = "new-password" })"/>
+                                    <div class="input-group-append">
+                                        @if (Model.Id > 0)
+                                        {
+                                            <button type="submit" name="changepassword" class="btn btn-info">
+                                                @T("Admin.Configuration.EmailAccounts.Fields.Password.Change")
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+                                <span asp-validation-for="Password"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="ssl-area">
+                            <div class="col-md-3 col-lg-2">
+                                <nop-label asp-for="EnableSsl"/>
+                            </div>
+                            <div class="col-md-9 col-lg-10">
+                                <nop-editor asp-for="EnableSsl"/>
+                                <span asp-validation-for="EnableSsl"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="default-area">
+                            <div class="col-md-3 col-lg-2">
+                                <nop-label asp-for="UseDefaultCredentials"/>
+                            </div>
+                            <div class="col-md-9 col-lg-10">
+                                <nop-editor asp-for="UseDefaultCredentials"/>
+                                <span asp-validation-for="UseDefaultCredentials"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.Id > 0)
+                {
+                    <div class="card card-default" id="test-email-area">
+                        <div class="card-header">
+                            @T("Admin.Configuration.EmailAccounts.SendTestEmail")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3 col-lg-2">
+                                    <nop-label asp-for="SendTestEmailTo"/>
+                                </div>
+                                <div class="col-md-9 col-lg-10">
+                                    <div class="input-group">
+                                        <nop-editor asp-for="SendTestEmailTo"/>
+                                        <div class="input-group-append">
+                                            <button type="submit" name="sendtestemail" class="btn btn-info">
+                                                @T("Admin.Configuration.EmailAccounts.SendTestEmail.Button")
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <span asp-validation-for="SendTestEmailTo"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.EmailAccountDetailsBottom, additionalData = Model })
+            </div>
+        </div>
+    </div>
+</section>

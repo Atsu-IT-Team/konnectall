@@ -1,0 +1,209 @@
+﻿@using Nop.Core.Domain.Seo
+@inject SeoSettings seoSettings
+
+@{
+    Layout = "_Root";
+    ViewBag.BodyClass = "our-solutions";
+
+    //title
+    if (!string.IsNullOrEmpty(seoSettings.HomepageTitle))
+    {
+        NopHtml.AddTitleParts(seoSettings.HomepageTitle);
+    }
+
+    //meta
+    if (!string.IsNullOrEmpty(seoSettings.HomepageDescription))
+    {
+        NopHtml.AddMetaDescriptionParts(seoSettings.HomepageDescription);
+    }
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-home-page");
+}
+@section HomePageSlider{
+    <div class="slider">
+        <img alt="" src="./assets/img/banner/banner-know-us.webp" class="slid-img">
+        <div class="overly">
+        </div>
+        <div class="container">
+            <div class="container content-slid">
+                <div class="separate-line"></div>
+                <h2 class="title-slider">
+                    @T("topMenu.KnowUs.WhatIs")
+                </h2>
+                <h4 class="menu-slider">
+                    shop from one place
+                </h4>
+            </div>
+        </div>
+    </div>
+}
+<div class ="get-to-know-us">
+<div class="global">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <div class="title-sec">
+                    <h4 class="text-black text-left">
+                        Global Leading Shop
+                    </h4>
+                    <span class="line-after"></span>
+                </div>
+
+                <div class="desc-global">
+                    <p>
+                        Connect all expands global footprint, delivering shopping experiences customised to each user.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit eiusamet, consectetur adipiscing elit,
+                        sed do eius mod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                    <p>
+                        us in metus vulputate eu scelerisque felis. Vel pretium vu
+                    </p>
+                    </p>
+                </div>
+                <div class="accordeon-container">
+                    <div class="accordeon-item">
+                        <div class="accordion">
+                            <h5>customer service</h5>
+                        </div>
+                        <div class="panel">
+                            <p>
+                                Lorem ipsum dolor sit eiusamet, consectetur adipiscing elit,
+                                sed do eius mod tempor incididunt ut labore et dolore magna aliqua.
+                                us in metus vulputate eu scelerisque felis. Vel pretium vu
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordeon-item">
+                        <div class="accordion">
+                            <h5>Online Consultation</h5>
+                        </div>
+                        <div class="panel">
+                            <p>
+                                Lorem ipsum dolor sit eiusamet, consectetur adipiscing elit,
+                                sed do eius mod tempor incididunt ut labore et dolore magna aliqua.
+                                us in metus vulputate eu scelerisque felis. Vel pretium vu
+                            </p>
+                        </div>
+                    </div>
+                    <div class="accordeon-item">
+                        <div class="accordion">
+                            <h5>Sales Management</h5>
+                        </div>
+                        <div class="panel">
+                            <p>
+                                Lorem ipsum dolor sit eiusamet, consectetur adipiscing elit,
+                                sed do eius mod tempor incididunt ut labore et dolore magna aliqua.
+                                us in metus vulputate eu scelerisque felis. Vel pretium vu
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-6 col-sm-6 img-global">
+                <img alt="" src="./assets/img/global-img.webp" class="global-img">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="statistic">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="content-statistic">
+                    <img alt="" src="./assets/img/services/sellers.png" class="statistic-icon">
+                    <h2 class="text-primary font-bold">599</h2>
+                    <div class="title">
+                        sellers Active on konnectall
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="content-statistic">
+                    <img src="./assets/img/services/products.png" alt="icon-statistic" class="statistic-icon">
+                    <h2 class="text-primary font-bold">4M</h2>
+                    <div class="title">
+                        Product for sale
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="content-statistic">
+                    <img src="./assets/img/services/buyers.png" alt="icon-statistic" class="statistic-icon">
+                    <h2 class="text-primary font-bold">1.6M</h2>
+                    <div class="title">
+                        Buyers Active on konnectall
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-md-3 col-lg-3">
+                <div class="content-statistic">
+                    <img src="./assets/img/services/marchandise.png" alt="icon-statistic" class="statistic-icon">
+                    <h2 class="text-primary font-bold">68.2M</h2>
+                    <div class="title">
+                        Annual gross merchandise sales
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bar-menu">
+    <div class="container">
+        <h4 class="menu-slider">
+            @T("home.Banner.Item.Technology")
+            <span>|</span>
+            @T("home.Banner.Item.Catalogue")
+            <span>|</span>
+            @T("home.Banner.Item.Dropshipping")
+            <span>|</span>
+            @T("home.Banner.Item.Fulfillment")
+            <span>|</span>
+            @T("home.Banner.Item.MarketplaceOperation")
+        </h4>
+    </div>
+</div>
+
+<div class="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="content-services">
+                    <h4 class="title">
+                        Wholesale Platform (B2B)
+                    </h4>
+                    <div class="content">
+                        We have a network of clients that sell online in Europe and other parts of the world. We sell to them wholesale via our platform, which contains 200.000 products and 5.000 brands. They buy to subsequently sell to the end consumer.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content-services">
+                    <h4 class="title">
+                        Dropshipping Provider (B2B-2C)
+                    </h4>
+                    <div class="content">
+                        We have a network of customers who are experts in ecommerce and sell through dropshipping our wholesale platform catalogue. With this sales method, BigBuy ships directly to the end customer without the retailer having to invest in stock or warehousing.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @await Component.InvokeAsync("OnlineSales")
+</div>

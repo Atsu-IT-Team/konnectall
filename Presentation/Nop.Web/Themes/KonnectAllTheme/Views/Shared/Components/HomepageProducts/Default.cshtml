@@ -1,0 +1,54 @@
+﻿@model IList<ProductOverviewModel>
+@functions {
+    string FormatProductName(string productName)
+    {
+        string result = productName;
+        if (productName.Length > 50)
+        {
+            result = result.Substring(0, 50);
+        }
+        if (productName.Length < 50)
+        {
+            int nbreEspace = 50 - productName.Length;
+            for (int j = 0; j <= nbreEspace; j++)
+            {
+                result = result + " ";
+            }
+        }
+        return result;
+    }
+}
+@if (Model.Count > 0)
+{
+    <div class="store-product juices" style="display:block">
+        <ul id="item-shop">
+            @foreach (var product in Model)
+            {
+                <li class="myItem">
+                    <div class="product">
+                        <div class="product-img">
+                        <a  href="@Url.RouteUrl("Product", new {SeName = @product.SeName})" title="@product.Name">
+                                <img onMouseOver="this.style.cursor='pointer'" alt="@product.Name" class="prod-img shop-item-image" src="@product.DefaultPictureModel.ImageUrl">
+                        </a>
+                        </div>
+                        <div class="info-product">
+                            <a style="min-height:75px !important; " class="name-product" href="@Url.RouteUrl("Product", new {SeName = @product.SeName})" title="@product.Name">
+                                @FormatProductName(@product.Name)
+                            </a>
+                            <div class="price-product shop-item-price">
+                                @product.ProductPrice.Price
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <div class="col-md-3 col-sm-3 store-product juices" style="display:block">
+        <p>We are currently working on adding new products to this subcategory. Check back soon for our latest additions!</p>
+    </div>
+
+}

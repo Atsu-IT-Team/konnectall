@@ -1,0 +1,310 @@
+// main: ../../style.less
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+
+body {
+    color: #000;
+    background-color: #FFF;
+   // font: normal 16px/24px "Gotham", sans-serif;
+    line-height: 1.5;
+    font-weight: 300;
+    position: relative;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body.no-scroll {
+    margin: 0;
+    height: 100%;
+    overflow: hidden !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Gotham", sans-serif;
+    line-height: 1.2;
+    font-weight: 700 !important;
+    clear: both;
+    text-align: center;
+    color: @black-color;
+}
+
+h1 {
+    font-size: 3rem !important;
+    padding: 2.3rem 0;
+
+    @media(max-width: 1200px) {
+        font-size: 2.5rem !important;
+    }
+
+    @media(max-width: 991px) {
+        font-size: 2rem !important;
+    }
+
+    @media(max-width: 768px) {
+        font-size: 1.8rem !important;
+    }
+}
+
+h2 {
+    font-size: 2.5rem !important;
+    line-height: 2.5;
+
+    @media (max-width: 991px) {
+        font-size: 1.8rem !important;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 1.5rem !important;
+    }
+}
+
+h3 {
+    font-size: 2.2rem !important;
+    line-height: 2 !important;
+
+    @media (max-width:768px) {
+        font-size: 1.4rem !important;
+    }
+}
+
+h4 {
+    font-size: 2rem !important;
+    font-weight: 700;
+    line-height: 1.5 !important;
+    letter-spacing: 0px;
+    font-style: normal;
+
+    @media (max-width: 768px) {
+        font-size: 1.3rem !important;
+    }
+}
+
+h5 {
+    font-size: 1.6rem !important;
+    line-height: 1.2 !important;
+    color: #333c4e;
+    font-weight: 700 !important;
+
+    @media (max-width: 768px) {
+        font-size: 1.2rem !important;
+    }
+}
+
+h6 {
+    font-size: 1.4rem !important;
+    line-height: 1.2 !important;
+    color: #333c4e;
+    font-weight: 400 !important;
+
+    @media (max-width: 768px) {
+        font-size: 1.2rem !important;
+    }
+}
+
+.text-big {
+    font-size: 5rem;
+    font-weight: 700;
+
+    @media (max-width:768px) {
+        font-size: 2rem;
+    }
+}
+
+.text-small {
+    font-size: 2.2rem;
+    text-transform: capitalize;
+}
+
+p {
+    font-style: normal;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+small {
+    line-height: 1.2;
+}
+
+dfn, cite, em, i {
+    font-style: italic;
+}
+
+blockquote {
+    margin: 0 1.5em;
+}
+
+address {
+    margin: 0 0 1.5em;
+}
+
+pre {
+    background: #eee;
+    font-family: "Courier 10 Pitch", Courier, monospace;
+    font-size: 15px;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1.6em;
+}
+
+code, kbd, tt, var {
+    font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+    font-size: 15px;
+    font-size: 0.9375rem;
+}
+
+abbr, acronym {
+    border-bottom: 1px dotted #666;
+    cursor: help;
+}
+
+mark, ins {
+    text-decoration: none;
+}
+
+.font-light {
+    font-weight: 300 !important;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.text-primary {
+    color: @primary-color !important;
+}
+
+.text-yellow {
+    color: @yellow-color !important;
+}
+
+.text-yellow-light {
+    color: @yellow-light !important;
+}
+
+.text-black {
+    color: @black-color !important;
+}
+
+.text-white {
+    color: @white-color !important;
+}
+
+.text-gray {
+    color: @gray-color !important;
+}
+
+.text-red {
+    color: @red-color !important;
+}
+
+.text-black-light {
+    color: @gray-color1 !important;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+/* reset */
+body, p, a, ul, li {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+/* base styles */
+body {
+    overflow-x: hidden;
+    font-family: 'Gotham' !important;
+    background-color: @white-color;
+}
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+
+a {
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        // padding-top: 1rem ;
+
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            color: @gray-color;
+
+            @media (max-width: 576px) {
+                padding: 0 0.4rem;
+                font-size: 14px;
+            }
+
+            &:hover {
+                color: @primary-color;
+                text-decoration: underline;
+            }
+        }
+    }
+}

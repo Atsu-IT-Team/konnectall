@@ -1,0 +1,146 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model CategoryModel
+
+<div class="card-body">
+    <div class="form-group advanced-setting row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="SelectedDiscountIds" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-select asp-for="SelectedDiscountIds" asp-items="Model.AvailableDiscounts" asp-multiple="true" />
+            <script>
+				$(document).ready(function() {
+					var discountsIdsInput = $('#@Html.IdFor(model => model.SelectedDiscountIds)').data("kendoMultiSelect");
+					discountsIdsInput.setOptions({
+						autoClose: false,
+						filter: "contains"
+					});
+
+					@if (Model.AvailableDiscounts.Count == 0)
+					{
+						<text>
+							discountsIdsInput.setOptions({
+								enable: false,
+								placeholder: '@T("Admin.Catalog.Categories.Fields.Discounts.NoDiscounts")'
+							});
+							discountsIdsInput._placeholder();
+							discountsIdsInput._enable();
+						</text>
+					}
+				});
+            </script>
+        </div>
+    </div>
+    <div class="form-group advanced-setting row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="SelectedCustomerRoleIds" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <div class="row">
+                <div class="col-md-4">
+                    <nop-select asp-for="SelectedCustomerRoleIds" asp-items="Model.AvailableCustomerRoles" asp-multiple="true" />
+                    <script>
+						$(document).ready(function() {
+							var rolesIdsInput = $('#@Html.IdFor(model => model.SelectedCustomerRoleIds)')
+								.data("kendoMultiSelect");
+							rolesIdsInput.setOptions({
+								autoClose: false,
+								filter: "contains"
+							});
+
+							@if (Model.AvailableCustomerRoles.Count == 0)
+							{
+								<text>
+								rolesIdsInput.setOptions({
+									enable: false,
+									placeholder: 'No customer roles available'
+								});
+								rolesIdsInput._placeholder();
+								rolesIdsInput._enable();
+								</text>
+							}
+						});
+                    </script>
+                </div>
+                <div class="col-md-8">
+                    @await Component.InvokeAsync("AclDisabledWarning")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group advanced-setting row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="SelectedStoreIds" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <div class="row">
+                <div class="col-md-4">
+                    <nop-select asp-for="SelectedStoreIds" asp-items="Model.AvailableStores" asp-multiple="true" />
+                    <script>
+						$(document).ready(function() {
+							var storesIdsInput = $('#@Html.IdFor(model => model.SelectedStoreIds)')
+								.data("kendoMultiSelect");
+							storesIdsInput.setOptions({
+								autoClose: false,
+								filter: "contains"
+							});
+
+							@if (Model.AvailableStores.Count == 0)
+							{
+								<text>
+								storesIdsInput.setOptions({
+									enable: false,
+									placeholder: 'No stores available'
+								});
+								storesIdsInput._placeholder();
+								storesIdsInput._enable();
+								</text>
+							}
+						});
+                    </script>
+                </div>
+                <div class="col-md-8">
+                    @await Component.InvokeAsync("MultistoreDisabledWarning")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

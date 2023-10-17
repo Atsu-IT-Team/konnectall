@@ -1,0 +1,113 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model OrderSettingsModel
+
+<div class="card-body">
+    <ul class="common-list">
+        <li>
+            @T("Admin.Configuration.Settings.Order.ReturnRequestsDescription1")
+        </li>
+        <li>
+            @T("Admin.Configuration.Settings.Order.ReturnRequestsDescription2")
+        </li>
+    </ul>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="ReturnRequestsEnabled_OverrideForStore" asp-input="ReturnRequestsEnabled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="ReturnRequestsEnabled" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="ReturnRequestsEnabled" />
+            <span asp-validation-for="ReturnRequestsEnabled"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="ReturnRequestNumberMask_OverrideForStore" asp-input="ReturnRequestNumberMask" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="ReturnRequestNumberMask" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="ReturnRequestNumberMask" />
+            <span asp-validation-for="ReturnRequestNumberMask"></span>
+            <ul class="common-list">
+                <li>
+                    @T("Admin.Configuration.Settings.Order.ReturnRequestNumberMask.Description.ID")
+                </li>
+                <li>
+                    @T("Admin.Configuration.Settings.Order.ReturnRequestNumberMask.Description.YYYY")
+                </li>
+                <li>
+                    @T("Admin.Configuration.Settings.Order.ReturnRequestNumberMask.Description.YY")
+                </li>
+                <li>
+                    @T("Admin.Configuration.Settings.Order.ReturnRequestNumberMask.Description.MM")
+                </li>
+                <li>
+                    @T("Admin.Configuration.Settings.Order.ReturnRequestNumberMask.Description.DD")
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="NumberOfDaysReturnRequestAvailable_OverrideForStore" asp-input="NumberOfDaysReturnRequestAvailable" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="NumberOfDaysReturnRequestAvailable" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="NumberOfDaysReturnRequestAvailable" />
+            <span asp-validation-for="NumberOfDaysReturnRequestAvailable"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="ReturnRequestsAllowFiles_OverrideForStore" asp-input="ReturnRequestsAllowFiles" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="ReturnRequestsAllowFiles" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="ReturnRequestsAllowFiles" />
+            <span asp-validation-for="ReturnRequestsAllowFiles"></span>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    @await Html.PartialAsync("../ReturnRequest/_ReturnRequestReasons.cshtml", Model.ReturnRequestReasonSearchModel)
+    @await Html.PartialAsync("../ReturnRequest/_ReturnRequestActions.cshtml", Model.ReturnRequestActionSearchModel)
+    @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.OrderSettingsReturnRequestSettingsBottom, additionalData = Model })
+</div>

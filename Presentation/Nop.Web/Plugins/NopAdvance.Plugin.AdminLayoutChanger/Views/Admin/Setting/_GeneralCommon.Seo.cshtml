@@ -1,0 +1,193 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model GeneralCommonSettingsModel
+
+    <div class="card-body">        
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.DefaultTitle_OverrideForStore" asp-input="SeoSettings.DefaultTitle" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.DefaultTitle" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.DefaultTitle" />
+                <span asp-validation-for="SeoSettings.DefaultTitle"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.PageTitleSeoAdjustment_OverrideForStore" asp-input="SeoSettings.PageTitleSeoAdjustment" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.PageTitleSeoAdjustment" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-select asp-for="SeoSettings.PageTitleSeoAdjustment" asp-items="Model.SeoSettings.PageTitleSeoAdjustmentValues" />
+                <span asp-validation-for="SeoSettings.PageTitleSeoAdjustment"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.PageTitleSeparator_OverrideForStore" asp-input="SeoSettings.PageTitleSeparator" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.PageTitleSeparator" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.PageTitleSeparator" />
+                <span asp-validation-for="SeoSettings.PageTitleSeparator"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.DefaultMetaKeywords_OverrideForStore" asp-input="SeoSettings.DefaultMetaKeywords" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.DefaultMetaKeywords" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.DefaultMetaKeywords" />
+                <span asp-validation-for="SeoSettings.DefaultMetaKeywords"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.DefaultMetaDescription_OverrideForStore" asp-input="SeoSettings.DefaultMetaDescription" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.DefaultMetaDescription" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.DefaultMetaDescription" />
+                <span asp-validation-for="SeoSettings.DefaultMetaDescription"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.HomepageTitle_OverrideForStore" asp-input="SeoSettings.HomepageTitle" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.HomepageTitle" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.HomepageTitle" />
+                <span asp-validation-for="SeoSettings.HomepageTitle"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.HomepageDescription_OverrideForStore" asp-input="SeoSettings.HomepageDescription" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.HomepageDescription" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.HomepageDescription" />
+                <span asp-validation-for="SeoSettings.HomepageDescription"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.GenerateProductMetaDescription_OverrideForStore" asp-input="SeoSettings.GenerateProductMetaDescription" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.GenerateProductMetaDescription" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.GenerateProductMetaDescription" />
+                <span asp-validation-for="SeoSettings.GenerateProductMetaDescription"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.WwwRequirement_OverrideForStore" asp-input="SeoSettings.WwwRequirement" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.WwwRequirement" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-select asp-for="SeoSettings.WwwRequirement" asp-items="Model.SeoSettings.WwwRequirementValues" />
+                <span asp-validation-for="SeoSettings.WwwRequirement"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.ConvertNonWesternChars_OverrideForStore" asp-input="SeoSettings.ConvertNonWesternChars" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.ConvertNonWesternChars" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.ConvertNonWesternChars" />
+                <span asp-validation-for="SeoSettings.ConvertNonWesternChars"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.CanonicalUrlsEnabled_OverrideForStore" asp-input="SeoSettings.CanonicalUrlsEnabled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.CanonicalUrlsEnabled" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.CanonicalUrlsEnabled" />
+                <span asp-validation-for="SeoSettings.CanonicalUrlsEnabled"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.TwitterMetaTags_OverrideForStore" asp-input="SeoSettings.TwitterMetaTags" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.TwitterMetaTags" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.TwitterMetaTags" />
+                <span asp-validation-for="SeoSettings.TwitterMetaTags"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.OpenGraphMetaTags_OverrideForStore" asp-input="SeoSettings.OpenGraphMetaTags" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.OpenGraphMetaTags" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.OpenGraphMetaTags" />
+                <span asp-validation-for="SeoSettings.OpenGraphMetaTags"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.MicrodataEnabled_OverrideForStore" asp-input="SeoSettings.MicrodataEnabled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.MicrodataEnabled" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="SeoSettings.MicrodataEnabled" />
+                <span asp-validation-for="SeoSettings.MicrodataEnabled"></span>
+            </div>
+        </div>
+        <div class="form-group row advanced-setting">
+            <div class="col-md-3 col-lg-2">
+                <nop-override-store-checkbox asp-for="SeoSettings.CustomHeadTags_OverrideForStore" asp-input="SeoSettings.CustomHeadTags" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                <nop-label asp-for="SeoSettings.CustomHeadTags" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-textarea asp-for="SeoSettings.CustomHeadTags" />
+                <span asp-validation-for="SeoSettings.CustomHeadTags"></span>
+            </div>
+        </div>
+    </div>

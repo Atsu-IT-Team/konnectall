@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="English">
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider">
+        <Value>Smart slider</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.Configure">
+        <Value>Configure</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPictures">
+        <Value>Slider pictures</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.Help">
+        <Value>Help</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.Admin.Configure.Info">
+        <Value>Note:"Cache slider pictures" will support in only Paid and Trial license version.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.Admin.SliderPicture.Info">
+        <Value>Note:"Start date", "End date", "Limited to stores" and "Limited to customer roles" will support in only Paid and Trial license version.</Value>
+    </LocaleResource>
+    <!--Configuration-->
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.Configure.Field.SliderNavigationId">
+        <Value>Slider navigation type</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.Configure.Field.SliderNavigationId.Hint">
+        <Value>Choose the slider navigation type which will be displayed on all sliders for navigation.</Value>
+    </LocaleResource>
+    <!--Configuration-->
+    <!--Slider Picture List-->
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.List.SearchStartDateUtc">
+        <Value>Start date</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.List.SearchStartDateUtc.Hint">
+        <Value>The start date for the search.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.List.SearchEndDateUtc">
+        <Value>End date</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.List.SearchEndDateUtc.Hint">
+        <Value>The end date for the search.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.List.SearchSliderPictureName">
+        <Value>Name</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.List.SearchSliderPictureName.Hint">
+        <Value>Search by slider picture name.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.List.SearchWidgetZone">
+        <Value>Widget zone</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.List.SearchWidgetZone.Hint">
+        <Value>Search by a specific widget zone.</Value>
+    </LocaleResource>
+    <!--Slider Picture List-->
+    <!--Slider Picture Fields-->
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.Published">
+        <Value>Published</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.Published.Hint">
+        <Value>Check to publish this slider picture (visible in store). Uncheck to unpublish (slider picture not available in store).</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.SliderPictureName">
+        <Value>Name</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.SliderPictureName.Hint">
+        <Value>The name of the slider picture.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.WidgetZone">
+        <Value>Widget zones</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.WidgetZone.Hint">
+        <Value>Choose widget zones where to display this slider picture.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.DesktopPicture">
+        <Value>Desktop picture</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.DesktopPicture.Hint">
+        <Value>Choose a picture to display on desktop slider. If the picture size exceeds your stores max image size setting, it will be automatically resized.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.MobilePicture">
+        <Value>Mobile picture</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.MobilePicture.Hint">
+        <Value>Choose a picture to display on mobile slider. If the picture size exceeds your stores max image size setting, it will be automatically resized.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.RedirectUrl">
+        <Value>Redirect URL</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.RedirectUrl.Hint">
+        <Value>Enter redirect URL with HTTPS. Leave empty if you don't want this picture to be clickable.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.OpenInNewTab">
+        <Value>Open in new tab</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.OpenInNewTab.Hint">
+        <Value>Check to open the redirect url in a new tab.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.AlternateText">
+        <Value>Alt</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.AlternateText.Hint">
+        <Value>Override "alt" attribute for "img" HTML element. If empty, then a default rule will be used (e.g. slider picture name).</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.Comment">
+        <Value>Title</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.Comment.Hint">
+        <Value>Enter title for picture. Leave empty if you don't want to display any text.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.StartDateUtc">
+        <Value>Start date</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.StartDateUtc.Hint">
+        <Value>The start date of the creation of slider picture in Coordinated Universal Time (UTC).</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.EndDateUtc">
+        <Value>End date</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.EndDateUtc.Hint">
+        <Value>The end date of the creation of slider picture in Coordinated Universal Time (UTC).</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.AclCustomerRoles">
+        <Value>Limited to customer roles</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.AclCustomerRoles.Hint">
+        <Value>Choose one or several customer roles i.e. administrators, vendors, guests, who will be able to see this slider picture. If you don't need this option just leave this field empty. In order to use this functionality, you have to disable the following setting: Configuration > Catalog settings > Ignore ACL rules (sitewide).</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.LimitedToStores">
+        <Value>Limited to stores</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.LimitedToStores.Hint">
+        <Value>Option to limit this slider picture to a certain store. If you have multiple stores, choose one or several from the list. If you don't use this option just leave this field empty. In order to use this functionality, you have to disable the following setting: Configuration > Catalog settings > Ignore "limit per store" rules (sitewide).</Value>
+    </LocaleResource>
+    <!--Slider Picture Fields-->
+    <!--Notifications-->
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Added">
+        <Value>The new slider picture has been added successfully.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Updated">
+        <Value>The slider picture has been updated successfully.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Deleted">
+        <Value>The slider picture has been deleted successfully.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.DesktopPicture.Notification">
+        <Value>If no desktop picture is uploaded then slider picture will be not visible in desktop.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.MobilePicture.Notification">
+        <Value>If no mobile picture is uploaded then the desktop picture will be visible. otherwise, visible on mobile.</Value>
+    </LocaleResource>
+    <!--Notifications-->
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPictures.BackToList">
+        <Value>back to slider picture list</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPictures.EditSliderPictureDetails">
+        <Value>Edit slider picture details</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPictures.AddNew">
+        <Value>Add a new slider picture</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.Name.Required">
+        <Value>Please provide a slider name.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.Configure.Fields.CacheWidgets">
+        <Value>Cache slider pictures</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.Configure.Fields.CacheWidgets.Hint">
+        <Value>Check to cache slider pictures. It can significantly improve performance. But slider pictures with StartDate or EndDate will not work.</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.DisplayOrder">
+        <Value>Display order</Value>
+    </LocaleResource>
+    <LocaleResource Name="NopAdvance.Plugin.SmartSlider.SliderPicture.Fields.DisplayOrder.Hint">
+        <Value>Display order of the picture in slider in case of multiple pictures. 1 represents the top of the list.</Value>
+    </LocaleResource>
+</Language>

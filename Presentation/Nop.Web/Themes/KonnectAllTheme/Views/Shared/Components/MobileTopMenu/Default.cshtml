@@ -1,0 +1,102 @@
+﻿@model TopMenuModel
+
+<div class="mobile-menu-wrap" id="mobile-menu">
+    <div class="mobile-nav-header">
+        <h2 class="mobile-nav-header__title text-left">Main Menu</h2>
+        <div id="btn-close" class="btn-close"><i class="fas fa-window-close"></i></div>
+    </div>
+    <nav class="mobile-menu navigation-menu">
+        <ul class="menu">
+
+            <li class="menu-item menu-item-has-children accordeon-item ">
+                <div class="accordion">
+                    <h3>@T("topMenu.KnowUs")</h3>
+                </div>
+                <div class="panel accordeon_content">
+                    <div class="mega-menu-products-inners container">
+                        <ul class="top-menu">
+                            <li class="top-menu-item">
+                                <a href="/GetToKnow">@T("topMenu.KnowUs.WhatIs")</a>
+                            </li>
+                            <li class="top-menu-item">
+                                <a href="/AboutUs">@T("topMenu.KnowUs.AboutUs")</a>
+                            </li>
+                            <li class="top-menu-item">
+                                <a href="/JoinTheTeam">@T("topMenu.KnowUs.JoinTeam")</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="menu-item">
+                <h3 class="font-normal text-black" href="/OurSolution">@T("topMenu.OurSolutions")</h3>
+            </li>
+            <li class="menu-item">
+                <h3 class="font-normal text-black" href="#">@T("topMenu.Operations")</h3>
+            </li>
+            <li class="menu-item">
+                <h3 class="font-normal text-black" href="#">@T("topMenu.DropShipping")</h3>
+            </li>
+            <li class="menu-item">
+                <h3 class="font-normal text-black" href="/Auction">@T("topMenu.Auctions")</h3>
+            </li>
+            <li class="menu-item menu-item-has-children accordeon-item">
+                <div class="accordion">
+                    <h3>@T("topMenu.B2BShop")</h3>
+                </div>
+                <div class="panel accordeon_content">
+                    <div class="mega-menu-products-inners">
+                        <ul class="top-menu">
+                            <li class="top-menu-item">
+                                <div class="accord-title">
+                                    <h3 class="">@T("topMenu.B2BShop.AllCategories")</h3>
+                                </div>
+                                <div class="pane accordeon-content">
+                                    <div class="menu-children">
+                                        <div class="product-menu-item">
+                                            <ul class="top-1v1-menu list-unstyled">
+                                                @{
+                                                    var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+                                                }
+                                                @foreach (var category in rootCategories)
+                                                {
+                                                    <li class="col-md-3">
+                                                        <div class="accord-title-child">
+                                                            <h3>@category.Name</h3>
+                                                        </div>
+                                                        <div class="accordeon-content-child">
+                                                            <ul class="sub-menu">
+                                                                @foreach (var subCategory in category.SubCategories)
+                                                                {
+                                                                    <li class="menu-item">
+                                                                        <a href="@Url.RouteUrl("Category", new { SeName = @subCategory.SeName })">@subCategory.Name</a>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="top-menu-item">
+                                <a href="/Shop">@T("topMenu.B2BShop.HotDeals")</a>
+                            </li>
+                            <li class="top-menu-item">
+                                <a href="/Shop">@T("topMenu.B2BShop.TopSellings")</a>
+                            </li>
+                            <li class="top-menu-item">
+                                <a href="/Shop">@T("topMenu.B2BShop.SeeAll")</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+
+    </nav>
+</div>
+<div class="konn-off-layer" id="konn-off-layer"></div>

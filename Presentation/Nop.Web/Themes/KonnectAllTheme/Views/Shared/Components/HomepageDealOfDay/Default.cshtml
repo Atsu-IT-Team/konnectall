@@ -1,0 +1,192 @@
+﻿@using Nop.Web.Models.Catalog;
+@using System.Globalization
+@using Nop.Core.Domain
+@using Nop.Core.Domain.Localization
+@using Nop.Services.Customers
+@using Nop.Services.Helpers
+@using Nop.Services.Security
+@using Nop.Web.Framework.UI
+@inject IDateTimeHelper dateTimeHelper
+@using Nop.Core.Domain.Orders
+@model Nop.Web.Models.Discounts.ProductsDealModel
+
+@{
+    var selectedProduct = Model.SelectedProduct;
+}
+
+<section class="container deals">
+    <div class="row ">
+        <div class="col-md-8 col-sm-8 left-section">
+            <div class="product-title">
+                <div class="head">
+                    <div class="title-sec ">
+                        <h4 class="text-black text-left">
+                            @T("shop.DealOfDay")
+                        </h4>
+                        <span class="line-after"></span>
+                    </div>
+                </div>
+
+                <form asp-route="Product" asp-route-sename="@selectedProduct.SeName" method="post" id="product-details-form">
+                    <div class="row product-section">
+
+                        <div class="col-md-6 left-section">
+                            <div class="row img-product">
+                                <div class="col-md-3 secon-img">
+                                    <img alt="" src="@selectedProduct.DefaultPictureModel.ImageUrl">
+                                    <img alt="" src="@selectedProduct.DefaultPictureModel.ImageUrl">
+                                </div>
+                                <div class="col-md-9 main-img">
+                                    <img alt="" src="@selectedProduct.DefaultPictureModel.ImageUrl">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 product-deals">
+
+                            <div class="product-page bottom-info-deals">
+                                <div class="product-info">
+                                    <div title="@selectedProduct.Name" class="title-product text-left">@selectedProduct.Name</div>
+                                    <div class="info-product">
+                                        <div class="price">
+                                            <h3 class="text-left">
+                                                @if (!string.IsNullOrEmpty(@selectedProduct.ProductPrice.OldPrice))
+                                                {
+                                                    <p class="old-price">@selectedProduct.ProductPrice.OldPrice</p>
+                                                    <p> - </p>
+                                                }
+                                                @selectedProduct.ProductPrice.Price
+                                            </h3>
+                                        </div>
+                                        @if (@Model.Discount.EndDateUtc.HasValue)
+                                        {
+                                            <div class="date">
+                                                @T("shop.OffreEndDate")
+                                                <span class="number-days font-medium">
+                                                    @((await dateTimeHelper.ConvertToUserTimeAsync(Model.Discount.EndDateUtc.Value)).ToString("f", CultureInfo.CurrentCulture))
+                                                </span>
+                                            </div>
+                                        }
+                                        <div class="review">
+                                            <div class="reviews-star">
+                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-gray.png">
+                                            </div>
+                                        </div>
+                                        <div class="size">
+                                            <span>size : </span>
+                                            <span class="lr">Large</span>
+                                            <span class="sm">Small</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @{
+                                        var dataDictAddToCart = new ViewDataDictionary(ViewData);
+                                        dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = $"addtocart_{selectedProduct.Id}";
+                                        Model.AddToCart.ProductId = selectedProduct.Id;
+                                        Model.AddToCart.EnteredQuantity = 1;
+                                        @await Html.PartialAsync("_AddToCart", Model.AddToCart, dataDictAddToCart)
+                                        ;
+                                        var addtowishlistlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = (int)ShoppingCartType.Wishlist, quantity = 1 });
+                                    }
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 social-media-icon">
+                                        <div class="social-media">
+                                            <a href="#" target="_blank" class="icon-facebook">
+                                                <i class="share-media fab fa-facebook-f"></i>
+                                            </a>
+                                            <a href="#" target="_blank" class="icon-twitter">
+                                                <i class="share-media fab fa-twitter"></i>
+                                            </a>
+                                            <a href="#" target="_blank" class="icon-instagram">
+                                                <i class="share-media fab fa-instagram"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 wishlist-icon">
+                                        <a href="#" class="wishlist" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">
+                                            <i class='fa fa-heart'></i>
+                                        </a>
+                                        <span class="font-light" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@T("ShoppingCart.AddToWishlist")</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 navbar right-section">
+
+            <div class="row ">
+                <div class="head">
+                    <div class="title-sec">
+                        <h4 class="text-black text-left">
+                            @T("shop.DealOfDay")
+                        </h4>
+                        <span class="line-after"></span>
+                    </div>
+                </div>
+                 <div class="product-deals">
+                    @if (Model.Products.Count() > 0)
+                    {
+                        foreach (var product in Model.Products.Where(p => p.Id != selectedProduct.Id))
+                        {
+                            <div onMouseOver="this.style.cursor='pointer'" class="content-navbar" onclick="SelectDealOfTheDayProduct(@product.Id)">
+                                <div class="img">
+                                    <img alt="@product.Name" src="@product.DefaultPictureModel.ImageUrl">
+                                </div>
+                                <div class="product-info">
+                                    <div title="@product.Name" class="title font-normal">
+                                        @product.Name
+                                    </div>
+                                    <div class="review">
+                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-gray.png">
+                                    </div>
+                                    <div class="price font-normal text-uppercase">
+                                        @product.ProductPrice.Price
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                 </div>
+            
+            </div>
+        </div>
+    </div>
+
+</section>
+<script>
+    function SelectDealOfTheDayProduct(productId) {
+
+        var postData = { "selectedProductId": productId };
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "@(Url.Action("LoadDealOfTheDayComponent", "Shop"))",
+            data: postData,
+            error: function (jqXHR, textStatus, errorThrown) {
+                showAlert('showProduct', errorThrown);
+            },
+            success: function (data, textStatus, jqXHR) {
+
+                $('#shopPageDealOfDayContainer').html(data);
+            }
+        });
+    }
+
+</script>

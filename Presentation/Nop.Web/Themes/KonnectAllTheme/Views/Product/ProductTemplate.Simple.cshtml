@@ -1,0 +1,338 @@
+﻿@model ProductDetailsModel
+@using Nop.Core.Domain.Seo;
+@using System.Linq;
+@using Nop.Core.Domain.Orders
+@inject Nop.Services.Html.IHtmlFormatter htmlFormatter
+@inject Nop.Core.IWebHelper webHelper
+@inject SeoSettings seoSettings
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    NopHtml.AddMetaDescriptionParts(Model.MetaDescription);
+    NopHtml.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-product-details-page");
+
+    //canonical URL
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Product", new { SeName = Model.SeName }, webHelper.GetCurrentRequestProtocol()).ToLowerInvariant();
+        NopHtml.AddCanonicalUrlParts(productUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+
+    var addtowishlistlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = (int)ShoppingCartType.Wishlist, quantity = 1 });
+
+    //open graph META tags
+    if (seoSettings.OpenGraphMetaTags)
+    {
+        NopHtml.AddHeadCustomParts("<meta property=\"og:type\" content=\"product\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(htmlFormatter.StripTags(Model.MetaDescription)) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:image:url\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+    }
+
+    //Twitter META tags
+    if (seoSettings.TwitterMetaTags)
+    {
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:card\" content=\"summary\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:site\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(htmlFormatter.StripTags(Model.MetaDescription)) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
+    }
+}
+<!--product breadcrumb-->
+@section Breadcrumb {
+    <div class="breadcrumb-wrapper">
+        @await Html.PartialAsync("_ProductBreadcrumb", Model.Breadcrumb)
+    </div>
+}
+
+@section BottomSection {
+
+    @await Component.InvokeAsync("RelatedProducts", new { productId = Model.Id })
+
+}
+
+@section right {
+    <div style="left:30px;">
+        <div class="services-section">
+            <div class="content-service">
+                <img alt="" class="icon-service" src="./assets/img/services/free-shepping.png">
+                <div class="desc-service">
+                    <div class="title font-semibold text-capitalize">
+                        @T("shop.FreeShipping")
+                    </div>
+                    <p class="font-light">@T("shop.FreeShipping.Detail")</p>
+                </div>
+            </div>
+            <div class="content-service">
+                <img alt="" class="icon-service" src="./assets/img/services/payement.png">
+                <div class="desc-service">
+                    <div class="title font-semibold text-capitalize">
+                        @T("shop.SecurePayment")
+                    </div>
+                    <p class="font-light">@T("shop.SecurePayment.Detail")</p>
+                </div>
+            </div>
+            <div class="content-service">
+                <img alt="" class="icon-service" src="./assets/img/services/money-back.png">
+                <div class="desc-service">
+                    <div class="title font-semibold text-capitalize">
+                        @T("shop.BackGuarantee")
+                    </div>
+                    <p class="font-light">@T("shop.BackGuarantee.Detail")</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-img" style="position:relative;">
+            <img alt="" class="img-sidebar" src="./assets/img/category/sidebar-banner.png">
+            @* @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsTop, additionalData = Model }) *@
+            <div class="content-sidebar">
+                <h3 class="text-white">
+                    Our Catalog</h2>
+                    <h2 class="text-white">
+                        Electronics</h1>
+                        <a class="btn btn-primary" href="#"><span>@T("global.shopnow")</span></a>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section TopBanner {
+    <div class="banner-top" style="position:relative;">
+        @* <img alt="" src="./assets/img/category/banner-middle.png"> *@
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsAfterBreadcrumb, additionalData = Model })
+    </div>
+}
+
+@* @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsAfterBreadcrumb, additionalData = Model }) *@
+<div class="">
+
+    @* @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsTop, additionalData = Model }) *@
+    <form asp-route="Product" asp-route-sename="@Model.SeName" method="post" id="product-details-form">
+        @if (seoSettings.MicrodataEnabled)
+        {
+            @await Html.PartialAsync("_Microdata", Model)
+        }
+
+        <div class="row product-section">
+            <div class="col-md-7 product-img" >
+                <div class="main-img" >
+                    <img alt="" class="img-main active" src="@Model.DefaultPictureModel.FullSizeImageUrl">
+                </div>
+
+                <div class="second-img">
+                    @foreach (var item in Model.PictureModels)
+                    {
+                        <div class="img-second">
+                            <img alt="" class="img-product" src="@item.ThumbImageUrl">
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-5 content-product">
+                <div class="product-info">
+                    <h4 class="title-product text-left text-capitalize">@Model.Name</h4>
+                    <div class="review">
+                        <div class="reviews-star">
+                            <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                            <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                            <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                            <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
+                            <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-gray.png">
+                        </div>
+                        <span class="text-capitalize">(3 reviews)</span>
+                    </div>
+                    <div class="price">
+                        @*<h6 class="text-left">@Model.ProductPrice.Price - @Model.ProductPrice.OldPrice</h6>*@
+                        <h6 class="text-left">@Model.ProductPrice.Price </h6>
+                    </div>
+                    @if (string.IsNullOrEmpty(Model.StockAvailability))
+                    {
+                        Model.StockAvailability = "0 in the stock";
+                    }
+                    <div class="available">
+                        Availability:@Model.StockAvailability
+                    </div>
+                    @* <ul class="desc-product">
+                    <li>@Model.ShortDescription</li>
+                    </ul> *@
+                    @{
+                        var difference = Model.AvailableEndDate - DateTime.Now;
+                    }
+                    @if (difference != null)
+                    {
+                        <div class="info-product">
+                            <div class="numb-visitor">
+                                <h5>Real time <span class="visitor-num">24</span> visitor right now!</h5>
+                                <p>Hurry up! left @Model.StockAvailability </p>
+                                <img class="line-product" src="./assets/img/product/line.png">
+
+                                <div class="line-middle"></div>
+                                <div class="run-time">
+                                    <div class="timing">
+                                        <div class="time-run num-day">
+                                            <span class="number font-normal">@difference.Value.Days</span>
+                                            <span class="text-capitalize text-time">Days</span>
+                                        </div>
+                                        <div class="time-run num-hour">
+                                            <span class="number font-normal">@difference.Value.Hours</span>
+                                            <span class="text-capitalize text-time">Hours</span>
+                                        </div>
+                                        <div class="time-run num-min">
+                                            <span class="number font-normal">@difference.Value.Minutes</span>
+                                            <span class="text-capitalize text-time">Min</span>
+                                        </div>
+                                        <div class="time-run num-sec">
+                                            <span class="number font-normal">@difference.Value.Seconds</span>
+                                            <span class="text-capitalize text-time">Sec</span>
+                                        </div>
+                                    </div>
+                                    <div class="more-info">Time is Running Out!</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @{
+                        var colors = Model.ProductSpecificationModel.Groups?.SelectMany(p => p.Attributes)?.Where(p => p.Name == "Color");
+                        var sizes = Model.ProductSpecificationModel.Groups?.SelectMany(p => p.Attributes)?.Where(p => p.Name == "Size");
+                    }
+                    @if (colors.Any())
+                    {
+                    color:
+                        <ul>
+                            @foreach (var item in colors?.FirstOrDefault().Values)
+                            {
+                                <li class="attribute" style="background-color : @item.ColorSquaresRgb"></li>
+                            }
+                        </ul>
+                    }
+                    @if (sizes.Any())
+                    {
+                        <ul class="size font-normal">
+                            Size:
+                            @foreach (var item in sizes?.FirstOrDefault().Values)
+                            {
+                                <li class="text-capitalize font-light"> @item.ValueRaw</li>
+                            }
+
+                        </ul>
+                    }
+
+                    <div class="bottom-info-deals">
+                        <div class="row">
+
+
+                            @{
+                                var dataDictAddToCart = new ViewDataDictionary(ViewData);
+                                dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = $"addtocart_{Model.Id}";
+                                @await Html.PartialAsync("_AddToCart", Model.AddToCart, dataDictAddToCart)
+                                @* @await Html.PartialAsync("_ProductEstimateShipping", Model.ProductEstimateShipping) *@
+                            }
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 social-media-icon">
+                                <div class="social-media">
+                                    <a href="#" target="_blank" class="icon-facebook">
+                                        <i class="share-media fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="icon-twitter">
+                                        <i class="share-media fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="icon-instagram">
+                                        <i class="share-media fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 wishlist-icon">
+                                <a href="#" class="wishlist" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">
+                                    <i class='fa fa-heart'></i>
+                                </a>
+                                <span class="font-light" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@T("ShoppingCart.AddToWishlist")</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-details">
+            <ul class="sub-title">
+                <li class="product-descr active">
+                    <a onclick="openDetails('Description')">Description</a>
+                </li>
+                <li class="product-descr info-ventor">
+                    <a class="" onclick="openDetails('Vendor')">Vendor Info</a>
+                </li>
+                <li class="product-descr">
+                    <a onclick="openDetails('Customer')">@T("reviews") (3)</a>
+                </li>
+            </ul>
+
+            <div class="product-item details" id="Description">
+                <h6 class="text-capitalize">detail</h6>
+                <p>
+                    @Html.Raw( @Model.FullDescription)
+                </p>
+            </div>
+
+            <div class="product-item vender" id="Vendor" style="display:none">
+                <h6 class="text-capitalize">Vendor Info</h6>
+                <p>
+                    @Model.VendorModel.Name
+                </p>
+            </div>
+
+            <div class="product-item vender" id="Customer" style="display:none">
+                <h6 class="text-capitalize">@T("reviews") (3)</h6>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt arcu cursus
+                    vitae  congue mauris.
+                    Sagittis id consectetur purus ut. Tellus rutrum tellus pelle Vel pretium lectus quam id leo in vitae turpis
+                    massa.
+
+                    Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. Vivamus finibus vel mauris ut vehicula.
+                    Nullam a magna porttitor, dictum risus nec, faucibus sapien.
+                </p>
+            </div>
+        </div>
+
+    </form>
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBottom, additionalData = Model })
+
+
+</div>
+
+@{
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/Themes/KonnectAllTheme/Content/js/store.js");
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/Themes/KonnectAllTheme/Content/js/slide-product.js");
+
+}
+<script>
+    function openDetails(cityName) {
+    var i;
+    var x = document.getElementsByClassName("product-item");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    document.getElementById(cityName).style.display = "block";  
+  }
+
+</script>
+
+
+
+

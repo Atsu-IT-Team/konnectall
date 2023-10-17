@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Payment methods",
+  "FriendlyName": "KonnectAll Payment Proxy",
+  "SystemName": "Konnectall.Plugin.Payment",
+  "Version": "1.58",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "KonnectAll team",
+  "DisplayOrder": 1,
+  "FileName": "Konnectall.Plugin.Payment.dll",
+  "Description": "This plugin enables KonnectAll Payment Proxy (stored into Atsu )"
+}

@@ -1,0 +1,82 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@using Nop.Services.Plugins
+@using Nop.Services.Security
+@using Nop.Services.Helpers
+@inject IPermissionService permissionService
+@inject IPluginManager<IAdminMenuPlugin> adminMenuPluginManager
+@inject IUserAgentHelper userAgentHelper
+@inject IXmlSiteMap siteMap;
+@{
+    bool useHorizontalMenu = !userAgentHelper.IsMobileDevice();
+}
+
+<ul class="@(!useHorizontalMenu ? "nav nav-pills nav-sidebar flex-column nav-legacy" : "nav navbar-nav")" data-widget="@(!useHorizontalMenu ? "treeview" : "")" role="menu">
+    @{
+        var customer = await workContext.GetCurrentCustomerAsync();
+
+        //load sitemap
+        await siteMap.LoadFromAsync("~/Areas/Admin/sitemap.config");
+
+        //standard (default) items
+        var rootNode = siteMap.RootNode;
+
+        //plugins
+        var adminMenuPlugins = await adminMenuPluginManager.LoadAllPluginsAsync(customer);
+        foreach (var adminMenuPlugin in adminMenuPlugins)
+        {
+            await adminMenuPlugin.ManageSiteMapAsync(rootNode);
+        }
+
+        //"Plugins" menu item should be visible when it has some child nodes
+        var pluginNode = rootNode.ChildNodes.FirstOrDefault(x => x.SystemName == "Third party plugins");
+        if (pluginNode?.Visible ?? false)
+        {
+            pluginNode.Visible = pluginNode.ChildNodes.Any(x => x.Visible)
+                && await permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins, customer);
+        }
+
+        //display menu items
+        foreach (var item in rootNode.ChildNodes.Where(x => x.Visible))
+        {
+            @await Html.PartialAsync("_MenuItem", item)
+        }
+    }
+</ul>

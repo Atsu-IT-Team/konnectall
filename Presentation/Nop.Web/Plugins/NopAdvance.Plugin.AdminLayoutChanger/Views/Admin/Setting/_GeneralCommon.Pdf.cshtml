@@ -1,0 +1,93 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model GeneralCommonSettingsModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="PdfSettings.LogoPictureId_OverrideForStore" asp-parent-container="pdf-logo-picture" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="PdfSettings.LogoPictureId" />
+        </div>
+        <div class="col-md-9 col-lg-10" id="pdf-logo-picture">
+            <nop-editor asp-for="PdfSettings.LogoPictureId" />
+            <span asp-validation-for="PdfSettings.LogoPictureId"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="PdfSettings.InvoiceFooterTextColumn1_OverrideForStore" asp-input="PdfSettings.InvoiceFooterTextColumn1" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="PdfSettings.InvoiceFooterTextColumn1" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-textarea asp-for="PdfSettings.InvoiceFooterTextColumn1" />
+            <span asp-validation-for="PdfSettings.InvoiceFooterTextColumn1"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="PdfSettings.InvoiceFooterTextColumn2_OverrideForStore" asp-input="PdfSettings.InvoiceFooterTextColumn2" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="PdfSettings.InvoiceFooterTextColumn2" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-textarea asp-for="PdfSettings.InvoiceFooterTextColumn2" />
+            <span asp-validation-for="PdfSettings.InvoiceFooterTextColumn2"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="PdfSettings.LetterPageSizeEnabled_OverrideForStore" asp-input="PdfSettings.LetterPageSizeEnabled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="PdfSettings.LetterPageSizeEnabled" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="PdfSettings.LetterPageSizeEnabled" />
+            <span asp-validation-for="PdfSettings.LetterPageSizeEnabled"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="PdfSettings.DisablePdfInvoicesForPendingOrders_OverrideForStore" asp-input="PdfSettings.DisablePdfInvoicesForPendingOrders" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="PdfSettings.DisablePdfInvoicesForPendingOrders" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="PdfSettings.DisablePdfInvoicesForPendingOrders" />
+            <span asp-validation-for="PdfSettings.DisablePdfInvoicesForPendingOrders"></span>
+        </div>
+    </div>
+</div>

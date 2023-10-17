@@ -1,0 +1,124 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@using Nop.Core.Configuration
+@model AppSettingsModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="DistributedCacheConfigModel.Enabled" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="DistributedCacheConfigModel.Enabled" />
+            <span asp-validation-for="DistributedCacheConfigModel.Enabled"></span>
+        </div>
+    </div>
+    <nop-nested-setting asp-for="DistributedCacheConfigModel.Enabled" disable-auto-generation="true">
+        <div class="form-group row" id="distributed-cache-type">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="DistributedCacheConfigModel.DistributedCacheTypeValues" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-select asp-for="DistributedCacheConfigModel.DistributedCacheType" asp-items="Model.DistributedCacheConfigModel.DistributedCacheTypeValues"/>
+            </div>
+        </div>
+        <div class="form-group row" id="distributed-cache-connection-string">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="DistributedCacheConfigModel.ConnectionString" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="DistributedCacheConfigModel.ConnectionString" />
+                <span asp-validation-for="DistributedCacheConfigModel.ConnectionString"></span>
+            </div>
+        </div>
+        <div class="form-group row" id="distributed-cache-schema-name">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="DistributedCacheConfigModel.SchemaName" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="DistributedCacheConfigModel.SchemaName" />
+                <span asp-validation-for="DistributedCacheConfigModel.SchemaName"></span>
+            </div>
+        </div>
+        <div class="form-group row" id="distributed-cache-table-name">
+            <div class="col-md-3 col-lg-2">
+                <nop-label asp-for="DistributedCacheConfigModel.TableName" />
+            </div>
+            <div class="col-md-9 col-lg-10">
+                <nop-editor asp-for="DistributedCacheConfigModel.TableName" />
+                <span asp-validation-for="DistributedCacheConfigModel.TableName"></span>
+            </div>
+        </div>
+    </nop-nested-setting>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#@Html.IdFor(model => model.DistributedCacheConfigModel.Enabled)").click(toggleDistributedCache);
+        $(@Html.IdFor(model => model.DistributedCacheConfigModel.DistributedCacheType)).change(toggleDistributedCache);
+        toggleDistributedCache();
+    });
+
+    function toggleDistributedCache() {
+        if ($('#@Html.IdFor(model => model.DistributedCacheConfigModel.Enabled)').is(':checked')) {
+            $('#distributed-cache-connection-string').showElement();
+            $('#distributed-cache-type').showElement();
+
+            var cacheType = $('#@Html.IdFor(model => model.DistributedCacheConfigModel.DistributedCacheType)').val();
+
+            if (cacheType == @((int)DistributedCacheType.Memory))
+            {
+                $('#distributed-cache-connection-string').hideElement();
+            }
+
+            if (cacheType == @((int)DistributedCacheType.SqlServer)) {
+                $('#distributed-cache-schema-name').showElement();
+                $('#distributed-cache-table-name').showElement();
+            } else {
+                $('#distributed-cache-schema-name').hideElement();
+                $('#distributed-cache-table-name').hideElement();
+            }
+        } else {
+            $('#distributed-cache-connection-string').hideElement();
+            $('#distributed-cache-schema-name').hideElement();
+            $('#distributed-cache-table-name').hideElement();
+            $('#distributed-cache-type').hideElement();
+        }
+    }
+</script>

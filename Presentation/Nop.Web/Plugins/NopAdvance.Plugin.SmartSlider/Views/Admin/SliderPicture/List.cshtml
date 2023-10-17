@@ -1,0 +1,226 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *               Smart Slider Plugin by NopAdvance team                   *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model SliderPictureSearchModel
+@using Nop.Web.Framework.Models.DataTables;
+@inject Nop.Services.Common.IGenericAttributeService genericAttributeService
+@inject IWorkContext workContext
+@{
+    Layout = "_AdminLayout";
+
+    //page title
+    ViewBag.PageTitle = T(LocaleResourceDefaults.SMART_SLIDER_LIST_MENU).Text + " - " + T(PluginDefaults.SYSTEM_NAME).Text;
+
+    NopHtml.SetActiveMenuItemSystemName(SiteMapDefaults.SLIDER_PICTURES_MENU_SYSTEM_NAME);
+
+    const string hideSearchBlockAttributeName = "NopAdvanceSmartSliderListPage.HideSearchBlock";
+    var hideSearchBlock = await genericAttributeService.GetAttributeAsync<bool>((await workContext.GetCurrentCustomerAsync()), hideSearchBlockAttributeName);
+}
+<nop-antiforgery-token />
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T(LocaleResourceDefaults.SMART_SLIDER_LIST_MENU)
+    </h1>
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fa fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+    </div>
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            @if (PluginLicence.SEARCH_ENABLED)
+            {
+                <div class="cards-group">
+                    <div class="card card-default card-search">
+                        <div class="card-body">
+                            <div class="row search-row @(!hideSearchBlock ? "opened" : "")" data-hideAttribute="@hideSearchBlockAttributeName">
+                                <div class="search-text">@T("Admin.Common.Search")</div>
+                                <div class="icon-search"><i class="fa fa-search" aria-hidden="true"></i></div>
+                                <div class="icon-collapse"><i class="far fa-angle-@(!hideSearchBlock ? "up" : "down")" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="search-body @(hideSearchBlock ? "closed" : "")">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <nop-label asp-for="SearchSliderPictureName" />
+                                            </div>
+                                            <div class="col-md-8">
+                                                <nop-editor asp-for="SearchSliderPictureName" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <nop-label asp-for="SearchWidgetZone" />
+                                            </div>
+                                            <div class="col-md-8">
+                                                <nop-select asp-for="SearchWidgetZone" asp-items="Model.AvailableWidgetZones" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <nop-label asp-for="SearchStartDateUtc" />
+                                            </div>
+                                            <div class="col-md-8">
+                                                <nop-editor asp-for="SearchStartDateUtc" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <nop-label asp-for="SearchEndDateUtc" />
+                                            </div>
+                                            <div class="col-md-8">
+                                                <nop-editor asp-for="SearchEndDateUtc" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="text-center col-12">
+                                        <button type="button" id="search-slider-picture" class="btn btn-primary btn-search">
+                                            <i class="fa fa-search"></i>
+                                            @T("Admin.Common.Search")
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @await Html.PartialAsync("Table", new DataTablesModel
+                          {
+                              Name = "sliderpictures-grid",
+                              UrlRead = new DataUrl("List", "NopAdvanceSmartSlider", null),
+                              SearchButtonId = "search-slider-picture",
+                              Length = Model.PageSize,
+                              LengthMenu = Model.AvailablePageSizes,
+                              Filters = new List<FilterParameter>
+                               {
+                                   new FilterParameter(nameof(Model.SearchSliderPictureName)),
+                                   new FilterParameter(nameof(Model.SearchWidgetZone)),
+                                   new FilterParameter(nameof(Model.SearchStartDateUtc)),
+                                   new FilterParameter(nameof(Model.SearchEndDateUtc))
+
+                               },
+                              ColumnCollection = new List<ColumnProperty>
+                                       {
+                                           new ColumnProperty(nameof(SliderPictureModel.SliderPictureName))
+                                           {
+                                               Title = T(LocaleResourceDefaults.SLIDER_PICTURE_FIELD_SLIDERPICTURENAME).Text,
+                                               Width = "50",
+                                           },
+                                           new ColumnProperty(nameof(SliderPictureModel.WidgetZone))
+                                           {
+                                               Title = T(LocaleResourceDefaults.SLIDER_PICTURE_FIELD_WIDGETZONE).Text,
+                                               Width = "50",
+                                               Encode = false
+                                           },
+                                           new ColumnProperty(nameof(SliderPictureModel.DesktopPictureUrl))
+                                           {
+                                               Title = T(LocaleResourceDefaults.SLIDER_PICTURE_FIELD_DESKTOPPICTURE).Text,
+                                               Width = "50",
+                                               Render = new RenderPicture()
+                                           },
+                                           new ColumnProperty(nameof(SliderPictureModel.MobilePictureUrl))
+                                           {
+                                               Title = T(LocaleResourceDefaults.SLIDER_PICTURE_FIELD_MOBILEPICTURE).Text,
+                                               Width = "50",
+                                               Render = new RenderPicture()
+                                           },
+                                           new ColumnProperty(nameof(SliderPictureModel.StartDateUtc))
+                                           {
+                                               Title = T(LocaleResourceDefaults.SLIDER_PICTURE_FIELD_STARTDATEUTC).Text,
+                                               Width = "50",
+                                               Render = new RenderDate()
+                                           },
+                                           new ColumnProperty(nameof(SliderPictureModel.EndDateUtc))
+                                           {
+                                               Title = T(LocaleResourceDefaults.SLIDER_PICTURE_FIELD_ENDDATEUTC).Text,
+                                               Width = "50",
+                                               Render = new RenderDate()
+                                           },
+                                           new ColumnProperty(nameof(SliderPictureModel.Published))
+                                           {
+                                               Title = T(LocaleResourceDefaults.SLIDER_PICTURE_FIELD_PUBLISHED).Text,
+                                               Width = "50",
+                                               ClassName = NopColumnClassDefaults.CenterAll,
+                                               Render = new RenderBoolean()
+                                           },
+                                           new ColumnProperty(nameof(SliderPictureModel.Id))
+                                           {
+                                               Title = T("Admin.Common.Edit").Text,
+                                               Width = "20",
+                                               ClassName =  NopColumnClassDefaults.Button,
+                                               Render = new RenderButtonEdit(new DataUrl("Edit"))
+                                           },
+                                       }
+                          })
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $('#search-slider-slider,#btnRefresh').click(function () {
+                                            //refresh grid
+                                            updateTable('#sliderpictures-grid');
+
+                                            //return false to don't reload a page
+                                            return false;
+                                        });
+                                    });
+                                </script>
+                                <input type="submit" id="btnRefresh" style="display: none" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

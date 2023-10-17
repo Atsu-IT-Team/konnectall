@@ -1,0 +1,174 @@
+﻿@using Nop.Core.Domain.Seo
+@inject SeoSettings seoSettings
+
+@{
+    Layout = "_Root";
+    ViewBag.BodyClass = "about-us";
+    //title
+    if (!string.IsNullOrEmpty(seoSettings.HomepageTitle))
+    {
+        NopHtml.AddTitleParts(seoSettings.HomepageTitle);
+    }
+
+    //meta
+    if (!string.IsNullOrEmpty(seoSettings.HomepageDescription))
+    {
+        NopHtml.AddMetaDescriptionParts(seoSettings.HomepageDescription);
+    }
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-home-page");
+}
+@section HomePageSlider{
+    <div class="slider">
+        <img alt="" src="./assets/img/banner/about-banner.webp" class="slid-img">
+        <div class="overly">
+        </div>
+        <div class="container">
+            <div class="container content-slid">
+                <div class="separate-line"></div>
+                <h2 class="title-slider">
+                    @T("topMenu.KnowUs.AboutUs")
+                </h2>
+                <h4 class="menu-slider">
+                    We speed up online, cross-border and multi-channel
+                    sales of brands and retailers
+                </h4>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<div class="your-ecommerce">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 left-content">
+                <div class="text-big">@T("topMenu.KnowUs.AboutUs")</div>
+                <div class="info-ecommer">
+                    <div class="title-sec">
+                        <h4 class="text-black text-left">
+                            Your ecommerce partener
+                        </h4>
+                        <span class="line-after"></span>
+                    </div>
+
+                    <div class="desc-ecommerce">
+                        <p>
+                            Creating a successful cross-border strategy on an ecommerce is becoming increasingly more complicated. To sell online, you must have a presence in a plethora of marketplaces, in different countries and languages, and address the logistical complexities and continuous challenges that arise each day.
+                        </p>
+                        <br>
+                        <p>
+                            Here at BigBuy, we want to help you and be your ecommerce partner.
+                        </p>
+                        <br>
+                        <p>
+                            We offer technology, catalogue, fulfilment services and operations for ecommerce and marketplaces. A unique and global solution to simplify processes and grow your online sales.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 img-global">
+                <img alt="" class="global-img global-img-right" src="./assets/img/about/section1.webp">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="our-history">
+    <div class="container">
+        <div class="row history">
+            <div class="col-lg-6">
+                <div class="row img-history">
+                    <div class="col-6">
+                        <img alt="" class="img-sect" src="./assets/img/about/section2-img1.webp">
+                    </div>
+                    <div class="col-6">
+                        <img alt="" class="img-sect" src="./assets/img/about/section2-img2.webp">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 right-history">
+                <div class="text-big">History</div>
+                <div class="title-sec">
+                    <h4 class="text-black text-left">
+                        Our history
+                    </h4>
+                    <span class="line-after"></span>
+                </div>
+
+                <div class="disc-our-history">
+                    <p>
+                        Collaboratively administrate empowered markets via plug-and-play maintain networks. Dynamically usable procrastinate B2B users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row discover">
+
+            <h2 class="sec-title">Discover Konnectall's Journey</h2>
+            <div class="row">
+                <ul class="progress-bar-history">
+                    <li class="progress-bar-item active">
+                        <label>08/2022</label>
+                        <span>Dream start</span>
+                    </li>
+                    <li class="progress-bar-item">
+                        <label>09/2022</label>
+                        <span>Busniess model</span>
+                    </li>
+                    <li class="progress-bar-item">
+                        <label>10/2022</label>
+                        <span>Financial model</span>
+                    </li>
+                    <li class="progress-bar-item">
+                        <label>11/2022</label>
+                        <span>Design</span>
+                    </li>
+                    <li class="progress-bar-item">
+                        <label>12/2022</label>
+                        <span>Design</span>
+                    </li>
+                    <li class="progress-bar-item">
+                        <label>01/2023</label>
+                        <span>Development Phase</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="our-vision">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 left-content">
+                <div class="text-big">vision</div>
+                <div class="info-vision">
+                    <div class="title-sec">
+                        <h4 class="text-black text-left">
+                            our vision
+                        </h4>
+                        <span class="line-after"></span>
+                    </div>
+                    <h2 class="text-left">We are marketpress</h2>
+                    <div class="desc-vision">
+                        <p>
+                            Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
+                        </p>
+                        <ul>
+                            <li>Credibly innovate granular internal</li>
+                            <li>Grantedly underconstructions reloaded</li>
+                            <li>Interactively procrastinate high-payoff</li>
+                            <li>Completely synergize resource taxing relationships</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 img-global">
+                <img alt="" class="global-img global-img-right" src="./assets/img/about/section3.webp">
+            </div>
+        </div>
+    </div>
+</div>

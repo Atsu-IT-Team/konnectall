@@ -1,0 +1,15 @@
+﻿{
+  "Group": "NopAdvance",
+  "FriendlyName": "Smart Slider",
+  "SystemName": "NopAdvance.Plugin.SmartSlider",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "NopAdvance team",
+  "DisplayOrder": 1,
+  "FileName": "NopAdvance.Plugin.Widgets.SmartSlider.dll",
+  "Description": "This plugin allows you to setup different sliders for both desktop and mobile on multiple widget zones",
+  "DependsOnSystemNames": [ "NopAdvance.Core" ],
+  "CoreVersion": "1.11",
+  "ProductUrl": "https://store.nopadvance.com/smart-slider-nopcommerce-plugin",
+  "HelpUrl": "https://docs.nopadvance.com/smart-slider-plugin.html"
+}

@@ -1,0 +1,52 @@
+﻿@model ConfigurationModel
+@{
+    Layout = "_ConfigurePlugin";
+}
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">@T("Nop.Plugin.Payments.Iyzico.Configuration.General")</h3>
+    </div>
+    <form asp-controller="IyzicoConfiguration" asp-action="Configure" method="post">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <nop-label asp-for="ApiKey" />
+                        <nop-editor asp-for="ApiKey" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <nop-label asp-for="SecretKey" />
+                        <nop-editor asp-for="SecretKey" />
+                    </div>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <nop-label asp-for="Uri" />
+                        <nop-editor asp-for="Uri" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <nop-Label asp-for="CallbackUrl">
+                        <nop-editor asp-for="CallbackUrl" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <nop-label asp-for="CustomerIdentityAttributeKey" />
+                        <nop-editor asp-for="CustomerIdentityAttributeKey" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+        </div>
+    </form>
+</div>

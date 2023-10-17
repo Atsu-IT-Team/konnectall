@@ -1,0 +1,109 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model OrderModel
+
+@{
+    //page title
+    ViewBag.PageTitle = T("Admin.Orders.EditOrderDetails").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("Orders");
+
+    string verticalTab = (TabLayout)adminLayoutChangerSettings.TabLayoutId == TabLayout.Vertical ? "vertically-tab" : "";
+}
+
+<nop-delete-confirmation asp-model-id="@Model.Id" asp-button-id="order-delete" />
+   
+    <form asp-controller="Order" asp-action="Edit" method="post" id="order-form">
+        <div class="content-header clearfix">
+            <h1 class="float-left">
+                @T("Admin.Orders.EditOrderDetails") - @Model.CustomOrderNumber
+                <small>
+                    <i class="fas fa-arrow-circle-left"></i>
+                    <a asp-action="List">@T("Admin.Orders.BackToList")</a>
+                </small>
+            </h1>
+            <div class="float-right">
+                <a asp-action="PdfInvoice" asp-route-orderId="@Model.Id" class="btn btn-info">
+                    <i class="far fa-file-pdf"></i>
+                    @T("Admin.Orders.PdfInvoice")
+                </a>
+                @if (!Model.IsLoggedInAsVendor)
+                {
+                    <span id="order-delete" class="btn btn-danger">
+                        <i class="far fa-trash-alt"></i>
+                        @T("Admin.Common.Delete")
+                    </span>
+                }
+                <button type="submit" id="btnRefreshPage" style="display: none"></button>
+                <script>
+                    $(document).ready(function () {
+                        $('#btnRefreshPage').click(function () {
+                            //refresh pageed
+                            location.reload();
+                        });
+                    });
+                </script>
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.OrderDetailsButtons, additionalData = Model })
+            </div>
+        </div>
+
+        <div asp-validation-summary="All"></div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="form-horizontal">
+
+                    <nop-tabs id="order-cards" class="@verticalTab">
+                        <nop-tab asp-name="order-info" asp-icon="fas fa-info" asp-title="@T("Admin.Orders.Info")"  asp-default="true" asp-advanced="false">@await Html.PartialAsync("_OrderDetails.Info", Model)</nop-tab>
+                        <nop-tab asp-name="order-billing-shipping" asp-icon="fas fa-truck" asp-title="@T("Admin.Orders.BillingShippingInfo")"  asp-advanced="false">@await Html.PartialAsync("_OrderDetails.BillingShipping", Model)</nop-tab>
+                        <nop-tab asp-name="order-products" asp-icon="fas fa-th-list" asp-title="@T("Admin.Orders.Products")" asp-advanced="true">@await Html.PartialAsync("_OrderDetails.Products", Model)</nop-tab>
+
+                        @if (!Model.IsLoggedInAsVendor)
+                        {
+                            <nop-tab asp-name="order-notes" asp-icon="far fa-sticky-note" asp-title="@T("Admin.Orders.OrderNotes")"   asp-advanced="true">@await Html.PartialAsync("_OrderDetails.Notes", Model)</nop-tab>
+                        }
+
+                        @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.OrderDetailsBlock, additionalData = Model })
+                    </nop-tabs>
+                </div>
+            </div>
+        </section>
+    </form>
+<nop-delete-confirmation asp-model-id="@Model.Id" asp-button-id="order-delete" />

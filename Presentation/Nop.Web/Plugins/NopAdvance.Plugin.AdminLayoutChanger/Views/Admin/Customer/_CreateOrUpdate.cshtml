@@ -1,0 +1,73 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model CustomerModel
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+@{
+    string verticalTab = (TabLayout)adminLayoutChangerSettings.TabLayoutId == TabLayout.Vertical ? "vertically-tab" : "";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <nop-tabs id="customer-cards" class="@verticalTab">
+                <nop-tab asp-name="customer-info" asp-icon="fas fa-info" asp-title="@T("Admin.Customers.Customers.Info")" asp-default="true" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Info", Model)</nop-tab>
+                @if (Model.Id > 0)
+                {                    
+                    <nop-tab asp-name="customer-orders" asp-icon="fas fa-cart-plus" asp-title="@T("Admin.Customers.Customers.Orders")"  asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Orders", Model)</nop-tab>
+                    <nop-tab asp-name="customer-address" asp-icon="far fa-address-book" asp-title="@T("Admin.Customers.Customers.Addresses")" asp-advanced="true">@await Html.PartialAsync("_CreateOrUpdate.Addresses", Model)</nop-tab>
+                    <nop-tab asp-name="customer-cart" asp-icon="fas fa-shopping-cart" asp-title="@T("Admin.Customers.Customers.ShoppingCartAndWishlist")" asp-advanced="true">@await Html.PartialAsync("_CreateOrUpdate.CurrentShoppingCart", Model)</nop-tab>
+                    <nop-tab asp-name="customer-activitylog" asp-icon="fas fa-list-alt" asp-title="@T("Admin.Customers.Customers.ActivityLog")" asp-advanced="true">@await Html.PartialAsync("_CreateOrUpdate.ActivityLog", Model)</nop-tab>
+                    <nop-tab asp-name="customer-impersonate" asp-icon="fas fa-shopping-basket" asp-title="@T("Admin.Customers.Customers.Impersonate")" asp-advanced="true">@await Html.PartialAsync("_CreateOrUpdate.Impersonate", Model)</nop-tab>
+                    <nop-tab asp-name="customer-backinstock" asp-icon="fas fa-plus-square" asp-title="@T("Admin.Customers.Customers.BackInStockSubscriptions")"  asp-advanced="true">@await Html.PartialAsync("_CreateOrUpdate.BackInStockSubscriptions", Model)</nop-tab>
+                }
+
+                @if (Model.DisplayRewardPointsHistory)
+                {
+                    <nop-tab asp-name="customer-notes" asp-icon="fas fa-coins" asp-title="@T("Admin.Customers.Customers.RewardPoints")" asp-advanced="true">@await Html.PartialAsync("_CreateOrUpdate.RewardPoints", Model)</nop-tab>
+                }
+
+                @await Component.InvokeAsync("AdminWidget", new { widgetZone = AdminWidgetZones.CustomerDetailsBlock, additionalData = Model })
+            </nop-tabs>
+        </div>
+    </div>
+</section>

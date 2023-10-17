@@ -1,0 +1,158 @@
+﻿@model ShopModel
+@using Nop.Core.Domain.Common
+@using Nop.Core.Domain.Seo
+@inject Nop.Core.IWebHelper webHelper
+@inject SeoSettings seoSettings
+@inject CommonSettings commonSettings
+
+
+@{
+    Layout = "_Root";
+    ViewBag.BodyClass = "shop-page";
+    //title
+    if (!string.IsNullOrEmpty(seoSettings.HomepageTitle))
+    {
+        NopHtml.AddTitleParts(seoSettings.HomepageTitle);
+    }
+
+    //meta
+    if (!string.IsNullOrEmpty(seoSettings.HomepageDescription))
+    {
+        NopHtml.AddMetaDescriptionParts(seoSettings.HomepageDescription);
+    }
+
+    //page class
+    NopHtml.AppendPageCssClassParts("html-shop-page");
+
+    var banner1 = Model.Categories.Count() >= 1 ? Model.Categories[0] : null;
+    var banner2 = @Model.Categories.Count() >= 2 ? Model.Categories[1] : null;
+    var banner3 = @Model.Categories.Count() >= 3 ? Model.Categories[2] : null;
+    var banner4 = @Model.Categories.Count() >= 4 ? Model.Categories[3] : null;
+    var banner5 = @Model.Categories.Count() >= 5 ? Model.Categories[4] : null;
+    var banner6 = @Model.Categories.Count() >= 6 ? Model.Categories[5] : null;
+
+
+}
+
+@section HomePageSlider{
+    <div class="slider">
+        <img alt="" src="./assets/img/banner/slid-categ.png" class="banner-slid" />
+    </div>
+}
+
+@{
+    await Html.RenderPartialAsync("ShippingMethods.cshtml");
+}
+
+<section class="container collection sec-desc-categ">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 left-collection">
+            <img alt="" src="@banner1?.PictureModel?.ImageUrl" class="collection-img">
+            <div class="content-collection-sect ">
+                <div class="font-normal text-white text-small">@banner1?.Name</div>
+                <h2 class="text-white text-left">@banner1?.Name</h2>
+                <a href="#" class="btn-sm-white">
+                    <span class="text-white font-normal">@T("global.shopnow")</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 right-collection">
+            <img alt="" src="@banner2?.PictureModel?.ImageUrl" class="collection-img">
+            <div class="content-collection-sect ">
+                <div class="font-normal text-black  text-small">@banner2?.Name</div>
+                <h2 class="text-black text-left">@banner2?.Name</h2>
+                <a href="#" class="btn-sm-black btn-border">
+                    <span class="text-black font-normal">@T("global.shopnow")</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="shopPageDealOfDayContainer">
+    @await Component.InvokeAsync("HomepageDealOfDay")
+</div>
+
+@await Component.InvokeAsync("HomepageBestSellers")
+
+
+@foreach (var item in Model.Categories)
+{
+    await Html.RenderPartialAsync("CategoryDetails.cshtml", item);
+}
+
+<script src="../Themes/KonnectAllTheme/Content/js/slide-product.js"></script>
+<script src="../Themes/KonnectAllTheme/Content/js/layout.js"></script>
+
+
+
+<middle-banner></middle-banner>
+
+<section class="container decora-crafts">
+    <div class="row">
+        <div class="col-md-3 col-sm-3 left-content">
+            <div></div>
+            <img src="@banner3?.PictureModel?.ImageUrl" class="img-decora" alt="@banner3?.Name">
+            <div class="content-decora-sect ">
+                <div class="font-light text-white text-small">@banner3?.Name</div>
+                <h2 class="text-white text-left">@banner3?.Name</h2>
+                <a href="#" class="btn-sm-white">
+                    <span class="text-white font-normal">@T("global.shopnow")</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 center-content">
+            <img src="@banner4?.PictureModel?.ImageUrl" class="img-decora" alt="@banner4?.Name">
+            <div class="content-decora-sect content-center">
+                <div class="font-light text-white text-small">@banner4?.Name</div>
+                <h2 class="text-white text-left">@banner4?.Name</h2>
+                <a href="#" class="btn-sm-white">
+                    <span class="text-white font-normal">@T("global.shopnow")</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 right-content">
+            <img src="@banner5?.PictureModel?.ImageUrl" class="img-decora" alt="@banner5?.Name">
+            <div class="content-decora-sect ">
+                <div class="font-light text-white text-small">@banner5?.Name</div>
+                <h2 class="text-white text-left">@banner5?.Name</h2>
+                <a href="#" class="btn-sm-white">
+                    <span class="text-white font-normal">@T("global.shopnow")</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 mobile-content">
+        <img src="@banner6?.PictureModel?.ImageUrl" class="img-decora" alt="@banner6?.Name">
+        <div class="content-decora-sect content-center">
+            <div class="font-light text-white text-small">@banner6?.Name</div>
+            <h2 class="text-white text-left">@banner6?.Name</h2>
+            <a href="#" class="btn-sm-white">
+                <span class="btn-sm text-white  font-normal">@T("global.shopnow")</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+@await Component.InvokeAsync("VendorNavigation")
+
+<script>
+
+    function ShowProductsOfCategory_details(parentCategId, selectedSubCategId) {
+        var postData = { "selectedCategryId": selectedSubCategId };
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "@(Url.Action("LoadCategoryProductsComponent", "Shop"))",
+            data: postData,
+            error: function (jqXHR, textStatus, errorThrown) {
+                showAlert('showProduct', errorThrown);
+            },
+            success: function (data, textStatus, jqXHR) {
+                $('#' + parentCategId).html(data);
+            }
+        });
+    }
+
+</script>

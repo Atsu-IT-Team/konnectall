@@ -1,0 +1,98 @@
+﻿@await Component.InvokeAsync("MobileTopMenu")
+
+<my-header>
+    <section class="header" id="header">
+        <div class="header">
+            <div id="top-promotion" class="top-promotion promotion style-1">
+                <div class="container">
+                    <div class="promotion-content">
+                        <div class="promo-inner">
+                            <div class="promo-left">
+                                <h2 class="percent primary-color">20%</h2>
+                                <div>
+                                    <span class="label">Discount</span>
+                                    <h3>For Books Of March</h3>
+                                </div>
+                            </div>
+                            <div class="promo-right">
+                                <span class="label">Enter Prmotion Code</span>
+                                <h4 class="primary-color">Sale2023</h4>
+                            </div>
+                        </div>
+                        <div class="promo-link">
+                            <a class="link" href="https://wpmartfury.com/marketplace/product/grand-slam-indoor-of-show-jumping-novel/">@T("global.shopnow")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="topbar" class="topbar ">
+                <div class="container">
+                    <div class="row topbar-row">
+                        <div class="topbar-left topbar-sidebar col-xs-12 col-sm-12 col-md-5 hidden-xs hidden-sm">
+                            <div id="custom_html-1" class="widget_text widget widget_custom_html">
+                                <div class="textwidget custom-html-widget">@T("home.DescriptionMessage")</div>
+                            </div>
+                        </div>
+
+                        <div class="topbar-right topbar-sidebar col-xs-12 col-sm-12 col-md-7 hidden-xs hidden-sm">
+                            <div id="custom_html-2" class="widget_text widget widget_custom_html">
+                                <div class="textwidget custom-html-widget">
+                                    @await Component.InvokeAsync("LanguageSelector")
+                                </div>
+                            </div>
+                            <div id="custom_html-3" class="widget_text widget widget_custom_html">
+                                <div class="textwidget custom-html-widget">
+                                    <div class="mf-currency-widget">
+                                        <div class="widget-currency">
+                                            @await Component.InvokeAsync("CurrencySelector")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="custom_html-4" class="widget_text widget widget_custom_html">
+                                <div class="textwidget custom-html-widget">
+                                    <a href="#">@T("home.TrackOrder")</a>
+                                </div>
+                            </div>
+                            <div id="custom_html-5" class="widget_text widget widget_custom_html">
+                                <div class="textwidget custom-html-widget"> <a href="#">@T("home.StoreLocation")</a></div>
+                            </div>
+                        </div>
+
+                        @*  <div class="col-md-3">
+                        <div class="header-selectors-wrapper">
+                        @await Component.InvokeAsync("TaxTypeSelector")
+                        @await Component.InvokeAsync("CurrencySelector")
+                        @await Component.InvokeAsync("LanguageSelector")
+                        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors })
+                        </div>
+                        </div>
+                        <div class="col-md-9 header-upper-right pull-right">
+                        <div class="header-links-wrapper">
+                        @await Component.InvokeAsync("HeaderLinks")
+                        </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="header-main">
+                <div class="container clearfix">
+                    <div class="header-main-left">
+                        <a href="/">
+                            @await Component.InvokeAsync("Logo")
+                        </a>
+                    </div>
+                    <div class="header-main-center">
+                        @await Component.InvokeAsync("SearchBox")
+
+                    </div>
+                    <div class="header-main-right">
+                        @await Component.InvokeAsync("HeaderLinks")
+                    </div>
+                </div>
+            </div>
+
+            @await Component.InvokeAsync("TopMenu")
+        </div>
+    </section>
+</my-header>

@@ -1,0 +1,121 @@
+@*
+    // ***	 ** ****** ****** ****** ******* **     ** ****** ***   ** **** ****
+    // ****  ** **  ** **  ** **  **  **  **  **   **  **  ** ****  ** *    *
+    // ** ** ** **  ** ****** ******  **  **   ** **   ****** ** ** ** *    ***
+    // **  **** **  ** **	  **  **  **  **    ***    **  ** **  **** *    *
+    // **   *** ****** **	  **  ** *******     *     **  ** **   *** **** ****
+    //
+    // **************************************************************************
+    // *                                                                		*
+	// *           Admin Layout Changer Plugin by NopAdvance team               *
+    // *			Copyright (c) NopAdvance LLP. All Rights Reserved			*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Email:		contact@nopadvance.com										*
+    // * Website:	https://nopadvance.com										*
+    // *                                                                       	*
+    // **************************************************************************
+    // *                                                                       	*
+    // * Please see the  License file for the full End User License Agreement. 	*
+    // * The  complete license agreement is also available on  our  website at 	*
+    // * https://nopadvance.com/license-terms									*
+    // *                                                                       	*
+    // * This  software / plugin  is furnished  under a license  and  may   be  *
+    // * used  and modified  only in accordance with the terms of such license  *
+    // * and with the inclusion of the above copyright notice.  This  software	*
+    // * or any other copies thereof may not be  provided  or  otherwise  made	*
+    // * available  to any other person.  No title to  and  ownership  of  the  *
+    // * software is hereby transferred.                                        *
+    // *                                                                       	*
+    // * You may not reverse  engineer, decompile, defeat  license  encryption 	*
+    // * mechanisms  or  disassemble this software product or software product 	*
+    // * license.  NopAdvance may terminate this  license if you don't  comply 	*
+    // * with any of the terms & conditions set forth in our  end user license	*
+    // * agreement (EULA).  In such event , licensee agrees to return licensor	*
+    // * or destroy  all copies of software  upon termination  of the license.	*
+    // *                                                                       	*
+    // **************************************************************************
+*@
+@model MediaSettingsModel
+
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3 col-lg-2">
+            <nop-label asp-for="PicturesStoredIntoDatabase" />
+        </div>
+        <div class="col-md-1">
+            <div class="form-text-row">
+                @if (Model.PicturesStoredIntoDatabase)
+                {
+                    @T("Admin.Configuration.Settings.Media.PicturesStoredIntoDatabase.Database")
+                }
+                else
+                {
+                    @T("Admin.Configuration.Settings.Media.PicturesStoredIntoDatabase.FileSystem")
+                }
+            </div>
+        </div>
+        <div class="col-md-8">
+            <button type="submit" id="change-picture-storage" name="change-picture-storage" class="btn btn-primary">
+                @T("Admin.Configuration.Settings.Media.PicturesStoredIntoDatabase.Change")
+            </button>
+            <nop-action-confirmation asp-button-id="change-picture-storage" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-9 offset-md-3">
+            <span>@T("Admin.Configuration.Settings.Media.PicturesStoredIntoDatabase.Note")</span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="MaximumImageSize_OverrideForStore" asp-input="MaximumImageSize" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="MaximumImageSize" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="MaximumImageSize" />
+            <span asp-validation-for="MaximumImageSize"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="MultipleThumbDirectories_OverrideForStore" asp-input="MultipleThumbDirectories" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="MultipleThumbDirectories" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="MultipleThumbDirectories" />
+            <span asp-validation-for="MultipleThumbDirectories"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="DefaultImageQuality_OverrideForStore" asp-input="DefaultImageQuality" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="DefaultImageQuality" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="DefaultImageQuality" />
+            <span asp-validation-for="DefaultImageQuality"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="ImportProductImagesUsingHash_OverrideForStore" asp-input="ImportProductImagesUsingHash" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="ImportProductImagesUsingHash" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="ImportProductImagesUsingHash" />
+            <span asp-validation-for="ImportProductImagesUsingHash"></span>
+        </div>
+    </div>
+    <div class="form-group row advanced-setting">
+        <div class="col-md-3 col-lg-2">
+            <nop-override-store-checkbox asp-for="DefaultPictureZoomEnabled_OverrideForStore" asp-input="DefaultPictureZoomEnabled" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+            <nop-label asp-for="DefaultPictureZoomEnabled" />
+        </div>
+        <div class="col-md-9 col-lg-10">
+            <nop-editor asp-for="DefaultPictureZoomEnabled" />
+            <span asp-validation-for="DefaultPictureZoomEnabled"></span>
+        </div>
+    </div>
+</div>
