@@ -79,6 +79,16 @@ namespace Nop.Services.Catalog
         Task<IList<Category>> GetAllCategoriesDisplayedOnHomepageAsync(bool showHidden = false);
 
         /// <summary>
+        /// Gets all categories displayed as banner on shop page
+        /// </summary>
+        /// <param name="showHidden">A value indicating whether to show hidden records</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the categories
+        /// </returns>
+        Task<IList<Category>> GetAllCategoriesDisplayedAsBannerAsync(bool showHidden = false);
+
+        /// <summary>
         /// Get category identifiers to which a discount is applied
         /// </summary>
         /// <param name="discount">Discount</param>

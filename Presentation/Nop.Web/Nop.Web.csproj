@@ -47,6 +47,8 @@
     <None Remove="Plugins\**;Themes\**" />
     <None Remove="Themes\KonnectAllTheme\Content\js\old\**" />
     <None Remove="wwwroot\js\KonnectAll\**" />
+    <Content Include="App_Data\appsettings.json" />
+    <Content Include="App_Data\plugins.json" />
 
     <Content Include="Plugins\bin\placeholder.txt" CopyToPublishDirectory="PreserveNewest" />
     <None Include="Plugins\**" CopyToPublishDirectory="PreserveNewest" Exclude="Plugins\**\runtimes\**;Plugins\**\ref\**;Plugins\**\*.pdb" />
@@ -65,6 +67,7 @@
     <Content Remove="Themes\KonnectAllTheme\Content\js\old\slider.js" />
     <Content Remove="Themes\KonnectAllTheme\Content\js\old\sliders.js" />
     <Content Remove="Themes\KonnectAllTheme\Content\js\old\store.js" />
+    <None Remove="App_Data\Localization\customresource.xml" />
 
     <None Update="Areas\Admin\sitemap.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

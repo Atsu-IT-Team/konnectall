@@ -22,6 +22,8 @@ using Nop.Web.Infrastructure.Cache;
 using Nop.Core.Domain.Media;
 using Nop.Web.Models.Media;
 using Nop.Services.Media;
+using Nop.Web.Models.Shop;
+using Nop.Services.Seo;
 
 namespace Nop.Web.Controllers
 {
@@ -41,6 +43,7 @@ namespace Nop.Web.Controllers
         private readonly IPictureService _pictureService;
         private readonly MediaSettings _mediaSettings;
         private readonly ILocalizationService _localizationService;
+        private readonly IUrlRecordService _urlRecordService;
 
         #endregion
 
@@ -58,7 +61,8 @@ namespace Nop.Web.Controllers
             IStaticCacheManager staticCacheManager,
             IPictureService pictureService,
             MediaSettings mediaSettings,
-            ILocalizationService localizationService)
+            ILocalizationService localizationService,
+            IUrlRecordService urlRecordService)
         {
             _catalogModelFactory = catalogModelFactory;
             _categoryService = categoryService;
@@ -72,7 +76,7 @@ namespace Nop.Web.Controllers
             _pictureService = pictureService;
             _mediaSettings = mediaSettings;
             _localizationService = localizationService;
-
+            _urlRecordService = urlRecordService;
         }
 
         #endregion
@@ -80,6 +84,8 @@ namespace Nop.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var categories = await _categoryService.GetAllCategoriesByParentCategoryIdAsync(0);
+
+            var bannerCategory = await _categoryService.GetAllCategoriesDisplayedAsBannerAsync();
 
             var store = await _storeContext.GetCurrentStoreAsync();
 
@@ -94,6 +100,26 @@ namespace Nop.Web.Controllers
                 && await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageCategories);
 
             ShopModel model = new ShopModel();
+            foreach (var item in bannerCategory)
+            {
+                var picture = await _pictureService.GetPictureByIdAsync(item.PictureId);
+                string fullSizeImageUrl, imageUrl;
+
+                (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
+                (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, _mediaSettings.CategoryThumbPictureSize);
+
+                var bc = new BannerCategoryModel
+                {
+                    CategoryId = item.Id,
+                    Name = await _localizationService.GetLocalizedAsync(item, x => x.Name),
+                    ShortDesc = await _localizationService.GetLocalizedAsync(item, x => x.Description),
+                    SeName = await _urlRecordService.GetSeNameAsync(item),
+                    ImageUrl = imageUrl
+                };
+
+                model.BannerCategories.Add(bc);
+            }
+
             foreach (var cat in categories)
             {
                 if (manageEdit)

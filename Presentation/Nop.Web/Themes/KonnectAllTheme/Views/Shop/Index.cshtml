@@ -44,30 +44,27 @@
     await Html.RenderPartialAsync("ShippingMethods.cshtml");
 }
 
-<section class="container collection sec-desc-categ">
-    <div class="row">
-        <div class="col-md-6 col-sm-6 left-collection">
-            <img alt="" src="@banner1?.PictureModel?.ImageUrl" class="collection-img">
-            <div class="content-collection-sect ">
-                <div class="font-normal text-white text-small">@banner1?.Name</div>
-                <h2 class="text-white text-left">@banner1?.Name</h2>
-                <a href="#" class="btn-sm-white">
-                    <span class="text-white font-normal">@T("global.shopnow")</span>
-                </a>
-            </div>
+@if (Model.BannerCategories.Count > 2)
+{
+    <section class="container collection sec-desc-categ">
+        <div class="row">
+            @foreach (var item in Model.BannerCategories.Take(2))
+            {
+                <div class="col-md-6 col-sm-6 right-collection">
+                    <img alt="" src="@item?.ImageUrl" class="collection-img">
+                    <div class="content-collection-sect ">
+                        <div class="font-normal text-black  text-small">@item?.Name</div>
+                        <h2 class="text-black text-left">@item?.Name</h2>
+                        <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.Name" itemprop="item" class="btn-sm-black btn-border">
+                            <span class="text-black font-normal">@T("global.shopnow")</span>
+                        </a>
+                    </div>
+                </div>
+            }
         </div>
-        <div class="col-md-6 col-sm-6 right-collection">
-            <img alt="" src="@banner2?.PictureModel?.ImageUrl" class="collection-img">
-            <div class="content-collection-sect ">
-                <div class="font-normal text-black  text-small">@banner2?.Name</div>
-                <h2 class="text-black text-left">@banner2?.Name</h2>
-                <a href="#" class="btn-sm-black btn-border">
-                    <span class="text-black font-normal">@T("global.shopnow")</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
+}
+
 
 <div id="shopPageDealOfDayContainer">
     @await Component.InvokeAsync("HomepageDealOfDay")
@@ -88,51 +85,37 @@
 
 <middle-banner></middle-banner>
 
-<section class="container decora-crafts">
-    <div class="row">
-        <div class="col-md-3 col-sm-3 left-content">
-            <div></div>
-            <img src="@banner3?.PictureModel?.ImageUrl" class="img-decora" alt="@banner3?.Name">
-            <div class="content-decora-sect ">
-                <div class="font-light text-white text-small">@banner3?.Name</div>
-                <h2 class="text-white text-left">@banner3?.Name</h2>
-                <a href="#" class="btn-sm-white">
-                    <span class="text-white font-normal">@T("global.shopnow")</span>
-                </a>
-            </div>
+@if (Model.BannerCategories.Count >= 3)
+{
+    <section class="container decora-crafts">
+        <div class="row">
+            @foreach (var item in Model.BannerCategories.Skip(2))
+            {
+                <div class="col-md-3 col-sm-3 left-content">
+                    <div></div>
+                    <img src="@item?.ImageUrl" class="img-decora" alt="@item?.Name">
+                    <div class="content-decora-sect ">
+                        <div class="font-light text-white text-small">@item?.Name</div>
+                        <h2 class="text-white text-left">@item?.Name</h2>
+                        <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.Name" itemprop="item" class="btn-sm-white">
+                            <span class="text-white font-normal">@T("global.shopnow")</span>
+                        </a>
+                    </div>
+                </div>
+            }
         </div>
-        <div class="col-md-6 col-sm-6 center-content">
-            <img src="@banner4?.PictureModel?.ImageUrl" class="img-decora" alt="@banner4?.Name">
+        <div class="col-md-6 col-sm-6 mobile-content">
+            <img src="@banner6?.PictureModel?.ImageUrl" class="img-decora" alt="@banner6?.Name">
             <div class="content-decora-sect content-center">
-                <div class="font-light text-white text-small">@banner4?.Name</div>
-                <h2 class="text-white text-left">@banner4?.Name</h2>
+                <div class="font-light text-white text-small">@banner6?.Name</div>
+                <h2 class="text-white text-left">@banner6?.Name</h2>
                 <a href="#" class="btn-sm-white">
-                    <span class="text-white font-normal">@T("global.shopnow")</span>
+                    <span class="btn-sm text-white  font-normal">@T("global.shopnow")</span>
                 </a>
             </div>
         </div>
-        <div class="col-md-3 col-sm-3 right-content">
-            <img src="@banner5?.PictureModel?.ImageUrl" class="img-decora" alt="@banner5?.Name">
-            <div class="content-decora-sect ">
-                <div class="font-light text-white text-small">@banner5?.Name</div>
-                <h2 class="text-white text-left">@banner5?.Name</h2>
-                <a href="#" class="btn-sm-white">
-                    <span class="text-white font-normal">@T("global.shopnow")</span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-sm-6 mobile-content">
-        <img src="@banner6?.PictureModel?.ImageUrl" class="img-decora" alt="@banner6?.Name">
-        <div class="content-decora-sect content-center">
-            <div class="font-light text-white text-small">@banner6?.Name</div>
-            <h2 class="text-white text-left">@banner6?.Name</h2>
-            <a href="#" class="btn-sm-white">
-                <span class="btn-sm text-white  font-normal">@T("global.shopnow")</span>
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
+}
 
 @await Component.InvokeAsync("VendorNavigation")
 
