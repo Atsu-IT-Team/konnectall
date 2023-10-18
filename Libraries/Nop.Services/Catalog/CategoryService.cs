@@ -344,6 +344,36 @@ namespace Nop.Services.Catalog
         }
 
         /// <summary>
+        /// Gets all categories displayed as banner on shop page
+        /// </summary>
+        /// <param name="showHidden">A value indicating whether to show hidden records</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the categories
+        /// </returns>
+        public virtual async Task<IList<Category>> GetAllCategoriesDisplayedAsBannerAsync(bool showHidden = false) 
+        {
+            var categories = await _categoryRepository.GetAllAsync(query =>
+            {
+                return from c in query
+                       orderby c.DisplayOrder, c.Id
+                       where c.Published &&
+                             !c.Deleted &&
+                             c.ShowOnHomepage
+                       select c;
+            });
+
+            if (showHidden)
+                return categories;
+
+            var result = await categories
+                    .WhereAwait(async c => await _aclService.AuthorizeAsync(c) && await _storeMappingService.AuthorizeAsync(c))
+                    .ToListAsync();
+
+            return result;
+        }
+
+        /// <summary>
         /// Get category identifiers to which a discount is applied
         /// </summary>
         /// <param name="discount">Discount</param>

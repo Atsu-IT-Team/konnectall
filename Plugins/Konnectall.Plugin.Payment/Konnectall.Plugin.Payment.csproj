@@ -41,10 +41,10 @@
   </Reference>
 </ItemGroup>
 
-<!--<ItemGroup>-->
-<!--  <PackageReference Include="Armut.Iyzipay" Version="2.6.0" />  -->
-<!--  <PackageReference Include="Iyzipay" Version="2.1.55" />-->
-<!--</ItemGroup> -->
+<ItemGroup>
+  <PackageReference Include="Armut.Iyzipay" Version="2.6.0" />  
+  <PackageReference Include="Iyzipay" Version="2.1.55" />
+</ItemGroup> 
 
 <ItemGroup>
   <None Update="Areas\Admin\Views\IyzicoConfiguration\Configure.cshtml">

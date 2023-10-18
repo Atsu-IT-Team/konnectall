@@ -74,6 +74,11 @@ namespace Nop.Core.Domain.Catalog
         public bool ShowOnHomepage { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to show the category as banner
+        /// </summary>
+        public bool ShowAsBanner { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to include this category in the top menu
         /// </summary>
         public bool IncludeInTopMenu { get; set; }

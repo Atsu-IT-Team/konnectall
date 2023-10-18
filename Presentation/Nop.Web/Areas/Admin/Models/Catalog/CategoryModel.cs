@@ -93,6 +93,9 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.ShowOnHomepage")]
         public bool ShowOnHomepage { get; set; }
 
+        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.ShowAsBanner")]
+        public bool ShowAsBanner { get; set; }
+
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.IncludeInTopMenu")]
         public bool IncludeInTopMenu { get; set; }
 

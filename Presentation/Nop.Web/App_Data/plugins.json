@@ -138,10 +138,6 @@
     {
       "SystemName": "Nop.Front.Api",
       "Version": "4.5.0"
-    },
-    {
-      "SystemName": "Konnectall.Plugin.Payment",
-      "Version": "1.58"
     }
   ],
   "PluginNamesToUninstall": [],
