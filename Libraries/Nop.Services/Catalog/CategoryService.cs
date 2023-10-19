@@ -359,7 +359,7 @@ namespace Nop.Services.Catalog
                        orderby c.DisplayOrder, c.Id
                        where c.Published &&
                              !c.Deleted &&
-                             c.ShowOnHomepage
+                             c.ShowAsBanner
                        select c;
             });
 
@@ -411,6 +411,26 @@ namespace Nop.Services.Catalog
             });
 
             return result;
+        }
+
+        /// <summary>
+        /// Get popular category identifiers
+        /// </summary>
+        /// <param name="productIds">Product identifiers</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the category identifiers
+        /// </returns>
+        public virtual async Task<IList<int>> GetPopularCategoryIdsAsync(IList<int> productIds) 
+        {
+            if (productIds == null || productIds.Count == 0)
+                throw new ArgumentNullException(nameof(productIds));
+
+            var categoryIds = await (from pc in _productCategoryRepository.Table
+                              where productIds.Contains(pc.ProductId)
+                              select pc.CategoryId).Distinct().ToListAsync();
+
+            return categoryIds;
         }
 
         /// <summary>
