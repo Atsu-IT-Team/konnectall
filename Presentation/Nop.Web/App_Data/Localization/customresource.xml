@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Language Name="English">
+	<!--Admin Resource String-->
 	<LocaleResource Name="Admin.Catalog.Categories.Fields.ShowAsBanner">
 		<Value>Show as banner</Value>
 	</LocaleResource>
 	<LocaleResource Name="Admin.Catalog.Categories.Fields.ShowAsBanner.Hint">
 		<Value>Check if you want to show a category as banner on shop page.</Value>
 	</LocaleResource>
+	<!--Admin Resource String-->
+	
+	<!--Web Resource String-->
+	<LocaleResource Name="Shop.PopularCategory.Product.Count">
+		<Value>products</Value>
+	</LocaleResource>
+	<!--Web Resource String-->
 </Language>

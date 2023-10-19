@@ -44,7 +44,7 @@
     await Html.RenderPartialAsync("ShippingMethods.cshtml");
 }
 
-@if (Model.BannerCategories.Count > 2)
+@if (Model.BannerCategories.Count >= 2)
 {
     <section class="container collection sec-desc-categ">
         <div class="row">
@@ -70,7 +70,7 @@
     @await Component.InvokeAsync("HomepageDealOfDay")
 </div>
 
-@await Component.InvokeAsync("HomepageBestSellers")
+@await Component.InvokeAsync("PopularCategories")
 
 
 @foreach (var item in Model.Categories)
@@ -83,7 +83,7 @@
 
 
 
-<middle-banner></middle-banner>
+@* <middle-banner></middle-banner> *@
 
 @if (Model.BannerCategories.Count >= 3)
 {
@@ -104,7 +104,7 @@
                 </div>
             }
         </div>
-        <div class="col-md-6 col-sm-6 mobile-content">
+        @* <div class="col-md-6 col-sm-6 mobile-content">
             <img src="@banner6?.PictureModel?.ImageUrl" class="img-decora" alt="@banner6?.Name">
             <div class="content-decora-sect content-center">
                 <div class="font-light text-white text-small">@banner6?.Name</div>
@@ -113,7 +113,7 @@
                     <span class="btn-sm text-white  font-normal">@T("global.shopnow")</span>
                 </a>
             </div>
-        </div>
+        </div> *@
     </section>
 }
 

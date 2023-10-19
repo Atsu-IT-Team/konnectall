@@ -100,6 +100,16 @@ namespace Nop.Services.Catalog
         Task<IList<int>> GetAppliedCategoryIdsAsync(Discount discount, Customer customer);
 
         /// <summary>
+        /// Get popular category identifiers
+        /// </summary>
+        /// <param name="productIds">Product identifiers</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the category identifiers
+        /// </returns>
+        Task<IList<int>> GetPopularCategoryIdsAsync(IList<int> productIds);
+
+        /// <summary>
         /// Gets child category identifiers
         /// </summary>
         /// <param name="parentCategoryId">Parent category identifier</param>

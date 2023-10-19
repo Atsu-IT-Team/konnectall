@@ -121,6 +121,16 @@ namespace Nop.Web.Factories
         /// </returns>
         Task<XDocument> PrepareCategoryXmlDocumentAsync();
 
+        /// <summary>
+        /// Prepare popular category models
+        /// </summary>
+        /// <param name="products">Products collections</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the list of popular category models
+        /// </returns>
+        Task<List<PopularCategoryModel>> PreparePopularCategoryModelsAsync(IList<Product> products);
+
         #endregion
 
         #region Manufacturers
