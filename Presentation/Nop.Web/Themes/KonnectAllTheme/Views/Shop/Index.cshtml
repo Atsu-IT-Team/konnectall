@@ -46,7 +46,7 @@
 
 @if (Model.BannerCategories.Count >= 2)
 {
-    <section class="container collection sec-desc-categ">
+    <section class="container collection">
         <div class="row">
             @foreach (var item in Model.BannerCategories.Take(2))
             {
@@ -60,7 +60,7 @@
                         </a>
                     </div>
                 </div>
-            }
+            }            
         </div>
     </section>
 }
@@ -91,7 +91,7 @@
         <div class="row">
             @foreach (var item in Model.BannerCategories.Skip(2))
             {
-                <div class="col-md-3 col-sm-3 left-content">
+                <div class="col-md-3 col-sm-6 left-content">
                     <div></div>
                     <img src="@item?.ImageUrl" class="img-decora" alt="@item?.Name">
                     <div class="content-decora-sect ">

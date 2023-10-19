@@ -10,8 +10,8 @@
                     <h6 class="text-black text-left">@T("shop.PopularCategories.Detail")</h6>
                 </div>
                 <div class="right-section">
-                    <div id="slide-left" class="arrow-prev"></div>
-                    <div id="slide-right" class="arrow-next"></div>
+                    <div id="slide-left" class="arrow-prev"> ❮ </div>
+                    <div id="slide-right" class="arrow-next"> ❯ </div>
                 </div>
             </div>
 
@@ -22,12 +22,14 @@
                         {
                             <div class="thumbnail" data-categoryId="@item.CategoryId">
                                 <a href="@Url.RouteUrl("Category", new { SeName = item.SeName})" title="@item.CategoryName">
-                                    <img alt="@item.CategoryName" class="prod-img" src="@item.ImageUrl">
+                                    <div class="thumbnail__picture">
+                                        <img width="175" alt="@item.CategoryName" class="prod-img" src="@item.ImageUrl">
+                                    </div>
                                     <div class="product-details">
-                                        <div class="name-product font-semibold">
+                                        <div class="name-product font-semibold text-black-light">
                                             @item.CategoryName
                                         </div>
-                                        <div class="price-product font-light">
+                                        <div class="price-product font-light text-black-light">
                                             @item.ProductsCount @T("Shop.PopularCategory.Product.Count")
                                         </div>
                                     </div>
