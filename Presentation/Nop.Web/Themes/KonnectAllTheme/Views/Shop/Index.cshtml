@@ -36,7 +36,7 @@
 
 @section HomePageSlider{
     <div class="slider">
-        <img alt="" src="./assets/img/banner/slid-categ.png" class="banner-slid" />
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsTop })
     </div>
 }
 
@@ -46,6 +46,7 @@
 
 @if (Model.BannerCategories.Count >= 2)
 {
+    int i = 0;
     <section class="container collection">
         <div class="row">
             @foreach (var item in Model.BannerCategories.Take(2))
@@ -53,13 +54,14 @@
                 <div class="col-md-6 col-sm-6 right-collection">
                     <img alt="" src="@item?.ImageUrl" class="collection-img">
                     <div class="content-collection-sect ">
-                        <div class="font-normal text-black  text-small">@item?.Name</div>
-                        <h2 class="text-black text-left">@item?.Name</h2>
-                        <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.Name" itemprop="item" class="btn-sm-black btn-border">
-                            <span class="text-black font-normal">@T("global.shopnow")</span>
+                        <div class="font-normal @(i == 0 ? "text-white" : "text-black") text-small">@item?.Name</div>
+                        <h2 class="@(i == 0 ? "text-white" : "text-black") text-left">@item?.Name</h2>
+                        <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.Name" itemprop="item" class="@(i == 0 ? "btn-sm-white" : "btn-sm-black") btn-border">
+                            <span class="@(i == 0 ? "text-white" : "text-black") font-normal">@T("global.shopnow")</span>
                         </a>
                     </div>
                 </div>
+                i++;
             }            
         </div>
     </section>
@@ -81,17 +83,14 @@
 <script src="../Themes/KonnectAllTheme/Content/js/slide-product.js"></script>
 <script src="../Themes/KonnectAllTheme/Content/js/layout.js"></script>
 
-
-
-@* <middle-banner></middle-banner> *@
-
 @if (Model.BannerCategories.Count >= 3)
 {
+    int i = 0;
     <section class="container decora-crafts">
         <div class="row">
             @foreach (var item in Model.BannerCategories.Skip(2))
             {
-                <div class="col-md-3 col-sm-6 left-content">
+                <div class="@(i == 1 ? "col-md-6" : "col-md-3") col-sm-6 left-content">
                     <div></div>
                     <img src="@item?.ImageUrl" class="img-decora" alt="@item?.Name">
                     <div class="content-decora-sect ">
@@ -102,18 +101,9 @@
                         </a>
                     </div>
                 </div>
+                i++;
             }
         </div>
-        @* <div class="col-md-6 col-sm-6 mobile-content">
-            <img src="@banner6?.PictureModel?.ImageUrl" class="img-decora" alt="@banner6?.Name">
-            <div class="content-decora-sect content-center">
-                <div class="font-light text-white text-small">@banner6?.Name</div>
-                <h2 class="text-white text-left">@banner6?.Name</h2>
-                <a href="#" class="btn-sm-white">
-                    <span class="btn-sm text-white  font-normal">@T("global.shopnow")</span>
-                </a>
-            </div>
-        </div> *@
     </section>
 }
 

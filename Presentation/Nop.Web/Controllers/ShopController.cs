@@ -83,7 +83,7 @@ namespace Nop.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryService.GetAllCategoriesByParentCategoryIdAsync(0);
+            var categories = await _categoryService.GetAllCategoriesDisplayedOnHomepageAsync();
 
             var bannerCategory = await _categoryService.GetAllCategoriesDisplayedAsBannerAsync();
 

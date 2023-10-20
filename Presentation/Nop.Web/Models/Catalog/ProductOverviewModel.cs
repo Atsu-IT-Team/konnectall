@@ -22,6 +22,8 @@ namespace Nop.Web.Models.Catalog
 
         public string Sku { get; set; }
 
+        public string DeliveryDate { get; set; }
+
         public ProductType ProductType { get; set; }
 
         public bool MarkAsNew { get; set; }

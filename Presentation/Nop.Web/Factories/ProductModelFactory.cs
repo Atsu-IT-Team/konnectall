@@ -1242,6 +1242,7 @@ namespace Nop.Web.Factories
             if (products == null)
                 throw new ArgumentNullException(nameof(products));
 
+            var availableDeliveryDates = await _dateRangeService.GetAllDeliveryDatesAsync();
             var models = new List<ProductOverviewModel>();
             foreach (var product in products)
             {
@@ -1275,6 +1276,17 @@ namespace Nop.Web.Factories
                 if (prepareSpecificationAttributes)
                 {
                     model.ProductSpecificationModel = await PrepareProductSpecificationModelAsync(product);
+                }
+
+                //delivery date range
+                if (product.IsShipEnabled)
+                {
+                    //delivery date
+                    var deliveryDate = availableDeliveryDates.Where(x => x.Id == product.DeliveryDateId).FirstOrDefault();
+                    if (deliveryDate != null)
+                    {
+                        model.DeliveryDate = await _localizationService.GetLocalizedAsync(deliveryDate, dd => dd.Name);
+                    }
                 }
 
                 //reviews
