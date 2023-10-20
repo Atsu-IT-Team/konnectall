@@ -4418,6 +4418,13 @@ ul li a:hover {
     width: 80%;
   }
 }
+.shop-page .popular-categ .thumbnail__picture img {
+  height: 175px;
+}
+.shop-page .popular-categ .product-details {
+  background-color: transparent;
+  margin-top: 10px;
+}
 .shop-page .popular-categ .content-popular-categ .slide-container section .thumbnail {
   background: transparent;
   border-color: transparent;
@@ -4425,9 +4432,6 @@ ul li a:hover {
 .shop-page .popular-categ .content-popular-categ .slide-container section .thumbnail > img {
   max-width: 170px;
   margin-bottom: 10px;
-}
-.shop-page .popular-categ .content-popular-categ .slide-container section .thumbnail .thumbnail__picture img {
-  height: 175px;
 }
 .shop-page .popular-categ .content-popular-categ .slide-container section .thumbnail .product-details {
   background-color: transparent;

@@ -32,10 +32,10 @@
                         </a>
                         </div>
                         <div class="info-product">
-                            <a style="min-height:75px !important; " class="name-product" href="@Url.RouteUrl("Product", new {SeName = @product.SeName})" title="@product.Name">
+                            <a style="min-height:55px !important; " class="name-product" href="@Url.RouteUrl("Product", new {SeName = @product.SeName})" title="@product.Name">
                                 @FormatProductName(@product.Name)
                             </a>
-                            <span>@product.DeliveryDate</span>
+                            <div class="text-center">@product.DeliveryDate</div>
                             <div class="price-product shop-item-price">
                                 @product.ProductPrice.Price
                             </div>
