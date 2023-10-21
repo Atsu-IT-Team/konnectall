@@ -106,7 +106,7 @@
                                                 <ul class="top-1v1-menu list-unstyled">
                                                     @if (Model.DisplayHomepageMenuItem)
                                                     {
-                                                        <li class="col-md-12">
+                                                        <li>
                                                             <a href="@Url.RouteUrl("HomePage")"><i class="fa fa-home fa-fw"></i></a>
                                                         </li>
                                                     }
@@ -116,11 +116,13 @@
 
                                                         @if (category.SubCategories.Count > 0)
                                                         {
-                                                            <li class="col-md-3">
-                                                                <label>
+                                                            <li>
+                                                                <a class="sub-categ-item">
+                                                                    <img src="~/Themes/KonnectAllTheme/Content/img/menu/electronics.png" />
                                                                     <span>@category.Name</span>
-                                                                </label>
-                                                                <div>
+                                                                    <i class="fas fa-solid fa-chevron-right" aria-hidden="true"></i>
+                                                                </a>
+                                                                <div class="dropdown-submenu sub-menu">
                                                                     <ul class="sub-menu">
                                                                         @foreach (var item in @category.SubCategories)
                                                                         {
@@ -134,7 +136,7 @@
                                                             count++;
                                                             if (count == 4)
                                                             {
-                                                                <li class="col-md-12"></li>
+                                                                <li></li>
                                                                 count = 0;
                                                             }
                                                         }
@@ -145,31 +147,31 @@
                                             <ul class="top-1v1-menu list-unstyled">
                                                 @foreach (var topic in Model.Topics)
                                                 {
-                                                    <li class="col-md-3 menu-item"><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
+                                                    <li class="menu-item"><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
                                                 }
                                                 @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
                                                 {
-                                                    <li class="col-md-3 menu-item"><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
+                                                    <li class="menu-item"><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
                                                 }
                                                 @if (Model.DisplayProductSearchMenuItem)
                                                 {
-                                                    <li class="col-md-3 menu-item"><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
+                                                    <li class="menu-item"><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
                                                 }
                                                 @if (Model.DisplayCustomerInfoMenuItem)
                                                 {
-                                                    <li class="col-md-3 menu-item"><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                                                    <li class="menu-item"><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
                                                 }
                                                 @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
                                                 {
-                                                    <li class="col-md-3 menu-item"><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
+                                                    <li class="menu-item"><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
                                                 }
                                                 @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
                                                 {
-                                                    <li class="col-md-3 menu-item"><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
+                                                    <li class="menu-item"><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
                                                 }
                                                 @if (Model.DisplayContactUsMenuItem)
                                                 {
-                                                    <li class="col-md-3 menu-item"><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                                                    <li class="menu-item"><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
                                                 }
                                                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuAfter, additionalData = Model })
                                             </ul>

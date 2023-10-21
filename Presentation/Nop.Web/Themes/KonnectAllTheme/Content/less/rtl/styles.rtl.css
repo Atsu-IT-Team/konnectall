@@ -4496,6 +4496,13 @@ ul li a:hover {
 .shop-page .popular-categ .head-popular-categ h6 {
   text-align: right !important;
 }
+.shop-page .popular-categ .thumbnail__picture img {
+  height: 175px;
+}
+.shop-page .popular-categ .product-details {
+  background-color: transparent;
+  margin-top: 10px;
+}
 .shop-page .popular-categ .content-popular-categ .slide-container section .thumbnail {
   background: transparent;
   border-color: transparent;
@@ -4503,13 +4510,6 @@ ul li a:hover {
 .shop-page .popular-categ .content-popular-categ .slide-container section .thumbnail > img {
   max-width: 170px;
   margin-bottom: 10px;
-}
-.shop-page .popular-categ .content-popular-categ .slide-container section .thumbnail .thumbnail__picture img {
-  height: 175px;
-}
-.shop-page .popular-categ .content-popular-categ .slide-container section .thumbnail .product-details {
-  background-color: transparent;
-  margin-top: 10px;
 }
 .shop-page .popular-categ .content-popular-categ .product .product-img {
   min-height: auto;
@@ -4584,6 +4584,7 @@ ul li a:hover {
 }
 .shop-page .swiper-button-next {
   left: 53px;
+  right: auto;
 }
 .shop-page .thumbnail {
   background: transparent;
@@ -8484,8 +8485,8 @@ section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wr
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li .dropdown-submenu {
   display: none;
   position: absolute;
-  width: 650px;
-  right: 103%;
+  width: 100%;
+  right: 100%;
   background-color: #ffffff;
   top: 1rem;
 }
