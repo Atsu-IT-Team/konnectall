@@ -1,6 +1,33 @@
 ﻿@model ManufacturerFilterModel
 
-<div class="product-filter product-manufacturer-filter well">
+<div class="sidebar-inner Brand">
+    <div class="sidebar-item accordeon-item">
+        <div class="sidebar-title accordeon-title">
+            <h5 class="text-left">@T("Manufacturers")</h5>
+        </div>
+
+        <ul class="sidebar-content accordeon_content show">
+            @foreach (var manufacturer in Model.Manufacturers)
+            {
+                <li class="item">
+                    <input id="attribute-manufacturer-@manufacturer.Value" type="checkbox" data-manufacturer-id="@manufacturer.Value" checked="@manufacturer.Selected" />
+                    <label for="attribute-manufacturer-@manufacturer.Value">
+                        @manufacturer.Text
+                    </label>
+                </li>
+            }
+        </ul>
+        @* @if (Model.TotalManufacturers > Model.Manufacturers.Count)
+        {
+            <div class="view-all text-center">
+                <a href="@Url.RouteUrl("ManufacturerList")">@T("Manufacturers.ViewAll")</a>
+            </div>
+        } *@
+        
+    </div>
+</div>
+
+@* <div class="product-filter product-manufacturer-filter well">
     <div class="filter-title">
         <i class="fa fa-arrow-circle-right"></i>
         <strong>@T("Filtering.ManufacturerFilter")</strong>
@@ -18,7 +45,7 @@
             }
         </ul>
     </div>
-</div>
+</div> *@
 <script asp-location="Footer">
     $(document).ready(function () {
         var $msEls = $('[data-manufacturer-id]');
