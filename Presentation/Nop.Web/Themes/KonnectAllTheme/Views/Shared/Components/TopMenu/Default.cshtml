@@ -3,7 +3,7 @@
 @functions {
     async Task CategoryLine(TopMenuModel.CategoryLineModel lineModel)
     {
-        <li>
+        <li class="menu-item">
             <a href="@Url.RouteUrl("Category", new { SeName = lineModel.Category.SeName })">
                 @lineModel.Category.Name
                 @if (lineModel.Category.NumberOfProducts.HasValue)
@@ -29,7 +29,7 @@
                 if (subCategories.Count > 0)
                 {
                     <div class="sublist-toggle"></div>
-                    <ul class="sublist @levelClass">
+                    <ul class="dropdown-submenu sub-menu @levelClass">
                         @foreach (var subCategory in subCategories)
                         {
                             var categoryLineModel = new TopMenuModel.CategoryLineModel
@@ -96,8 +96,10 @@
                                         @T("topMenu.B2BShop.AllCategories")
                                         <i class="fas fa-solid fa-chevron-down" aria-hidden="true"></i>
                                     </a>
-
-                                    <ul class="top-menu notmobile">
+                                    <div class="menu-children">
+                                    <div class="product-menu-item">
+                                    
+                                    <ul class="top-1v1-menu list-unstyled">
                                         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore, additionalData = Model })
                                         @if (Model.DisplayHomepageMenuItem)
                                         {
@@ -117,6 +119,8 @@
 
                                         }
                                     </ul>
+                                    </div>
+                                    </div>
                                 </li>
                                 <li class="top-menu-item">
                                     <a href="/Shop">@T("topMenu.B2BShop.HotDeals")</a>

@@ -8239,9 +8239,6 @@ section.header .navbar .horizantal-menu ul.menu li.menu-item:first-child:hover .
 section.header .navbar .horizantal-menu ul.menu li.menu-item .mega-menu-wrap {
   display: none;
 }
-section.header .navbar .horizantal-menu ul.menu li.menu-item:hover {
-  background-color: #404040;
-}
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover a {
   color: #ffffff;
 }
@@ -8319,14 +8316,9 @@ section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wr
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu {
   position: relative;
 }
-section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li {
-  border-top: 0px solid rgba(0, 0, 0, 0.125);
-  position: relative;
-  border-bottom: 1px solid #ccc;
-}
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li:hover .dropdown-submenu {
-  display: block;
   z-index: 12;
+  display: grid;
 }
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li a {
   color: #000 !important;
@@ -8339,13 +8331,15 @@ section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wr
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li .dropdown-submenu {
   display: none;
   position: absolute;
-  width: 275px;
   left: 100%;
-  border-left: 1px solid #ccc;
-  background-color: #e8eef0;
-  border: 1px solid #ccc;
   top: 1%;
-  border-radius: 4px;
+  top: 0;
+  column-gap: 15px;
+  grid-template-columns: auto auto;
+  padding: 10px;
+  width: 650px;
+  white-space: nowrap;
+  background: #fff;
 }
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li .dropdown-submenu .mega-menu-content {
   padding-left: 35px;
@@ -8403,6 +8397,16 @@ section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wr
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li .dropdown-submenu .mega-menu-image .content-img .btn-primary span {
   font-size: 11px;
 }
+section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li .dropdown-submenu .dropdown-submenu {
+  position: relative;
+  display: block;
+  left: 0;
+  padding: 0;
+  width: auto;
+  border-bottom: 1px solid #ddd;
+  padding: 0 0 15px;
+  margin: 0 0 15px;
+}
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li ul.dropdown-submenu li {
   border-top: transparent;
   line-height: 10px;
@@ -8411,7 +8415,6 @@ section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wr
   font-size: 13px;
   padding: 13px;
   line-height: 8px;
-  width: 150px;
   box-sizing: unset;
   overflow: hidden;
   white-space: nowrap;
@@ -8430,7 +8433,6 @@ section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wr
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li ul.dropdown-submenu li a:hover {
   padding-left: 20px;
   color: #28befe !important;
-  background-color: #ffffff;
 }
 section.header .navbar .horizantal-menu ul.menu li.menu-item:hover .mega-menu-wrap .mega-menu-products-inners ul.top-menu li.top-menu-item .menu-children ul.top-1v1-menu li ul.dropdown-submenu li a:hover:before {
   width: 40px;

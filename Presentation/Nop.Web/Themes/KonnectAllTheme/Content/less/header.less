@@ -1064,7 +1064,6 @@ section.header {
                     }
 
                     &:hover {
-                        background-color: @gray-dark2;
 
                         a {
                             color: @white-color;
@@ -1149,16 +1148,14 @@ section.header {
                                                 position: relative;
 
                                                 li {
-                                                    border-top: 0px solid rgba(0,0,0,0.125);
-                                                    position: relative;
-                                                    border-bottom: 1px solid #ccc;
 
                                                     &:hover {
                                                         .dropdown-submenu {
-                                                            display: block;
                                                             z-index: 12;
+                                                            display: grid;
                                                         }
                                                     }
+
 
                                                     a {
                                                         color: @black-color !important;
@@ -1169,17 +1166,23 @@ section.header {
                                                         z-index: 10;
                                                     }
 
+                                                    
+
                                                     .dropdown-submenu {
                                                         display: none;
                                                         position: absolute;
-                                                        width: 275px;
+                                                        width: 650px;
                                                         left: 100%;
-                                                        border-left: 1px solid #ccc;
                                                         top: 1%;
-                                                        background-color: #e8eef0;
-                                                        border: 1px solid #ccc;
-                                                        top: 1%;
-                                                        border-radius: 4px;
+                                                        top: 0;
+                                                        column-gap: 15px;
+                                                        grid-template-columns: auto auto;
+                                                        padding: 10px;
+                                                        width: 650px;
+                                                        white-space: nowrap;
+                                                        background: #fff;
+
+
 
                                                         .mega-menu-content {
                                                             padding-left: 35px;
@@ -1248,6 +1251,17 @@ section.header {
                                                                 }
                                                             }
                                                         }
+
+                                                        .dropdown-submenu {
+                                                            position: relative;
+                                                            display: block;
+                                                            left: 0;
+                                                            padding: 0;
+                                                            width: auto;
+                                                            border-bottom: 1px solid #ddd;
+                                                            padding: 0 0 15px;
+                                                            margin: 0 0 15px;
+                                                        }
                                                     }
 
                                                     ul.dropdown-submenu li {
@@ -1256,10 +1270,8 @@ section.header {
 
                                                         a {
                                                             font-size: 13px;
-                                                            //line-height: 10px;
                                                             padding: 13px;
                                                             line-height: 8px;
-                                                            width: 150px;
                                                             box-sizing: unset;
                                                             overflow: hidden;
                                                             white-space: nowrap;
@@ -1279,7 +1291,6 @@ section.header {
                                                             &:hover {
                                                                 padding-left: 20px;
                                                                 color: @primary-color !important;
-                                                                background-color: @white-color;
                                                             }
 
                                                             &:hover:before {
