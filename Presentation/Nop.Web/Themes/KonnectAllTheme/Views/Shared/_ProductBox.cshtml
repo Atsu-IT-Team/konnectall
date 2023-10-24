@@ -129,10 +129,11 @@
                 @if (!Model.ProductPrice.DisableWishlistButton)
                 {
                     <br />
-                    <div class="product-addtocart-wrapper">
+                    <div class="product-addtocart-wrapper shop-item-button-absoulet">
                         <a data-toggle="tooltip" data-placement="top" class="add-cart shop-item-button" title="@T("ShoppingCart.AddToWishlist")"
                        onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">
-                            @T("ShoppingCart.AddToWishlist")
+                            @*@T("ShoppingCart.AddToWishlist")*@
+                            <span class="lnr lnr-heart"></span>
                         </a>
                     </div>
                 }

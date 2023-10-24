@@ -145,4 +145,10 @@
     </div>
 </div>
 
-
+<script asp-location="Footer">
+    $(document).ready(function(){
+        $('.sidebar-title.accordeon-title').on('click', function () {
+            $(this).next('.sidebar-content').toggleClass('show');
+        });
+    })
+</script>

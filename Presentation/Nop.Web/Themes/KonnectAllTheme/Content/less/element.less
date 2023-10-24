@@ -553,6 +553,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 
     .product-img {
         min-height: 200px;
@@ -610,6 +611,30 @@
             &::before {
                 background-color: #28befe;
             }
+        }
+    }
+
+    .shop-item-button-absoulet {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .shop-item-button {
+            margin: 0;
+            width: 36px;
+            height: 36px;
+            text-align: center;
+            border-radius: 180px;
+            line-height: 28px;
+            font-size: 16px;
+        }
+
+        .shop-item-button:hover {
+            background-color: #fff !important;
+        }
+
+        .shop-item-button:hover:before {
+            background-color: #fff !important;
         }
     }
 }

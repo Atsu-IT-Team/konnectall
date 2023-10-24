@@ -14,7 +14,7 @@
 }
 @{
     string parentCategId = Model.Id.ToString();
-}   
+}
 
 <input type="hidden" id="RequestVerificationToken" name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
 <section class="container beverages">
@@ -26,9 +26,12 @@
             <span class="line-after"></span>
         </div>
         <div class="right-section">
+            
+        </div>
+        @*<div class="right-section">
             <div id="arrow-next" class="arrow-next">&lt;</div>
             <div id="arrow-prev" class="arrow-prev">></div>
-        </div>
+        </div>*@
     </div>
     <div class="row">
         <div class="col-md-3 banner-beverage">
@@ -46,26 +49,31 @@
         <div class="col-md-9">
             <div class="row brand-beverages">
                 <div class="row">
-                    <div class="slide-container">
-                        <div id="slider1">
-                            @foreach (var item in Model.SubCategories)
-                            {
-                                var bgImg = item.PictureModel.FullSizeImageUrl.Contains(".svg") ? "background-color: #ccc" : string.Empty; 
-                                <div class="beverages-brand" id="divSubCategory" onclick="ShowProductsOfCategory_details(@parentCategId,@item.Id)">
+                        <div class="cosmetics-swiper swiper">
+                            <div class="slide-container swiper-cosmetics">
+                                <div class="card-wrapper swiper-wrapper">
+                                    @foreach (var item in Model.SubCategories)
+                                    {
+                                        var bgImg = item.PictureModel.FullSizeImageUrl.Contains(".svg") ? "background-color: #ccc" : string.Empty;
+                                        <div class="swiper-slide">
+                                            <div class="beverages-brand" id="divSubCategory" onclick="ShowProductsOfCategory_details(@parentCategId,@item.Id)">
 
-                                    <div class="img-brand" >
-                                        <img alt="@item.PictureModel.AlternateText" class="prod-img" style="@bgImg" src="@item.PictureModel.FullSizeImageUrl" title="@item.PictureModel.Title">
-                                    </div>
-                                    <div class="product-details text-capitalize">
-                                        <h6>@item.Name</h6>
-                                    </div>
+                                                <div class="img-brand">
+                                                    <img alt="@item.PictureModel.AlternateText" class="prod-img" style="@bgImg" src="@item.PictureModel.FullSizeImageUrl" title="@item.PictureModel.Title">
+                                                </div>
+                                                <div class="product-details text-capitalize">
+                                                    <h6>@item.Name</h6>
+                                                </div>
 
+                                            </div>
+                                        </div>
+                                    }                                    
                                 </div>
-
-                            }
-
+                            </div>
+                            <div class="swiper-button-next btn-cosmetics-next swiper-navBtn"></div>
+                            <div class="swiper-button-prev btn-cosmetics-prev swiper-navBtn"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
-                    </div>
                 </div>
             </div>
             <div class="row">
@@ -77,7 +85,7 @@
 
                     }
                 </div>
-            
+
             </div>
         </div>
     </div>
