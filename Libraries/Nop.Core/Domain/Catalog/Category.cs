@@ -54,6 +54,11 @@ namespace Nop.Core.Domain.Catalog
         public int PictureId { get; set; }
 
         /// <summary>
+        /// Gets or sets the icon identifier
+        /// </summary>
+        public int IconId { get; set; }
+
+        /// <summary>
         /// Gets or sets the page size
         /// </summary>
         public int PageSize { get; set; }

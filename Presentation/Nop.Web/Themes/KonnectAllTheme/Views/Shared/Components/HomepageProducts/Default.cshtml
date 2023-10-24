@@ -22,7 +22,7 @@
 {
     <div class="store-product juices" style="display:block">
         <ul id="item-shop">
-            @foreach (var product in Model)
+            @foreach (var product in Model.Take(8))
             {
                 <li class="myItem">
                     <div class="product">

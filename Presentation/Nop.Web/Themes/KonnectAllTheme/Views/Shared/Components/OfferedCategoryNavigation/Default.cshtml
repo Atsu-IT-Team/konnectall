@@ -1,0 +1,35 @@
+﻿@model List<OfferedCategoryModel>
+@using Nop.Core.Domain.Common
+@using Nop.Core.Domain.Seo
+@inject Nop.Core.IWebHelper webHelper
+@inject SeoSettings seoSettings
+@inject CommonSettings commonSettings
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@if (Model.Count > 0)
+{
+    @foreach (var item in Model)
+    {
+        <div class="sidebar-img">
+            <img alt="" class="img-sidebar" src="@item.ImageUrl">
+            <div class="content-sidebar">
+                <h3 class="text-white">Our Catalog</h3>
+                <h2 class="text-white">@item.Name</h2>
+                <a class="btn btn-primary" href="@Url.RouteUrl("Category", new { SeName = @item.SeName })"><span>@T("global.shopnow")</span></a>
+            </div>
+        </div>
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

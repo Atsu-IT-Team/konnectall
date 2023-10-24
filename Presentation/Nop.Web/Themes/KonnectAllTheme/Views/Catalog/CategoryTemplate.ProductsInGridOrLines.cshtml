@@ -42,10 +42,9 @@
 @section CategoryDetailsAfterBreadcrumb {
 
     <div class="slider" style="position: relative">
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsAfterBreadcrumb, additionalData = Model })
+        @* @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsAfterBreadcrumb, additionalData = Model }) *@
+        <img alt="@Model.PictureModel.AlternateText" src="@Model.PictureModel.FullSizeImageUrl" title="@Model.PictureModel.Title" />
     </div>
-
-
 }
 
 @section TopBanner {
