@@ -417,6 +417,23 @@ namespace Nop.Web.Factories
             var currentStore = await _storeContext.GetCurrentStoreAsync();
             var pictureSize = _mediaSettings.CategoryThumbPictureSize;
 
+            //category picture
+            var picture = await _pictureService.GetPictureByIdAsync(category.PictureId);
+            string fullSizeImageUrl, imageUrl;
+
+            (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
+            (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, pictureSize);
+
+            model.PictureModel = new PictureModel
+            {
+                FullSizeImageUrl = fullSizeImageUrl,
+                IconUrl = imageUrl,
+                Title = string.Format(await _localizationService
+                    .GetResourceAsync("Media.Category.ImageLinkTitleFormat"), category.Name),
+                AlternateText = string.Format(await _localizationService
+                    .GetResourceAsync("Media.Category.ImageAlternateTextFormat"), category.Name)
+            };
+
             //subcategories
             model.SubCategories = await (await _categoryService.GetAllCategoriesByParentCategoryIdAsync(category.Id))
                 .SelectAwait(async curCategory =>
@@ -436,7 +453,7 @@ namespace Nop.Web.Factories
 
                     subCatModel.PictureModel = await _staticCacheManager.GetAsync(categoryPictureCacheKey, async () =>
                     {
-                        var picture = await _pictureService.GetPictureByIdAsync(curCategory.PictureId);
+                        var picture = await _pictureService.GetPictureByIdAsync(curCategory.IconId);
                         string fullSizeImageUrl, imageUrl;
 
                         (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
@@ -445,7 +462,7 @@ namespace Nop.Web.Factories
                         var pictureModel = new PictureModel
                         {
                             FullSizeImageUrl = fullSizeImageUrl,
-                            ImageUrl = imageUrl,
+                            IconUrl = imageUrl,
                             Title = string.Format(await _localizationService
                                 .GetResourceAsync("Media.Category.ImageLinkTitleFormat"), subCatModel.Name),
                             AlternateText = string.Format(await _localizationService

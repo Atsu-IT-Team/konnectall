@@ -111,8 +111,9 @@
                         @await RenderSectionAsync("CatalogFilters", true)                       
                         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfterCategoryNavigation })
                         @await Component.InvokeAsync("ManufacturerNavigation", new { currentManufacturerId = currentManufacturerId })
+                        @await Component.InvokeAsync("OfferedCategoryNavigation")
                         @*@await Component.InvokeAsync("VendorNavigation")*@
-                        @await Component.InvokeAsync("RecentlyViewedProductsBlock", new { productThumbPictureSize = 64 })
+                        @* @await Component.InvokeAsync("RecentlyViewedProductsBlock", new { productThumbPictureSize = 64 }) *@
                         @await Component.InvokeAsync("PopularProductTags")
                         @await Component.InvokeAsync("PollBlock", new { systemKeyword = "LeftColumnPoll" })
                         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfter })
