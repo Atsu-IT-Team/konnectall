@@ -4,7 +4,7 @@
     async Task CategoryLine(TopMenuModel.CategoryLineModel lineModel)
     {
         <li class="menu-item">
-            <a href="@Url.RouteUrl("Category", new { SeName = lineModel.Category.SeName })">
+            <a href="@Url.RouteUrl("Category", new { SeName = lineModel.Category.SeName })" class="@(lineModel.Level == 1 ? "block-class" : "")">
                 @lineModel.Category.Name
                 @if (lineModel.Category.NumberOfProducts.HasValue)
                 {
@@ -33,11 +33,11 @@
                         @foreach (var subCategory in subCategories)
                         {
                             var categoryLineModel = new TopMenuModel.CategoryLineModel
-                    {
-                        Category = subCategory,
-                        Level = lineModel.Level + 1,
-                        ResponsiveMobileMenu = lineModel.ResponsiveMobileMenu
-                    };
+                            {
+                                Category = subCategory,
+                                Level = lineModel.Level + 1,
+                                ResponsiveMobileMenu = lineModel.ResponsiveMobileMenu
+                            };
                             await CategoryLine(categoryLineModel);
                         }
                     </ul>
@@ -121,48 +121,6 @@
                                     </ul>
                                     </div>
                                     </div>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop">@T("topMenu.B2BShop.HotDeals")</a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop">@T("topMenu.B2BShop.TopSellings")</a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop">@T("topMenu.B2BShop.SeeAll")</a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
-                                </li>
-                                <li class="top-menu-item">
-                                    <a href="/Shop"></a>
                                 </li>
                             </ul>
                         </div>
