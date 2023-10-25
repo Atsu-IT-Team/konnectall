@@ -24,8 +24,10 @@
         }
 
         .menu {
-            > li.menu-item {
+            .menu-item-has-children{
                 position: relative;
+            }
+            > li.menu-item {
                 border-bottom: 1px solid #dedede;
                 padding: 10px;
 
@@ -1000,6 +1002,10 @@ section.header {
 
         .horizantal-menu {
 
+            .menu-item.menu-item-has-children {
+                position: relative;
+            }
+
             ul.menu {
                 list-style: none;
                 display: flex;
@@ -1020,6 +1026,7 @@ section.header {
                 }
 
                 li.menu-item {
+
                     > a {
                         color: @black-color;
                         position: relative;
@@ -1069,15 +1076,17 @@ section.header {
                             color: @white-color;
                         }
 
+
+
                         .mega-menu-wrap {
                             display: block;
                             position: absolute;
                             top: 67px;
                             background-color: @gray-dark2;
                             height: auto;
-                            left: 0;
+                            right: 0;
                             z-index: 10;
-                            width: 100%;
+                            width: 250px;
                             animation: fade_in_show 0.5s;
 
                             @media(max-width:1200px) {
@@ -1090,12 +1099,15 @@ section.header {
 
                             .mega-menu-products-inners {
                                 position: relative;
+                                width: 100%;
+                                padding: 0;
 
                                 ul.top-menu {
                                     width: 100%;
                                     display: flex;
 
                                     li.top-menu-item {
+                                        width: 100%;
 
                                         > a {
                                             color: @white-color;
@@ -1138,11 +1150,11 @@ section.header {
                                         }
 
                                         .menu-children {
-                                            display: none;
-                                            position: absolute;
+                                            /*  display: none;
+                                            position: absolute;*/
                                             background-color: @white-color;
-                                            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.40);
-                                            border-radius: 5px;
+                                            /*box-shadow: 0 7px 15px rgba(0, 0, 0, 0.40);
+                                            border-radius: 5px;*/
 
                                             ul.top-1v1-menu {
                                                 position: relative;
@@ -1158,21 +1170,27 @@ section.header {
 
 
                                                     a {
+                                                        display: block;
                                                         color: @black-color !important;
                                                         font-weight: 300;
                                                         position: relative;
                                                         font-size: 14px;
-                                                        padding: 10px 7px;
+                                                        padding: 10px 15px;
                                                         z-index: 10;
+                                                        text-align: right;
                                                     }
 
-                                                    
+                                                    a.text{
+                                                        text-align:left;
+                                                    }
+
+
 
                                                     .dropdown-submenu {
                                                         display: none;
                                                         position: absolute;
                                                         width: 650px;
-                                                        left: 100%;
+                                                        right: 100%;
                                                         top: 1%;
                                                         top: 0;
                                                         column-gap: 15px;
@@ -1181,7 +1199,7 @@ section.header {
                                                         width: 650px;
                                                         white-space: nowrap;
                                                         background: #fff;
-
+                                                        min-height: 100%;
 
 
                                                         .mega-menu-content {
@@ -1261,12 +1279,17 @@ section.header {
                                                             border-bottom: 1px solid #ddd;
                                                             padding: 0 0 15px;
                                                             margin: 0 0 15px;
+                                                            min-height: auto;
                                                         }
                                                     }
 
                                                     ul.dropdown-submenu li {
                                                         border-top: transparent;
                                                         line-height: 10px;
+
+                                                        a.block-class {
+                                                            font-weight: 600;
+                                                        }
 
                                                         a {
                                                             font-size: 13px;
@@ -1357,6 +1380,11 @@ section.header {
                                     }
                                 }
                             }
+                        }
+
+                        .mega-menu-wrap.left-menu {
+                            left: 0;
+                            right:auto;
                         }
                     }
                 }

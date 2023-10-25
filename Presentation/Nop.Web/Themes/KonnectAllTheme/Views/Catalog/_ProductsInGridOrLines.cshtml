@@ -12,9 +12,9 @@
 {
     <div class="@(Model.ViewMode == "list" ? "product-list" : "product-grid")">
         <div class="item-grid">
-            <div class="row" style="margin-left:20px !important">
+            <div class="row row-prd">
 
-                <ul id="item1">
+                <ul id="item1" style="@(Model.ViewMode == "list" ? "display:block;" : "")">
                     @foreach (var product in Model.Products)
                     {
                         <li class="myItem">

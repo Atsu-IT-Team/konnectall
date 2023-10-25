@@ -148,6 +148,7 @@
 <script asp-location="Footer">
     $(document).ready(function(){
         $('.sidebar-title.accordeon-title').on('click', function () {
+            $(this).toggleClass("active");
             $(this).next('.sidebar-content').toggleClass('show');
         });
     })

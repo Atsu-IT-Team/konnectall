@@ -42,7 +42,7 @@
     var addtocomparelink = Url.RouteUrl("AddProductToCompare", new { productId = Model.Id });
 }
 
-<div data-productid="@Model.Id">
+<div class="prd-wrapper" data-productid="@Model.Id">
     <div class="product-img">
         <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.DefaultPictureModel.Title">
             <img class="prod-img" alt="@Model.DefaultPictureModel.AlternateText" data-src="@Model.DefaultPictureModel.ImageUrl" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" />
