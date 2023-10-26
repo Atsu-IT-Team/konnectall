@@ -48,8 +48,8 @@
             <img class="prod-img" alt="@Model.DefaultPictureModel.AlternateText" data-src="@Model.DefaultPictureModel.ImageUrl" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" />
         </a>
     </div>
-    <div class="info-product" style="padding-bottom:20px !important;">
-        <a style="min-height:75px !important; " class="name-product text-black" href="@Url.RouteUrl("Product", new {SeName = Model.SeName})" title="@Model.Name">
+    <div class="info-product">
+        <a class="name-product text-black" href="@Url.RouteUrl("Product", new {SeName = Model.SeName})" title="@Model.Name">
             @FormatProductName(@Model.Name)
         </a>
         @if (catalogSettings.ShowSkuOnCatalogPages && !string.IsNullOrEmpty(Model.Sku))

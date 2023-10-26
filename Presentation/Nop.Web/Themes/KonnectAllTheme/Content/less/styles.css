@@ -829,6 +829,20 @@ ul li a:hover {
 .content-page .get-to-know-us .services .content-services h4 {
   text-align: left;
 }
+.html-topic-page .slider .content-slid .title-slider {
+  margin-left: auto;
+  margin-right: auto;
+}
+.html-topic-page .b2b-category .slider .content-slid h2 {
+  line-height: 1;
+  margin-top: 30px !important;
+}
+.html-topic-page .b2b-category .slider .content-slid {
+  align-items: center;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+}
 /*--------------------------------------------------------------
 # about us style
 --------------------------------------------------------------*/
@@ -3818,6 +3832,7 @@ ul li a:hover {
 @media (max-width: 991px) {
   .b2b-category .category-content .row .col-md-9 {
     padding-left: 0;
+    width: 100%;
   }
 }
 .b2b-category .category-content .row #item,
@@ -9738,6 +9753,7 @@ select:focus {
   border-radius: 180px;
   line-height: 28px;
   font-size: 16px;
+  background-color: #fff;
 }
 .product .shop-item-button-absoulet .shop-item-button:hover {
   background-color: #fff !important;
@@ -9750,6 +9766,7 @@ select:focus {
 }
 .product-list .product .prd-wrapper {
   display: flex;
+  align-items: center;
 }
 .product-list .product .info-product {
   margin-left: 15px;
@@ -9757,8 +9774,17 @@ select:focus {
 .product-list .product .info-product .buttons {
   margin-bottom: 0;
 }
+.product-list .product .name-product {
+  max-width: 190px;
+  margin: 0 0 5px;
+}
+.product-list .product .shop-item-button-absoulet {
+  left: 0;
+  right: auto;
+}
 .mode .viewmode-icon {
   color: #777;
+  margin: 0 3px;
 }
 .mode .viewmode-icon.selected {
   color: #000;
