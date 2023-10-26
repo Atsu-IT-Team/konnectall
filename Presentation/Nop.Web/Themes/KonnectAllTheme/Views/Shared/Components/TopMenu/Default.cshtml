@@ -33,11 +33,11 @@
                         @foreach (var subCategory in subCategories)
                         {
                             var categoryLineModel = new TopMenuModel.CategoryLineModel
-                            {
-                                Category = subCategory,
-                                Level = lineModel.Level + 1,
-                                ResponsiveMobileMenu = lineModel.ResponsiveMobileMenu
-                            };
+                    {
+                        Category = subCategory,
+                        Level = lineModel.Level + 1,
+                        ResponsiveMobileMenu = lineModel.ResponsiveMobileMenu
+                    };
                             await CategoryLine(categoryLineModel);
                         }
                     </ul>
@@ -46,14 +46,16 @@
         </li>
     }
 }
-
+@{
+    var whatIsKonnectAllTopic = Model.Topics.FirstOrDefault();
+}
 
 <div class="navbar">
     <div class="container">
         <div class="horizantal-menu">
             <ul class="menu">
                 <li class="menu-item menu-item-has-children">
-                    <a class="font-medium text-black" href="/GetToKnow">
+                    <a class="font-medium text-black" href="@Url.RouteUrl("Topic", new { SeName = whatIsKonnectAllTopic.SeName })">
                         @T("topMenu.KnowUs")
                         <i class="fas fa-solid fa-chevron-down" aria-hidden="true"></i>
                     </a>
@@ -64,9 +66,10 @@
                                     <div class="menu-children">
                                         <div class="product-menu-item">
                                             <ul class="top-1v1-menu list-unstyled">
-                                                <li><a class="text" href="#">Topic</a></li>
-                                                <li><a class="text" href="#">Topic 1</a></li>
-                                                <li><a class="text" href="#">Topic 2</a></li>
+                                                @foreach (var topic in Model.Topics)
+                                                {
+                                                    <li><a class="text" href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
+                                                }
                                             </ul>
                                         </div>
                                     </div>
@@ -109,33 +112,33 @@
 
                                 <li class="top-menu-item">
                                     @*<a href="#">
-                                        @T("topMenu.B2BShop.AllCategories")
-                                        <i class="fas fa-solid fa-chevron-down" aria-hidden="true"></i>
+                                    @T("topMenu.B2BShop.AllCategories")
+                                    <i class="fas fa-solid fa-chevron-down" aria-hidden="true"></i>
                                     </a>*@
                                     <div class="menu-children">
-                                    <div class="product-menu-item">
-                                    
-                                    <ul class="top-1v1-menu list-unstyled">
-                                        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore, additionalData = Model })
-                                        @if (Model.DisplayHomepageMenuItem)
-                                        {
-                                            <li><a href="@Url.RouteUrl("Homepage")">@T("Homepage")</a></li>
-                                        }
-                                        @if (!Model.UseAjaxMenu)
-                                        {
-                                            var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
-                                            @foreach (var category in rootCategories)
-                                            {
-                                                var categoryLineModel = new TopMenuModel.CategoryLineModel
-                                                {
-                                                    Category = category
-                                                };
-                                                await CategoryLine(categoryLineModel);
-                                            }
+                                        <div class="product-menu-item">
 
-                                        }
-                                    </ul>
-                                    </div>
+                                            <ul class="top-1v1-menu list-unstyled">
+                                                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore, additionalData = Model })
+                                                @if (Model.DisplayHomepageMenuItem)
+                                                {
+                                                    <li><a href="@Url.RouteUrl("Homepage")">@T("Homepage")</a></li>
+                                                }
+                                                @if (!Model.UseAjaxMenu)
+                                                {
+                                                    var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+                                                    @foreach (var category in rootCategories)
+                                                    {
+                                                        var categoryLineModel = new TopMenuModel.CategoryLineModel
+                    {
+                        Category = category
+                    };
+                                                        await CategoryLine(categoryLineModel);
+                                                    }
+
+                                                }
+                                            </ul>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
@@ -158,8 +161,10 @@
                         <div class="product-cat-label">All</div>
                         <select name="product-cat" id="" class="product-cat-dd">
                             <option value="0" selected="selected">All</option>
-                            //<option class="level-0" value="clothing-apparel">Clothing &amp; Apparel</option>
-                            //<option class="level-1" value="accessories-clothing-apparel">&nbsp;&nbsp;&nbsp;Accessories</option>
+                            //
+                            <option class="level-0" value="clothing-apparel">Clothing &amp; Apparel</option>
+                            //
+                            <option class="level-1" value="accessories-clothing-apparel">&nbsp;&nbsp;&nbsp;Accessories</option>
                         </select>
                     </div>
                     <div class="search-wrapper">
