@@ -1,0 +1,26 @@
+﻿@model OnlineSalesModel
+@using Nop.Services.Common
+@using Nop.Web.Areas.Admin.Components;
+@inject IWorkContext workContext
+@inject IGenericAttributeService genericAttributeService
+
+@{
+    const string hideInfoBlockAttributeName = "OnlineSalesPage.HideInfoBlock";
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var hideInfoBlock = await genericAttributeService.GetAttributeAsync<bool>(customer, hideInfoBlockAttributeName);
+}
+
+<div asp-validation-summary="All"></div>
+<input asp-for="Id" type="hidden" />
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <nop-cards id="onlinesales-cards">
+                <nop-card asp-name="onlinesales-info" asp-icon="fas fa-info" asp-title="@T("Plugin.Widgets.KonnectAll.Features.OnlineSales.Setting")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">@await Html.PartialAsync("_CreateOrUpdate.Info", Model)</nop-card>
+
+                @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.CategoryDetailsBlock, additionalData = Model })
+            </nop-cards>
+        </div>
+    </div>
+</section>

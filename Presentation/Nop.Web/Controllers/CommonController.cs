@@ -390,6 +390,28 @@ namespace Nop.Web.Controllers
             return Redirect(url);
         }
 
+        #region Custom Topic Pages
+        public virtual async Task<IActionResult> GetToKnowUs() 
+        {
+            return View();
+        }
+
+        public virtual async Task<IActionResult> AboutUs()
+        {
+            return View();
+        }
+
+        public virtual async Task<IActionResult> JoinTeam()
+        {
+            return View();
+        }
+
+        public virtual async Task<IActionResult> OurSolution()
+        {
+            return View();
+        }
+        #endregion
+
         #endregion
     }
 }

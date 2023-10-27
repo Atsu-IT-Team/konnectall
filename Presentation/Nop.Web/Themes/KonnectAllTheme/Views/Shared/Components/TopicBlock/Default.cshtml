@@ -72,7 +72,7 @@
 else
 {
 
-    <div class="topic-html-content">
+    @* <div class="topic-html-content">
         @if (!string.IsNullOrEmpty(Model.Title))
         {
             <div class="topic-html-content-title page-title panel-heading">
@@ -80,9 +80,10 @@ else
             </div>
         }
         <div class="topic-html-content-body panel-body">
-            @Html.Raw(Model.Body)
+            
         </div>
-    </div>
+    </div> *@
+    @Html.Raw(Model.Body)
   
 }
 

@@ -417,17 +417,32 @@ namespace Nop.Web.Factories
             var currentStore = await _storeContext.GetCurrentStoreAsync();
             var pictureSize = _mediaSettings.CategoryThumbPictureSize;
 
-            //category picture
+            //category picture and banner
             var picture = await _pictureService.GetPictureByIdAsync(category.PictureId);
+            var banner = await _pictureService.GetPictureByIdAsync(category.BannerId);
             string fullSizeImageUrl, imageUrl;
+            string fullSizeBannerUrl, bannerImageUrl;
 
             (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
             (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, pictureSize);
+
+            (fullSizeBannerUrl, banner) = await _pictureService.GetPictureUrlAsync(banner);
+            (bannerImageUrl, _) = await _pictureService.GetPictureUrlAsync(banner, pictureSize);
 
             model.PictureModel = new PictureModel
             {
                 FullSizeImageUrl = fullSizeImageUrl,
                 IconUrl = imageUrl,
+                Title = string.Format(await _localizationService
+                    .GetResourceAsync("Media.Category.ImageLinkTitleFormat"), category.Name),
+                AlternateText = string.Format(await _localizationService
+                    .GetResourceAsync("Media.Category.ImageAlternateTextFormat"), category.Name)
+            };
+
+            model.PictureBannerModel = new PictureModel
+            {
+                FullSizeImageUrl = fullSizeBannerUrl,
+                IconUrl = bannerImageUrl,
                 Title = string.Format(await _localizationService
                     .GetResourceAsync("Media.Category.ImageLinkTitleFormat"), category.Name),
                 AlternateText = string.Format(await _localizationService

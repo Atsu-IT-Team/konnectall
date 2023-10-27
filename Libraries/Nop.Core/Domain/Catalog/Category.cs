@@ -59,6 +59,11 @@ namespace Nop.Core.Domain.Catalog
         public int IconId { get; set; }
 
         /// <summary>
+        /// Gets or sets the banner identifier
+        /// </summary>
+        public int BannerId { get; set; }
+
+        /// <summary>
         /// Gets or sets the page size
         /// </summary>
         public int PageSize { get; set; }

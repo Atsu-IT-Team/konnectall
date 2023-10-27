@@ -701,6 +701,29 @@ namespace Nop.Web.Infrastructure
             endpointRouteBuilder.MapControllerRoute(name: "PageNotFound",
                 pattern: $"{lang}/page-not-found",
                 defaults: new { controller = "Common", action = "PageNotFound" });
+
+            #region Custom routes
+            //what is konnect all
+            endpointRouteBuilder.MapControllerRoute(name: "GetToKnowUs",
+                pattern: $"knowus",
+                defaults: new { controller = "Common", action = "GetToKnowUs" });
+
+            //about us
+            endpointRouteBuilder.MapControllerRoute(name: "AboutUs",
+                pattern: $"aboutus",
+                defaults: new { controller = "Common", action = "AboutUs" });
+
+            //join the team
+            endpointRouteBuilder.MapControllerRoute(name: "JoinTeam",
+                pattern: $"team",
+                defaults: new { controller = "Common", action = "JoinTeam" });
+
+            //our solution
+            endpointRouteBuilder.MapControllerRoute(name: "OurSolution",
+                pattern: $"oursolution",
+                defaults: new { controller = "Common", action = "OurSolution" });
+            #endregion
+
         }
 
         #endregion

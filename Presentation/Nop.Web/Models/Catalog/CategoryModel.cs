@@ -24,6 +24,8 @@ namespace Nop.Web.Models.Catalog
         
         public PictureModel PictureModel { get; set; }
 
+        public PictureModel PictureBannerModel { get; set; }
+
         public bool DisplayCategoryBreadcrumb { get; set; }
         public IList<CategoryModel> CategoryBreadcrumb { get; set; }
         
