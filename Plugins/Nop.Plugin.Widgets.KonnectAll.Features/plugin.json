@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "KonnectAll Features",
+  "SystemName": "Widgets.KonnectAll.Features",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "Ajay Chauhan",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.KonnectAll.Features.dll",
+  "Description": "This plugin provide all custom features"
+}

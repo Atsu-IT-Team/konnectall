@@ -46,16 +46,13 @@
         </li>
     }
 }
-@{
-    var whatIsKonnectAllTopic = Model.Topics.FirstOrDefault();
-}
 
 <div class="navbar">
     <div class="container">
         <div class="horizantal-menu">
             <ul class="menu">
                 <li class="menu-item menu-item-has-children">
-                    <a class="font-medium text-black" href="@Url.RouteUrl("Topic", new { SeName = whatIsKonnectAllTopic.SeName })">
+                    <a class="font-medium text-black" href="@Url.RouteUrl("GetToKnowUs")">
                         @T("topMenu.KnowUs")
                         <i class="fas fa-solid fa-chevron-down" aria-hidden="true"></i>
                     </a>
@@ -66,10 +63,9 @@
                                     <div class="menu-children">
                                         <div class="product-menu-item">
                                             <ul class="top-1v1-menu list-unstyled">
-                                                @foreach (var topic in Model.Topics)
-                                                {
-                                                    <li><a class="text" href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name</a></li>
-                                                }
+                                                <li><a class="text" href="@Url.RouteUrl("GetToKnowUs")">What is Konnect all?</a></li>
+                                                <li><a class="text" href="@Url.RouteUrl("AboutUs")">About us</a></li>
+                                                <li><a class="text" href="@Url.RouteUrl("JoinTeam")">Join the team</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -80,7 +76,7 @@
 
                 </li>
                 <li class="menu-item menu-item-has-children">
-                    <a class="font-medium text-black" href="/OurSolution">
+                    <a class="font-medium text-black" href="@Url.RouteUrl("OurSolution")">
                         @T("topMenu.OurSolutions")
                         <i class="fas fa-solid fa-chevron-down" aria-hidden="true"></i>
                     </a>

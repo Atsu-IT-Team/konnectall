@@ -13,3 +13,11 @@ BEGIN
 	CONSTRAINT IconId_Default_Standard DEFAULT 0
 	WITH VALUES
 END
+
+IF NOT EXISTS(SELECT 1 FROM SYS.COLUMNS WHERE Name = 'BannerId' AND Object_ID = Object_ID('Category'))
+BEGIN
+    ALTER TABLE [Category] 
+	ADD BannerId INT NOT NULL
+	CONSTRAINT BannerId_Default_Standard DEFAULT 0
+	WITH VALUES
+END

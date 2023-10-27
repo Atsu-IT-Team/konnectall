@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.AboutUs").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-contact-page");
+}
+<section class="content-page">
+    <div class="slider">
+        <img alt="" src="/Themes/KonnectAllTheme/Content/img/banner/our-solution-banner.png" class="slid-img">
+        <div class="overly">
+        </div>
+        <div class="container">
+            <div class="container content-slid">
+                <div class="separate-line"></div>
+                <h4 class="menu-slider">
+                    Solutions for dropdhippers and wholesale purchasing
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.GetToKnowUs })
+
+    @await Component.InvokeAsync("TopicBlock", new { systemName = "OurSolution" })
+
+    @await Component.InvokeAsync("NewsletterBox")
+</section>

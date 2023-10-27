@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.GetToKnowUs").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-contact-page");
+}
+<section class="content-page">
+    @await Component.InvokeAsync("TopicBlock", new { systemName = "WhatIsKonnectAll" })
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.GetToKnowUs })
+</section>

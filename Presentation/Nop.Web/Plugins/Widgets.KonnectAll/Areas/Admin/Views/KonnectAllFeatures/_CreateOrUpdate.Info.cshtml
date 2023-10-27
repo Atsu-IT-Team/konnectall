@@ -1,0 +1,74 @@
+﻿@model OnlineSalesModel
+
+<div class="card-body">
+    @(await Html.LocalizedEditorAsync<OnlineSalesModel, OnlineSalesLocalizedModel>("onlinesales-localized",
+        @<div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <nop-label asp-for="@Model.Locales[item].Title" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-editor asp-for="@Model.Locales[item].Title" asp-required="true" />
+                    <span asp-validation-for="@Model.Locales[item].Title"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <nop-label asp-for="@Model.Locales[item].Description" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-editor asp-for="@Model.Locales[item].Description" asp-template="RichEditor" />
+                    <span asp-validation-for="@Model.Locales[item].Description"></span>
+                </div>
+            </div>
+            <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+        </div>
+        ,
+        @<div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <nop-label asp-for="Title" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-editor asp-for="Title" asp-required="true" />
+                    <span asp-validation-for="Title"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <nop-label asp-for="Description" />
+                </div>
+                <div class="col-sm-9">
+                    <nop-editor asp-for="Description" asp-template="RichEditor" />
+                    <span asp-validation-for="Description"></span>
+                </div>
+            </div>
+        </div>
+    ))
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="Picture" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="Picture" />
+            <span asp-validation-for="Picture"></span>
+        </div>
+    </div>
+
+    <div class="form-group advanced-setting row">
+        <div class="col-md-3">
+            <nop-label asp-for="Published" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="Published" />
+        </div>
+    </div>
+    <div class="form-group advanced-setting row">
+        <div class="col-md-3">
+            <nop-label asp-for="DisplayOrder" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="DisplayOrder" />
+        </div>
+    </div>
+</div>

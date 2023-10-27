@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language Name="English">
+    <!--site menu-->
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Admin.Root.Menu">
+		<Value>KonnectAll Features</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Menu">
+		<Value>Online Sales</Value>
+	</LocaleResource>
+    <!--site menu-->
+
+    <!--list page-->
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales">
+        <Value>Online Sales</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Title">
+        <Value>Title</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Title.Hint">
+        <Value>Search by title</Value>
+    </LocaleResource>
+    
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published">
+        <Value>Publish</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.Hint">
+        <Value>Search banner by publish/unpublish</Value>
+    </LocaleResource>
+    
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.All">
+        <Value>All</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.ActiveOnly">
+        <Value>Active only</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.InActiveOnly">
+        <Value>Inactive only</Value>
+    </LocaleResource>
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.List.Fields.Title">
+		<Value>Title</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.List.Fields.Published">
+		<Value>Active</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.List.Fields.DisplayOrder">
+		<Value>Display order</Value>
+	</LocaleResource>
+    <!--list page-->
+
+    <!--create or edit online sales configuration page-->
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.AddNew">
+        <Value>Add a new online sales</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.EditDetails">
+        <Value>Edit a online sales</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.BackToList">
+        <Value>back to the list page</Value>
+    </LocaleResource>
+    
+    
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Setting">
+        <Value>Info</Value>
+    </LocaleResource>
+    
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Title">
+        <Value>Title</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Title.Hint">
+        <Value>The title of the online sales.</Value>
+    </LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Title.Required">
+		<Value>Title is required.</Value>
+	</LocaleResource>
+    
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Description">
+        <Value>Description</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Description.Hint">
+        <Value>The description of the online sales.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Picture">
+        <Value>Picture</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Picture.Hint">
+        <Value>Upload the picture of the banner for destop view.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Published">
+        <Value>Published</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Published.Hint">
+        <Value>Check whether the online sales is active.</Value>
+    </LocaleResource>
+
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.DisplayOrder">
+        <Value>Display order</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.DisplayOrder.Hint">
+        <Value>The online sales display order. 1 represents the first item in the list.</Value>
+    </LocaleResource>
+    
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Added">
+        <Value>Online sales added successfully.</Value>
+    </LocaleResource>
+    <LocaleResource Name="ActivityLog.AddNewOnlineSales">
+        <Value>Added a new online sales (ID = {0})</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Updated">
+        <Value>Online sales updated successfully.</Value>
+    </LocaleResource>
+    <LocaleResource Name="ActivityLog.EditOnlineSales">
+        <Value>Edited a online sales (ID = {0})</Value>
+    </LocaleResource>
+    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Deleted">
+        <Value>Online sales deleted successfully.</Value>
+    </LocaleResource>
+    <LocaleResource Name="ActivityLog.DeleteOnlineSales">
+        <Value>Deleted a online sales (ID = {0})</Value>
+    </LocaleResource>
+    <!--create or edit online sales page-->
+    
+</Language>

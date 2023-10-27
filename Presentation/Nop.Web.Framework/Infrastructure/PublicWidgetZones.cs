@@ -189,5 +189,8 @@
         public static string SitemapBefore => "sitemap_before";
         public static string VendorDetailsBottom => "vendordetails_bottom";
         public static string VendorDetailsTop => "vendordetails_top";
+        public static string GetToKnowUs => "get_to_know_us";
+        public static string AboutUs => "about_us";
+        public static string JoinTeam => "join_tem";
     }
 }
