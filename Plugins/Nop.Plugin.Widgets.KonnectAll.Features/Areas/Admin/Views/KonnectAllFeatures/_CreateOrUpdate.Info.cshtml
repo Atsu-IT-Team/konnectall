@@ -39,7 +39,7 @@
                     <nop-label asp-for="Description" />
                 </div>
                 <div class="col-sm-9">
-                    <nop-editor asp-for="Description" asp-required="true" />
+                    <nop-editor asp-for="Description" asp-template="RichEditor" />
                     <span asp-validation-for="Description"></span>
                 </div>
             </div>
