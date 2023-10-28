@@ -998,10 +998,10 @@ ul li a:hover {
 .about-us .our-history .discover .progress-bar-history .progress-bar-item:first-child {
   border-radius: 6px 0 0 6px;
 }
-.about-us .our-history .discover .progress-bar-history .progress-bar-item:first-child > span {
+.about-us .our-history .discover .progress-bar-history .progress-bar-item:first-child > strong {
   text-align: right;
 }
-.about-us .our-history .discover .progress-bar-history .progress-bar-item:first-child > span:before {
+.about-us .our-history .discover .progress-bar-history .progress-bar-item:first-child > strong:before {
   right: 0;
 }
 .about-us .our-history .discover .progress-bar-history .progress-bar-item:first-child label {
@@ -1010,10 +1010,10 @@ ul li a:hover {
 .about-us .our-history .discover .progress-bar-history .progress-bar-item.active label {
   color: #000;
 }
-.about-us .our-history .discover .progress-bar-history .progress-bar-item.active > span {
+.about-us .our-history .discover .progress-bar-history .progress-bar-item.active > strong {
   color: #000;
 }
-.about-us .our-history .discover .progress-bar-history .progress-bar-item.active > span::before {
+.about-us .our-history .discover .progress-bar-history .progress-bar-item.active > strong::before {
   height: 25px;
   width: 25px;
   background-color: #28befe;
@@ -1028,7 +1028,7 @@ ul li a:hover {
   position: absolute;
   width: 103%;
 }
-.about-us .our-history .discover .progress-bar-history .progress-bar-item > span {
+.about-us .our-history .discover .progress-bar-history .progress-bar-item > strong {
   display: inline-block;
   padding-top: 23px;
   width: 100%;
@@ -1037,7 +1037,7 @@ ul li a:hover {
   font-weight: 300;
   font-size: 16px;
 }
-.about-us .our-history .discover .progress-bar-history .progress-bar-item > span:before {
+.about-us .our-history .discover .progress-bar-history .progress-bar-item > strong:before {
   height: 20px;
   width: 20px;
   border: 1px solid #000;
@@ -4705,7 +4705,6 @@ ul li a:hover {
   margin-bottom: 2rem;
   border-bottom: 1px solid #ccc;
   width: 100%;
-  overflow: hidden;
 }
 @media (max-width: 574px) {
   .shop-page .cosmetics .brand-cosmetics,
