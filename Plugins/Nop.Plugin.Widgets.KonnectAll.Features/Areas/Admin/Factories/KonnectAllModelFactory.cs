@@ -129,16 +129,12 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
                 overridePublished: searchModel.PublishedId == 0 ? null : (bool?)(searchModel.PublishedId == 1));
 
             //prepare grid model
-            var model = await new OnlineSalesListModel().PrepareToGridAsync(searchModel, onlineSales, () =>
+            var model = new OnlineSalesListModel().PrepareToGrid(searchModel, onlineSales, () =>
             {
-                return onlineSales.SelectAwait(async os =>
+                return onlineSales.Select( os =>
                 {
                     //fill in model values from the entity
                     var osm = os.ToModel<OnlineSalesModel>();
-
-                    //fill in additional values (not existing in the entity)
-                    var picture = (await _pictureService.GetPictureByIdAsync(os.Picture))
-                        ?? throw new Exception("Picture cannot be loaded");
 
                     return osm;
                 });
