@@ -4,7 +4,7 @@
     //title
     NopHtml.AddTitleParts(T("PageTitle.AboutUs").Text);
     //page class
-    NopHtml.AppendPageCssClassParts("html-contact-page");
+    NopHtml.AppendPageCssClassParts("html-topic-page");
 }
 <section class="content-page">
     @await Component.InvokeAsync("TopicBlock", new { systemName = "AboutUs" })
