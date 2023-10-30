@@ -8020,7 +8020,7 @@ section.header .products-search .psearch-content .product-cat .product-cat-label
   padding-left: 18px;
   border: 1px solid #ccc;
   color: #000;
-  border-radius: 5px 0 0 5px;
+  border-radius: 0 5px 5px 0;
   position: relative;
   height: 100%;
   white-space: nowrap;
@@ -8061,7 +8061,7 @@ section.header .products-search .psearch-content .search-btn {
   height: 42px;
   background-color: #28befe;
   padding: 0 1.5rem;
-  border-radius: 0 5px 5px 0;
+  border-radius: 5px 0 0 5px;
   white-space: nowrap;
   min-width: 100px;
   line-height: 42px;
@@ -8291,11 +8291,18 @@ section.header .header-main .container .header-main-right .topbar-menu .extras-m
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
 }
-section.header .header-main .container .header-main-right .topbar-menu .extras-menu .cart-dropdown-wrap ul li .shopping-cart-title .cart-item-title {
+section.header .header-main .container .header-main-right .topbar-menu .extras-menu .cart-dropdown-wrap ul li .shopping-cart-title h6 {
+  text-align: right;
+}
+section.header .header-main .container .header-main-right .topbar-menu .extras-menu .cart-dropdown-wrap ul li .shopping-cart-title a {
   max-width: 110px;
-  max-height: 42px;
+  max-height: auto;
   overflow: hidden;
-  white-space: no-wrap;
+  color: #333;
+  margin: 0;
+  font-weight: 300;
+  display: inline-block;
+  text-align: right;
 }
 section.header .header-main .container .header-main-right .topbar-menu .extras-menu .cart-dropdown-wrap ul li .shopping-cart-title .cart-quantity-input {
   max-width: 50px !important;
@@ -9494,28 +9501,43 @@ select:focus {
   }
 }
 .newsletter .container .content-newsletter h3 {
+  font-size: 3rem !important;
+  padding: 0 0 10px;
+  line-height: 1 !important;
+  color: #333333;
+  margin-bottom: 0;
   text-align: right;
+}
+@media (max-width: 767px) {
+  .newsletter .container .content-newsletter h3 {
+    font-size: 1.8rem !important;
+  }
 }
 .newsletter .container .content-newsletter form {
   display: flex;
   align-items: center;
   max-width: 550px;
+  margin-top: 20px;
 }
 .newsletter .container .content-newsletter form input {
   width: 100%;
   border-radius: 5px;
   margin-left: 10px;
+  height: 42.88px;
 }
 .newsletter .container .content-newsletter .newsletter-btn {
   background-color: transparent !important;
   border-radius: 3px;
   border-color: #fff !important;
+  line-height: 1.16;
+  margin: 0;
 }
 .newsletter .container .content-newsletter .newsletter-btn:hover {
   color: #ffffff !important;
 }
 .newsletter .container .content-newsletter p {
   padding-top: 10px;
+  margin: 0 0 10px;
 }
 .newsletter .container .arrow-bottom {
   background-color: transparent;

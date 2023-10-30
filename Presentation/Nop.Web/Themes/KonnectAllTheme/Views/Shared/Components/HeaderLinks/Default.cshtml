@@ -15,12 +15,9 @@
                 <span class="lnr lnr-heart"></span>
             </a>
             <span class="mini-item-counter mini-item-counter--wishlist mf-background-primary">
-                @T("Wishlist.HeaderQuantity", Model.WishlistItems)
+                @Model.WishlistItems
             </span>
         </li>
-
-
-
 
         @if (Model.ShoppingCartEnabled)
         {
@@ -28,20 +25,15 @@
                 <a href="@Url.RouteUrl("ShoppingCart")" class="icon-cart-contents">
                     <span class="lnr lnr-cart"></span>
                 </a>
-                <span class="mini-item-counter mf-background-primary">@T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
-                    <ul class="cart-dropdown-wrap">
-                        @await Component.InvokeAsync("FlyoutShoppingCart")
-                   
-                    </ul>
-
+                <span class="mini-item-counter mf-background-primary">@Model.ShoppingCartItems</span>
+                <div class="cart-dropdown-wrap">
+                    @await Component.InvokeAsync("FlyoutShoppingCart")
+                </div>
             </li>
-
         }
-
 
         @if (!Model.IsAuthenticated)
         {
-
             var returnUrl = webHelper.GetRawUrl(Context.Request);
             var returnUrlRegister = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
             ? url.ToString()

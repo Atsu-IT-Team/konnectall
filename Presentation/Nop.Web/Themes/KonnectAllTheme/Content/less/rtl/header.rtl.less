@@ -566,7 +566,7 @@ section.header {
                     padding-left: 18px;
                     border: 1px solid #ccc;
                     color: @black-color;
-                    border-radius: 5px 0 0 5px;
+                    border-radius: 0 5px 5px 0;
                     position: relative;
                     height: 100%;
                     white-space: nowrap;
@@ -612,7 +612,7 @@ section.header {
                 height: 42px;
                 background-color: @primary-color;
                 padding: 0 1.5rem;
-                border-radius: 0 5px 5px 0;
+                border-radius: 5px 0 0 5px;
                 white-space: nowrap;
                 min-width: 100px;
                 line-height: 42px;
@@ -860,11 +860,19 @@ section.header {
 
                                     .shopping-cart-title {
 
-                                        .cart-item-title {
+                                        h6 {
+                                            text-align: right;
+                                        }
+
+                                        a {
                                             max-width: 110px;
-                                            max-height: 42px;
+                                            max-height: auto;
                                             overflow: hidden;
-                                            white-space: no-wrap;
+                                            color: #333;
+                                            margin: 0;
+                                            font-weight: 300;
+                                            display: inline-block;
+                                            text-align: right;
                                         }
 
                                         .cart-quantity-input {

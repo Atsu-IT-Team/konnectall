@@ -1,35 +1,38 @@
 ﻿@model MiniShoppingCartModel
 
-<li id="flyout-cart">
+<ul class="cart-items" id="flyout-cart">
     @if (Model.TotalProducts > 0)
     {
 
         @for (var i = 0; i < Model.Items.Count; i++)
         {
-            var item = Model.Items[i];
-            <div class="shopping-cart-img">
-                <a href="@Url.RouteUrl("Product", new { SeName = item.ProductSeName })" title="@item.Picture.Title">
-                    <img alt="@item.Picture.AlternateText" src="@item.Picture.ImageUrl" title="@item.Picture.Title" />
-                </a>
-            </div>
-            <div class="shopping-cart-title">
-                <h6>
-                    <a href="@Url.RouteUrl("Product", new { SeName = item.ProductSeName })">@item.ProductName</a>
-                </h6>
-                <h6>
-                    @item.UnitPrice
-                </h6>
-            </div>
-            <div class="shopping-cart-delete">
-                <a href="#">
-                    <i class="fas fa-times"></i>
-                </a>
-            </div>
-
+            <li class="cart-row">
+            @{var item = Model.Items[i];}
+                <div class="shopping-cart-img">
+                    <a href="@Url.RouteUrl("Product", new { SeName = item.ProductSeName })" title="@item.Picture.Title">
+                        <img alt="@item.Picture.AlternateText" src="@item.Picture.ImageUrl" title="@item.Picture.Title" />
+                    </a>
+                </div>
+                <div class="shopping-cart-title">
+                    <h6>
+                        <a href="@Url.RouteUrl("Product", new { SeName = item.ProductSeName })">@item.ProductName</a>
+                    </h6>
+                    <h6>
+                        @item.UnitPrice
+                    </h6>
+                </div>
+                <div class="shopping-cart-delete">
+                    <a href="#">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+            </li>
 
         }
-
-
+  }
+</ul>
+@if (Model.TotalProducts > 0)
+{
         <div class="shopping-cart-footer">
             <div class="shopping-cart-total">
                 <h6>
@@ -64,6 +67,6 @@
     {
         <div class="empty-shopping-cart">You have no items in your shopping cart.</div>
     }
-</li>
+
 
 
