@@ -64,6 +64,11 @@ namespace Nop.Core.Domain.Catalog
         public int BannerId { get; set; }
 
         /// <summary>
+        /// Gets or sets the most popular category
+        /// </summary>
+        public bool IsMostPopular { get; set; }
+
+        /// <summary>
         /// Gets or sets the page size
         /// </summary>
         public int PageSize { get; set; }

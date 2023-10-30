@@ -963,43 +963,37 @@ namespace Nop.Web.Factories
         /// <summary>
         /// Prepare popular category models
         /// </summary>
-        /// <param name="products">Products collections</param>
         /// <returns>
         /// A task that represents the asynchronous operation
         /// The task result contains the list of popular category models
         /// </returns>
-        public virtual async Task<List<PopularCategoryModel>> PreparePopularCategoryModelsAsync(IList<Product> products)
+        public virtual async Task<List<PopularCategoryModel>> PreparePopularCategoryModelsAsync()
         {
-            if (products == null || products.Count == 0)
-                throw new ArgumentNullException(nameof(products));
-
             var popularCategories = new List<PopularCategoryModel>();
-            var pIds = products.Select(x => x.Id).ToList();
-            var cIds = await _categoryService.GetPopularCategoryIdsAsync(pIds);
+            var categories = await _categoryService.GetPopularCategoriesAsync();
 
-            if (cIds != null)
+            if (categories == null || categories.Count == 0)
+                return null;
+
+            foreach (var item in categories)
             {
-                var categories = await _categoryService.GetCategoriesByIdsAsync(cIds.ToArray());
-                foreach (var item in categories)
+                var picture = await _pictureService.GetPictureByIdAsync(item.PictureId);
+                string fullSizeImageUrl, imageUrl;
+
+                (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
+                (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, _mediaSettings.CategoryThumbPictureSize);
+
+                var pcount = (await _categoryService.GetProductCategoriesByCategoryIdAsync(item.Id)).ToList();
+                var pcm = new PopularCategoryModel
                 {
-                    var picture = await _pictureService.GetPictureByIdAsync(item.PictureId);
-                    string fullSizeImageUrl, imageUrl;
+                    CategoryId = item.Id,
+                    CategoryName = await _localizationService.GetLocalizedAsync(item, x => x.Name),
+                    SeName = await _urlRecordService.GetSeNameAsync(item),
+                    ImageUrl = imageUrl,
+                    ProductsCount = pcount.Count(),
+                };
 
-                    (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
-                    (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, _mediaSettings.CategoryThumbPictureSize);
-
-                    var pcount = (await _categoryService.GetProductCategoriesByCategoryIdAsync(item.Id)).ToList();
-                    var pcm = new PopularCategoryModel
-                    {
-                        CategoryId = item.Id,
-                        CategoryName = await _localizationService.GetLocalizedAsync(item, x => x.Name),
-                        SeName = await _urlRecordService.GetSeNameAsync(item),
-                        ImageUrl = imageUrl,
-                        ProductsCount = pcount.Count(),
-                    };
-
-                    popularCategories.Add(pcm);
-                }
+                popularCategories.Add(pcm);
             }
 
             return popularCategories;

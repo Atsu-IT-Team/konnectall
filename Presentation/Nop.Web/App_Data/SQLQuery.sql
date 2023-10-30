@@ -21,3 +21,11 @@ BEGIN
 	CONSTRAINT BannerId_Default_Standard DEFAULT 0
 	WITH VALUES
 END
+
+IF NOT EXISTS(SELECT 1 FROM SYS.COLUMNS WHERE Name = 'IsMostPopular' AND Object_ID = Object_ID('Category'))
+BEGIN
+    ALTER TABLE [Category] 
+	ADD IsMostPopular BIT NOT NULL
+	CONSTRAINT IsMostPopular_Default_Standard DEFAULT 0
+	WITH VALUES
+END

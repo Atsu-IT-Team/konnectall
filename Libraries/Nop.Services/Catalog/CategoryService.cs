@@ -414,26 +414,6 @@ namespace Nop.Services.Catalog
         }
 
         /// <summary>
-        /// Get popular category identifiers
-        /// </summary>
-        /// <param name="productIds">Product identifiers</param>
-        /// <returns>
-        /// A task that represents the asynchronous operation
-        /// The task result contains the category identifiers
-        /// </returns>
-        public virtual async Task<IList<int>> GetPopularCategoryIdsAsync(IList<int> productIds) 
-        {
-            if (productIds == null || productIds.Count == 0)
-                throw new ArgumentNullException(nameof(productIds));
-
-            var categoryIds = await (from pc in _productCategoryRepository.Table
-                              where productIds.Contains(pc.ProductId)
-                              select pc.CategoryId).Distinct().ToListAsync();
-
-            return categoryIds;
-        }
-
-        /// <summary>
         /// Gets child category identifiers
         /// </summary>
         /// <param name="parentCategoryId">Parent category identifier</param>
@@ -746,6 +726,18 @@ namespace Nop.Services.Catalog
         public virtual async Task<IList<Category>> GetCategoriesByIdsAsync(int[] categoryIds)
         {
             return await _categoryRepository.GetByIdsAsync(categoryIds, includeDeleted: false);
+        }
+
+        /// <summary>
+        /// Gets most popular categories
+        /// </summary>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the categories
+        /// </returns>
+        public virtual async Task<IList<Category>> GetPopularCategoriesAsync() 
+        {
+            return await _categoryRepository.Table.Where(x => x.IsMostPopular).ToListAsync();
         }
 
         /// <summary>
