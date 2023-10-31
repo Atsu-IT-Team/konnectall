@@ -151,6 +151,12 @@ section.header {
         }
     }
 
+    @media (max-width: 991px) {
+        .header {
+            overflow: hidden;
+        }
+    }
+
     .top-promotion {
         background-image: url('../../images/header/top-promotion.jpg');
         background-repeat: repeat;
@@ -305,10 +311,6 @@ section.header {
                 &:after {
                     display: none;
                 }
-            }
-
-            &:first-child {
-                padding-left: 0;
             }
         }
 
@@ -1100,6 +1102,7 @@ section.header {
                             z-index: 10;
                             width: 250px;
                             animation: fade_in_show 0.5s;
+                            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.4);
 
                             @media(max-width:1200px) {
                                 top: 52px;

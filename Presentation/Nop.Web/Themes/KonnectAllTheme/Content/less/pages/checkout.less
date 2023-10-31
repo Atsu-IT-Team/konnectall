@@ -711,7 +711,7 @@
 
 
 .master-wrapper-content {
-    width: 980px;
+    max-width: 980px;
     margin: auto
 }
 
@@ -1390,7 +1390,7 @@
 }
 
 .master-wrapper-content {
-    width: 980px;
+    max-width: 980px;
     margin: auto
 }
 
@@ -1492,6 +1492,10 @@
     padding: 12px;
     text-align: left;
     font-size: 12px
+}
+
+.cart-box-wrapper .input-group {
+    width: 100%;
 }
 
 .mini-shopping-cart .count {
@@ -1601,9 +1605,17 @@
 }
 
 .cart-footer .cart-collaterals {
-    float: left !important;
-    width: 45% !important;
-    margin: 0 2.5% !important;
+    width: 98%;
+    margin: 0 1%;
+}
+
+@media (min-width: 992px) {
+
+    .cart-footer .cart-collaterals {
+        float: left !important;
+        width: 45% !important;
+        margin: 0 2.5% !important;
+    }
 }
 
 .cart-footer .total-info {
@@ -1613,13 +1625,20 @@
 }
 
 .cart-footer .totals {
-    float: right !important;
-    width: 45% !important;
-    margin: 0 2.5% !important;
+    width: 98%;
+    margin: 0 1%;
     background-color: #f9f9f9;
     padding: 10px;
     color: #444;
     font: normal 14px Arial,Helvetica,sans-serif;
+}
+
+@media (min-width: 992px) {
+    .cart-footer .totals {
+        float: right !important;
+        width: 45% !important;
+        margin: 0 2.5% !important;
+    }
 }
 
 .cart-footer .cart-collaterals div, .cart-footer .cart-collaterals label {

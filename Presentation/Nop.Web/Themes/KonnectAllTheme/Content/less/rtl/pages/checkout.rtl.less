@@ -737,7 +737,7 @@
 
 
 .master-wrapper-content {
-    width: 980px;
+    max-width: 980px;
     margin: auto
 }
 
@@ -1416,7 +1416,7 @@
 }
 
 .master-wrapper-content {
-    width: 980px;
+    max-width: 980px;
     margin: auto
 }
 
@@ -1518,6 +1518,10 @@
     padding: 12px;
     text-align: left;
     font-size: 12px
+}
+
+.cart-box-wrapper .input-group {
+    width: 100%;
 }
 
 .mini-shopping-cart .count {
@@ -1627,104 +1631,121 @@
 }
 
 .cart-footer .cart-collaterals {
-    float: left !important;
-    width: 45% !important;
-    margin: 0 2.5% !important;
+    width: 98%;
+    margin: 0 1%;
 }
 
-.cart-footer .total-info {
-    margin: 0 0 20px !important;
-    border-bottom: 1px solid #ddd !important;
-    padding: 5px 30px 15px !important;
+@media (min-width: 992px) {
+
+    .cart-footer .cart-collaterals {
+        float: left !important;
+        width: 45% !important;
+        margin: 0 2.5% !important;
+    }    
 }
 
-.cart-footer .totals {
-    float: right !important;
-    width: 45% !important;
-    margin: 0 2.5% !important;
-    background-color: #f9f9f9;
-    padding: 10px;
-    color: #444;
-    font: normal 14px Arial,Helvetica,sans-serif;
+    .cart-footer .total-info {
+        margin: 0 0 20px !important;
+        border-bottom: 1px solid #ddd !important;
+        padding: 5px 30px 15px !important;
+    }
+
+    .cart-footer .totals {
+        width: 98%;
+        margin: 0 1%;
+        background-color: #f9f9f9;
+        padding: 10px;
+        color: #444;
+        font: normal 14px Arial,Helvetica,sans-serif;
+    }
+
+@media (min-width: 992px) {
+    .cart-footer .totals {
+        float: right !important;
+        width: 45% !important;
+        margin: 0 2.5% !important;
+    }
 }
 
-.cart-footer .cart-collaterals div, .cart-footer .cart-collaterals label {
-    text-align: left;
-}
+    .cart-footer .cart-collaterals div, .cart-footer .cart-collaterals label {
+        text-align: left;
+    }
 
-.cart-collaterals {
-    width: 350px;
-    max-width: 100%;
-    margin: 0 auto 50px;
-    padding: 25px 0 0;
-}
+    .cart-collaterals {
+        width: 350px;
+        max-width: 100%;
+        margin: 0 auto 50px;
+        padding: 25px 0 0;
+    }
 
-.cart-collaterals > div {
-    max-width: 400px;
-    margin: 0 0 50px;
-    font: normal 14px Arial,Helvetica,sans-serif;
-    /*color: #777;*/
-    text-align: left;
-}
+    .cart-collaterals > div {
+        max-width: 400px;
+        margin: 0 0 50px;
+        font: normal 14px Arial,Helvetica,sans-serif;
+        /*color: #777;*/
+        text-align: left;
+    }
 
-.cart-collaterals .deals > div {
-    margin: 0 0 20px;
-}
+    .cart-collaterals .deals > div {
+        margin: 0 0 20px;
+    }
 
-.cart-collaterals .title {
-    margin: 0 0 5px;
-    font-size: 18px;
-    color: #444;
-}
+    .cart-collaterals .title {
+        margin: 0 0 5px;
+        font-size: 18px;
+        color: #444;
+    }
 
-.cart-collaterals .hint {
-    margin: 0 0 10px;
-}
+    .cart-collaterals .hint {
+        margin: 0 0 10px;
+    }
 
-.cart-collaterals .coupon-code {
-    overflow: hidden;
-}
+    .cart-collaterals .coupon-code {
+        overflow: hidden;
+    }
 
-.cart-collaterals .coupon-code input[type="text"] {
-    float: left;
-    width: 60% !important;
-    height: 36px;
-    margin: 0 -1px 0 0;
-    border: 1px solid #ddd;
-    padding: 8px;
-    vertical-align: middle;
-}
+    .cart-collaterals .coupon-code input[type="text"] {
+        float: left;
+        width: 60% !important;
+        height: 36px;
+        margin: 0 -1px 0 0;
+        border: 1px solid #ddd;
+        padding: 8px;
+        vertical-align: middle;
+        border-radius: 5px 0 0 5px;
+    }
 
-.cart-collaterals .coupon-code button[type="submit"] {
-    float: left;
-    width: 40% !important;
-    height: 36px !important;
-    padding: 0;
-    display: inline-block;
-    border: none;
-    background-color: #aaa;
-    padding: 10px 15px !important;
-    color: #fff;
-    text-transform: uppercase !important;
-    font-size: 14px;
-    font-family: Arial,Helvetica,sans-serif;
-}
+    .cart-collaterals .coupon-code button[type="submit"] {
+        float: left;
+        width: 40% !important;
+        height: 36px !important;
+        padding: 0;
+        display: inline-block;
+        border: none;
+        background-color: #aaa;
+        padding: 10px 15px !important;
+        color: #fff;
+        text-transform: uppercase !important;
+        font-size: 14px;
+        font-family: Arial,Helvetica,sans-serif;
+        border-radius: 0 5px 5px 0;
+    }
 
 
-.shipping-method .method-list li,
-.payment-method .method-list li {
-    margin: 20px 1%;
-}
+    .shipping-method .method-list li,
+    .payment-method .method-list li {
+        margin: 20px 1%;
+    }
 
-.shipping-method .label,
-.payment-method .label {
-    color: #444 !important;
-}
+    .shipping-method .label,
+    .payment-method .label {
+        color: #444 !important;
+    }
 
-.payment-info .info td:first-child {
-    width: 375px !important;
-}
+    .payment-info .info td:first-child {
+        width: 375px !important;
+    }
 
-.payment-info .info td:only-child {
-    width: 100% !important;
-}
+    .payment-info .info td:only-child {
+        width: 100% !important;
+    }
