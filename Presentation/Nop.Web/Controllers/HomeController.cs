@@ -6,7 +6,7 @@ namespace Nop.Web.Controllers
     {
         public virtual IActionResult Index()
         {
-            return View();
+            return View(); 
         }
     }
 }
