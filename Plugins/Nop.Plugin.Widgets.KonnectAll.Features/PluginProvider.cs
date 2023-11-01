@@ -100,12 +100,18 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features
             if (widgetZone.Equals(PublicWidgetZones.GetToKnowUs))
                 return "OnlineSales";
 
+            if (widgetZone.Equals(PublicWidgetZones.JointThemTeam))
+                return "ApplicationRequest";
+
             return string.Empty;
         }
 
         public Task<IList<string>> GetWidgetZonesAsync()
         {
-            return Task.FromResult<IList<string>>(new List<string> { PublicWidgetZones.GetToKnowUs });
+            return Task.FromResult<IList<string>>(new List<string> { 
+                PublicWidgetZones.GetToKnowUs,
+                PublicWidgetZones.JointThemTeam
+            });
         }
 
         #region Install/Uninstall
@@ -163,13 +169,20 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features
                         IconClass = "nav-icon far fa-dot-circle",
                         Visible = true,
                         RouteValues = new RouteValueDictionary { { "area", AreaNames.Admin } }
+                    },
+                    new SiteMapNode()
+                    {
+                        SystemName = PluginDefaults.ApplicationRequest_Menu_SystemName,
+                        Title = await _localizationService.GetResourceAsync(PluginDefaults.ApplicationRequest_Menu_SystemName),
+                        ControllerName = "KonnectAllFeatures",
+                        ActionName = "ApplicationList",
+                        IconClass = "nav-icon far fa-dot-circle",
+                        Visible = true,
+                        RouteValues = new RouteValueDictionary { { "area", AreaNames.Admin } }
                     }
                 }
             };
-
             rootNode.ChildNodes.Add(osPluginMenu);
-
-            await _logger.InformationAsync($"KonnectAll: Our online sales plugin added under " + PluginDefaults.KonnectAll_Root.ToLower());
         }
 
         #endregion

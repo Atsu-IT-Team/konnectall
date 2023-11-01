@@ -3,7 +3,7 @@ using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 
-namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models
+namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales
 {
     /// <summary>
     /// Represents a online sales search model

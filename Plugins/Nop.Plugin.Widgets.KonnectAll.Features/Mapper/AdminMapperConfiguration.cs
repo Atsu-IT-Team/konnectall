@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Nop.Core.Infrastructure.Mapper;
-using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.ApplicationRequest;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales;
 using Nop.Plugin.Widgets.KonnectAll.Features.Domain;
 
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Mapper
@@ -32,11 +33,22 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Mapper
         {
             #region OnlineSales
 
-            // Banner Map
             CreateMap<OnlineSales, OnlineSalesModel>()
                 .ForMember(m => m.Locales, o => o.Ignore());
 
             CreateMap<OnlineSalesModel, OnlineSales>();
+
+            #endregion
+
+            #region Application Request
+
+            CreateMap<ApplicationRequest, ApplicationRequestModel>()
+                .ForMember(m => m.FullName, o => o.Ignore())
+                .ForMember(m => m.ResumeLink, o => o.Ignore())
+                .ForMember(m => m.Documents, o => o.Ignore());
+
+            CreateMap<ApplicationRequestModel, ApplicationRequest>()
+                .ForMember(m => m.CreatedOnUtc, o => o.Ignore());
 
             #endregion
         }

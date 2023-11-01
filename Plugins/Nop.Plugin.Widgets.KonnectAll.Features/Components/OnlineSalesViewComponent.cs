@@ -13,6 +13,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Components
     /// <summary>
     /// Represents Online sales view component
     /// </summary>
+    [ViewComponent(Name = "OnlineSales")]
     public class OnlineSalesViewComponent : NopViewComponent
     {
         #region Fields

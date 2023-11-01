@@ -1,9 +1,10 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
-using Microsoft.AspNetCore.Mvc;
-using Nop.Core;
-using Nop.Core.Caching;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
+using Nop.Core.Infrastructure;
 using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories;
-using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.ApplicationRequest;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales;
 using Nop.Plugin.Widgets.KonnectAll.Features.Domain;
 using Nop.Plugin.Widgets.KonnectAll.Features.Services;
 using Nop.Services.Localization;
@@ -16,7 +17,6 @@ using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc;
 using Nop.Web.Framework.Mvc.Filters;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
@@ -32,6 +32,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
         private readonly IKonnectAllService _konnectAllService;
         private readonly ILocalizedEntityService _localizedEntityService;
         private readonly ILocalizationService _localizationService;
+        private readonly INopFileProvider _fileProvider;
         private readonly INotificationService _notificationService;
         private readonly IPermissionService _permissionService;
         private readonly IPictureService _pictureService;
@@ -44,6 +45,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
             IKonnectAllService konnectAllService,
             ILocalizedEntityService localizedEntityService,
             ILocalizationService localizationService,
+            INopFileProvider fileProvider,
             INotificationService notificationService,
             IPermissionService permissionService,
             IPictureService pictureService)
@@ -53,6 +55,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
             _konnectAllService = konnectAllService;
             _localizedEntityService = localizedEntityService;
             _localizationService = localizationService;
+            _fileProvider = fileProvider;
             _notificationService = notificationService;
             _permissionService = permissionService;
             _pictureService = pictureService;
@@ -78,6 +81,8 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
         #endregion
 
         #region Methods
+
+        #region Online Sales
 
         #region List
         public async Task<IActionResult> List()
@@ -224,6 +229,88 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
             _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Deleted"));
 
             return new NullJsonResult();
+        }
+        #endregion
+
+        #endregion
+
+        #region Application Request
+        public async Task<IActionResult> ApplicationList()
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
+                return AccessDeniedView();
+
+            //prepare model
+            var model = await _konnectAllModelFactory.PrepareApplicationRequestSearchModelAsync(new ApplicationRequestSearchModel());
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public virtual async Task<IActionResult> ApplicationList(ApplicationRequestSearchModel searchModel)
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
+                return await AccessDeniedDataTablesJson();
+
+            //prepare model
+            var model = await _konnectAllModelFactory.PrepareApplicationRequestListModelAsync(searchModel);
+
+            return Json(model);
+        }
+
+        public virtual async Task<IActionResult> ApplicationDetail(int id)
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
+                return AccessDeniedView();
+
+            //try to get a application request with the specified id
+            var ar = await _konnectAllService.GetApplicationRequestByIdAsync(id);
+            if (ar == null)
+                return RedirectToAction("ApplicationList");
+
+            //prepare model
+            var model = await _konnectAllModelFactory.PrepareApplicationRequestModelAsync(null, ar);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public virtual async Task<IActionResult> ApplicationDelete(int id)
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
+                return AccessDeniedView();
+
+            var ar = await _konnectAllService.GetApplicationRequestByIdAsync(id);
+            if (ar == null)
+                return RedirectToAction("ApplicationList");
+
+            await _konnectAllService.DeleteApplicationRequestAsync(ar);
+
+            //activity log
+            await _customerActivityService.InsertActivityAsync("DeleteApplicationRequest",
+                string.Format(await _localizationService.GetResourceAsync("ActivityLog.DeleteApplicationRequest"), ar.FirstName), ar);
+
+            _notificationService.SuccessNotification(await _localizationService.GetResourceAsync("Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Admin.Deleted"));
+
+            return new NullJsonResult();
+        }
+
+        public virtual async Task<IActionResult> DownloadDocument(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                return Content("Download is not available any more.");
+
+            if (_fileProvider.FileExists(url))
+            {
+                var fileName = _fileProvider.GetFileName(url);
+                //Determine the Content Type of the File.
+                string contentType = "";
+                new FileExtensionContentTypeProvider().TryGetContentType(fileName, out contentType);
+
+                return new FileContentResult(await _fileProvider.ReadAllBytesAsync(url), contentType) { FileDownloadName = fileName };
+            }
+
+            return Content("Download data is not available any more.");
         }
         #endregion
 

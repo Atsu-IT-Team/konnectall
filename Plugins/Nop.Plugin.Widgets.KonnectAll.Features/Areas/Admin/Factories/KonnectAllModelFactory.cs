@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models;
 using Nop.Plugin.Widgets.KonnectAll.Features.Domain;
 using Nop.Plugin.Widgets.KonnectAll.Features.Services;
 using Nop.Services.Localization;
@@ -13,6 +12,11 @@ using System.Reflection;
 using Nop.Web.Framework.Factories;
 using System.Collections.Generic;
 using Nop.Plugin.Widgets.KonnectAll.Features.Models;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.ApplicationRequest;
+using Nop.Core.Infrastructure;
+using Nop.Core.Domain.Customers;
+using System.IO;
 
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
 {
@@ -22,6 +26,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
         private readonly IKonnectAllService _konnectAllService;
         private readonly ILocalizedModelFactory _localizedModelFactory;
         private readonly ILocalizationService _localizationService;
+        private readonly INopFileProvider _fileProvider;
         private readonly IPictureService _pictureService;
         #endregion
 
@@ -29,11 +34,13 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
         public KonnectAllModelFactory(IKonnectAllService konnectAllService,
             ILocalizedModelFactory localizedModelFactory,
             ILocalizationService localizationService,
-            IPictureService pictureService) 
+            INopFileProvider fileProvider,
+            IPictureService pictureService)
         {
             _konnectAllService = konnectAllService;
             _localizedModelFactory = localizedModelFactory;
             _localizationService = localizationService;
+            _fileProvider = fileProvider;
             _pictureService = pictureService;
         }
         #endregion
@@ -48,14 +55,14 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
         /// A task that represents the asynchronous operation
         /// The task result contains the banner search model
         /// </returns>
-        public async Task<IList<OnlineSalesPublicInfoModel>> PreparePublicInfoModelAsync() 
+        public async Task<IList<OnlineSalesPublicInfoModel>> PreparePublicInfoModelAsync()
         {
             var osList = await _konnectAllService.GetAllOnlineSalesAsync();
 
             if (osList == null)
                 return null;
 
-            var model = await osList.SelectAwait(async onlineSales => 
+            var model = await osList.SelectAwait(async onlineSales =>
             {
                 var os = new OnlineSalesPublicInfoModel
                 {
@@ -81,7 +88,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
         /// A task that represents the asynchronous operation
         /// The task result contains the onlineSales search model
         /// </returns>
-        public async Task<OnlineSalesSearchModel> PrepareOnlineSalesSearchModelAsync(OnlineSalesSearchModel searchModel) 
+        public async Task<OnlineSalesSearchModel> PrepareOnlineSalesSearchModelAsync(OnlineSalesSearchModel searchModel)
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
@@ -117,7 +124,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
         /// A task that represents the asynchronous operation
         /// The task result contains the onlineSales list model
         /// </returns>
-        public async Task<OnlineSalesListModel> PrepareOnlineSalesListModelAsync(OnlineSalesSearchModel searchModel) 
+        public async Task<OnlineSalesListModel> PrepareOnlineSalesListModelAsync(OnlineSalesSearchModel searchModel)
         {
             if (searchModel == null)
                 throw new ArgumentNullException(nameof(searchModel));
@@ -131,7 +138,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
             //prepare grid model
             var model = new OnlineSalesListModel().PrepareToGrid(searchModel, onlineSales, () =>
             {
-                return onlineSales.Select( os =>
+                return onlineSales.Select(os =>
                 {
                     //fill in model values from the entity
                     var osm = os.ToModel<OnlineSalesModel>();
@@ -153,7 +160,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
         /// A task that represents the asynchronous operation
         /// The task result contains the onlineSales model
         /// </returns>
-        public async Task<OnlineSalesModel> PrepareOnlineSalesModelAsync(OnlineSalesModel model, OnlineSales onlineSales, bool excludeProperties = false) 
+        public async Task<OnlineSalesModel> PrepareOnlineSalesModelAsync(OnlineSalesModel model, OnlineSales onlineSales, bool excludeProperties = false)
         {
             Func<OnlineSalesLocalizedModel, int, Task> localizedModelConfiguration = null;
 
@@ -180,6 +187,114 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
             //prepare localized models
             if (!excludeProperties)
                 model.Locales = await _localizedModelFactory.PrepareLocalizedModelsAsync(localizedModelConfiguration);
+
+            return model;
+        }
+        #endregion
+
+        #region Application Request Feature
+        /// <summary>
+        /// Prepare application request search model
+        /// </summary>
+        /// <param name="searchModel">Application request search model</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales search model
+        /// </returns>
+        public async Task<ApplicationRequestSearchModel> PrepareApplicationRequestSearchModelAsync(ApplicationRequestSearchModel searchModel)
+        {
+            if (searchModel == null)
+                throw new ArgumentNullException(nameof(searchModel));
+
+            //prepare page parameters
+            searchModel.SetGridPageSize();
+
+            return searchModel;
+        }
+
+        /// <summary>
+        /// Prepare paged application request list model
+        /// </summary>
+        /// <param name="searchModel">Application request search model</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales list model
+        /// </returns>
+        public async Task<ApplicationRequestListModel> PrepareApplicationRequestListModelAsync(ApplicationRequestSearchModel searchModel)
+        {
+            if (searchModel == null)
+                throw new ArgumentNullException(nameof(searchModel));
+
+            //get filtered application request
+            var applicationRequests = await _konnectAllService.GetAllApplicationRequestAsync(firstName: searchModel.SearchFirstName,
+                lastName: searchModel.SearchLastName,
+                email: searchModel.SearchEmail,
+                phone: searchModel.SearchPhone,
+                pageIndex: searchModel.Page - 1,
+                pageSize: searchModel.PageSize);
+
+            //prepare grid model
+            var model = new ApplicationRequestListModel().PrepareToGrid(searchModel, applicationRequests, () =>
+            {
+                return applicationRequests.Select(ar =>
+                {
+                    //fill in model values from the entity
+                    var arm = ar.ToModel<ApplicationRequestModel>();
+                    arm.FullName = ar.FirstName + " " + ar.LastName;
+                    return arm;
+                }).OrderByDescending(x => x.Id);
+            });
+
+            return model;
+        }
+
+        /// <summary>
+        /// Prepare application request model
+        /// </summary>
+        /// <param name="model">Application request model</param>
+        /// <param name="applicationRequest">Application request</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales model
+        /// </returns>
+        public async Task<ApplicationRequestModel> PrepareApplicationRequestModelAsync(ApplicationRequestModel model, ApplicationRequest applicationRequest)
+        {
+            if (applicationRequest != null)
+            {
+                //fill in model values from the entity
+                if (model == null)
+                {
+                    model = applicationRequest.ToModel<ApplicationRequestModel>();
+                }
+
+                model.FullName = applicationRequest.FirstName + " " + applicationRequest.LastName;
+
+                //load applicant resume
+                var resumePath = _fileProvider.GetAbsolutePath(string.Format(PluginDefaults.ResumePath, applicationRequest.Id));
+                var resumeDestinationPath = _fileProvider.Combine(_fileProvider.GetAbsolutePath(resumePath), applicationRequest.Resume);
+
+                if (File.Exists(resumeDestinationPath))
+                    model.ResumeLink = resumeDestinationPath;
+
+                //load applicant other documents
+                var documents = await _konnectAllService.GetAllDocumentsByApplicationIdAsync(applicationRequest.Id);
+                foreach (var document in documents)
+                {
+                    var finalPath = _fileProvider.GetAbsolutePath(string.Format(PluginDefaults.DocumentsPath, applicationRequest.Id, model.FullName));
+                    var destinationPath = _fileProvider.Combine(_fileProvider.GetAbsolutePath(finalPath), document.DocumentName);
+
+                    if (File.Exists(destinationPath))
+                    {
+                        var doc = new ApplicationOtherDocumentsModel
+                        {
+                            Name = document.DocumentName,
+                            DownloadLink = destinationPath
+                        };
+
+                        model.Documents.Add(doc);
+                    }
+                }
+            }
 
             return model;
         }

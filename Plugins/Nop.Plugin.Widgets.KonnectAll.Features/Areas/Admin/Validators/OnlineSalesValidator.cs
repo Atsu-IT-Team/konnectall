@@ -1,12 +1,7 @@
 ﻿using FluentValidation;
-using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales;
 using Nop.Services.Localization;
 using Nop.Web.Framework.Validators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Validators
 {
