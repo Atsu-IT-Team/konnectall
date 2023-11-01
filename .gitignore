@@ -385,3 +385,4 @@ FodyWeavers.xsd
 /Plugins/KonnectAll.Front.Api/Authorization
 /Plugins/KonnectAll.Front.Api/Attributes
 /Plugins/KonnectAll.Front.Api/Areas/Admin
+/Presentation/Nop.Web/wwwroot/files

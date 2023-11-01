@@ -6,7 +6,10 @@
     //page class
     NopHtml.AppendPageCssClassParts("html-topic-page");
 }
-<section class="content-page">
+<section class="join-the-team content-page">
     @await Component.InvokeAsync("TopicBlock", new { systemName = "JoinUs" })
+    <div id="application-form" class="second-section">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.JointThemTeam })
+    </div>
     @await Component.InvokeAsync("NewsletterBox")
 </section>

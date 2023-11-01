@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Services
 {
     /// <summary>
-    /// OnlineSales service interface
+    /// Konnect all features service interface
     /// </summary>
     public interface IKonnectAllService
     {
@@ -78,6 +78,109 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Services
         /// <param name="onlineSales">Categories</param>
         /// <returns>A task that represents the asynchronous operation</returns>
         Task DeleteOnlineSalesAsync(IList<OnlineSales> onlineSales);
+        #endregion
+
+        #region Employment Application Feature
+
+        #region Application request
+        /// <summary>
+        /// Delete employment application request
+        /// </summary>
+        /// <param name="appRequest">Employment application</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task DeleteApplicationRequestAsync(ApplicationRequest appRequest);
+
+        /// <summary>
+        /// Gets all Application request
+        /// </summary>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the application request
+        /// </returns>
+        Task<IList<ApplicationRequest>> GetAllApplicationRequestAsync();
+
+        /// <summary>
+        /// Gets all applications
+        /// </summary>
+        /// <param name="firstName">Applicant's FirstName</param>
+        /// <param name="lastName">Applicant's FirstName</param>
+        /// <param name="email">Applicant's Email</param>
+        /// <param name="phone">Applicant's Phone</param>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// null - process "Published" property according to "showHidden" parameter
+        /// true - load only "Published" sales
+        /// false - load only "Unpublished" sales
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the application request
+        /// </returns>
+        Task<IPagedList<ApplicationRequest>> GetAllApplicationRequestAsync(string firstName = null,
+            string lastName = null,
+            string email = null,
+            string phone = null,
+            int pageIndex = 0, 
+            int pageSize = int.MaxValue);
+
+        /// <summary>
+        /// Gets a application request
+        /// </summary>
+        /// <param name="appRequestId">Application request identifier</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales
+        /// </returns>
+        Task<ApplicationRequest> GetApplicationRequestByIdAsync(int appRequestId);
+
+        /// <summary>
+        /// Insert employment application request
+        /// </summary>
+        /// <param name="appRequest">Employment application</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task InsertApplicationRequestAsync(ApplicationRequest appRequest);
+
+        /// <summary>
+        /// Update employment application request
+        /// </summary>
+        /// <param name="appRequest">Employment application</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task UpdateApplicationRequestAsync(ApplicationRequest appRequest);
+
+
+        /// <summary>
+        /// Delete a list of application requests
+        /// </summary>
+        /// <param name="appRequestList">Application request collection</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task DeleteApplicationRequestsAsync(IList<ApplicationRequest> appRequestList);
+        #endregion
+
+        #region Application documents
+        /// <summary>
+        /// Delete application document
+        /// </summary>
+        /// <param name="appDocument">Employment application documents</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task DeleteApplicationDocumentAsync(ApplicationDocuments appDocument);
+
+        /// <summary>
+        /// Gets all applicant's documents request
+        /// </summary>
+        /// <param name="appRequestId">Application request identity</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the application request
+        /// </returns>
+        Task<IList<ApplicationDocuments>> GetAllDocumentsByApplicationIdAsync(int appRequestId);
+
+        /// <summary>
+        /// Insert application document
+        /// </summary>
+        /// <param name="appDocument">Employment application documents</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task InsertApplicationDocumentAsync(ApplicationDocuments appDocument);
+        #endregion
+
         #endregion
     }
 }

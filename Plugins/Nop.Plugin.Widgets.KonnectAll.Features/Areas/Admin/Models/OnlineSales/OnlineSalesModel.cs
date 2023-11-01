@@ -3,7 +3,7 @@ using Nop.Web.Framework.Mvc.ModelBinding;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models
+namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales
 {
     /// <summary>
     /// Represents a configuration model

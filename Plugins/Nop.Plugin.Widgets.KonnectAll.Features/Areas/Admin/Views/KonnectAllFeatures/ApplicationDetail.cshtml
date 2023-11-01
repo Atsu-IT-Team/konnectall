@@ -1,0 +1,90 @@
+@model ApplicationRequestModel
+@using Nop.Services.Common
+@using Nop.Web.Areas.Admin.Components;
+@inject IWorkContext workContext
+@inject IGenericAttributeService genericAttributeService
+@{
+    Layout = "_AdminLayout";
+    //page title
+    ViewBag.PageTitle = T("Plugin.Widgets.KonnectAll.Features.ApplicationRequest.ViewApplicationDetail").Text;
+    //active menu item (system name)
+    NopHtml.SetActiveMenuItemSystemName("ApplicationRequest");
+    const string hideInfoBlockAttributeName = "ApplicationRequestPage.HideInfoBlock";
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var hideInfoBlock = await genericAttributeService.GetAttributeAsync<bool>(customer, hideInfoBlockAttributeName);
+}
+<form id="application-form">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Id" type="hidden" />
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Plugin.Widgets.KonnectAll.Features.ApplicationRequest.ViewApplicationDetail")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="ApplicationList">@T("Plugin.Widgets.KonnectAll.Features.ApplicationRequest.BackToList")</a>
+            </small>
+        </h1>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <nop-cards id="applicationrequest-cards">
+                    <nop-card asp-name="applicationrequest-info" asp-icon="fas fa-info" asp-title="@T("Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Setting")" asp-hide-block-attribute-name="@hideInfoBlockAttributeName" asp-hide="@hideInfoBlock" asp-advanced="false">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="FirstName" />
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-text-row">@Model.FullName</div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="Email" />
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-text-row">@Model.Email</div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="Phone" />
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="form-text-row">@Model.Phone</div>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.Resume) && !string.IsNullOrEmpty(Model.ResumeLink))
+                            {
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="Resume" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <a href="@Url.Action("DownloadDocument", "KonnectAllFeatures", new { url = Model.ResumeLink })">@Model.Resume</a>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (Model.Documents.Count > 0)
+                            {
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="Documents" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        @foreach (var item in Model.Documents)
+                                        {
+                                            <a href="@Url.Action("DownloadDocument", "KonnectAllFeatures", new { url = item.DownloadLink })">@item.Name</a><br />
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </nop-card>
+                </nop-cards>
+            </div>
+        </div>
+    </section>
+</form>

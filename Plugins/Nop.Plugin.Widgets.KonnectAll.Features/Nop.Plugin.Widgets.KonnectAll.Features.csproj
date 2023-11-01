@@ -18,6 +18,7 @@
 		<None Remove="Areas\Admin\Views\_ViewImports.cshtml" />
 		<None Remove="logo.jpg" />
 		<None Remove="plugin.json" />
+		<None Remove="Themes\KonnectAllTheme\Views\Shared\Components\ApplicationRequest\Default.cshtml" />
 		<None Remove="Themes\KonnectAllTheme\Views\Shared\Components\OnlineSales\Default.cshtml" />
 		<None Remove="Themes\KonnectAllTheme\Views\_ViewImports.cshtml" />
 		<None Remove="Views\Shared\Components\OnlineSales\Default.cshtml" />
@@ -30,6 +31,10 @@
 		</Content>
 		<Content Include="plugin.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\KonnectAllTheme\Views\Shared\Components\ApplicationRequest\Default.cshtml">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
 		<Content Include="Themes\KonnectAllTheme\Views\Shared\Components\OnlineSales\Default.cshtml">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -55,10 +60,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="Areas\Admin\Views\KonnectAllFeatures\ApplicationDetail.cshtml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="Areas\Admin\Views\KonnectAllFeatures\Create.cshtml">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Areas\Admin\Views\KonnectAllFeatures\Edit.cshtml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Areas\Admin\Views\KonnectAllFeatures\ApplicationList.cshtml">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Areas\Admin\Views\KonnectAllFeatures\List.cshtml">

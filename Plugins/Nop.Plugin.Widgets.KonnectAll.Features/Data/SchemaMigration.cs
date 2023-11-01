@@ -2,11 +2,6 @@
 using Nop.Data.Extensions;
 using Nop.Data.Migrations;
 using Nop.Plugin.Widgets.KonnectAll.Features.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Data
 {
@@ -19,6 +14,8 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Data
         public override void Up()
         {
             Create.TableFor<OnlineSales>();
+            Create.TableFor<ApplicationRequest>();
+            Create.TableFor<ApplicationDocuments>();
         }
     }
 }

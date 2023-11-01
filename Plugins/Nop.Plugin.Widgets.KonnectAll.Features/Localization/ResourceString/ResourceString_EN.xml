@@ -1,41 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Language Name="English">
-    <!--site menu-->
+	<!--site menu-->
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Admin.Root.Menu">
 		<Value>KonnectAll Features</Value>
 	</LocaleResource>
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Menu">
 		<Value>Online Sales</Value>
 	</LocaleResource>
-    <!--site menu-->
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Admin.Menu">
+		<Value>Application Requests</Value>
+	</LocaleResource>
+	<!--site menu-->
 
-    <!--list page-->
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales">
-        <Value>Online Sales</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Title">
-        <Value>Title</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Title.Hint">
-        <Value>Search by title</Value>
-    </LocaleResource>
-    
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published">
-        <Value>Publish</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.Hint">
-        <Value>Search banner by publish/unpublish</Value>
-    </LocaleResource>
-    
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.All">
-        <Value>All</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.ActiveOnly">
-        <Value>Active only</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.InActiveOnly">
-        <Value>Inactive only</Value>
-    </LocaleResource>
+	<!--list page-->
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales">
+		<Value>Online Sales</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Title">
+		<Value>Title</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Title.Hint">
+		<Value>Search by title</Value>
+	</LocaleResource>
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published">
+		<Value>Publish</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.Hint">
+		<Value>Search banner by publish/unpublish</Value>
+	</LocaleResource>
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.All">
+		<Value>All</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.ActiveOnly">
+		<Value>Active only</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Search.Field.Published.InActiveOnly">
+		<Value>Inactive only</Value>
+	</LocaleResource>
 
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.List.Fields.Title">
 		<Value>Title</Value>
@@ -46,80 +49,184 @@
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.List.Fields.DisplayOrder">
 		<Value>Display order</Value>
 	</LocaleResource>
-    <!--list page-->
+	<!--list page-->
 
-    <!--create or edit online sales configuration page-->
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.AddNew">
-        <Value>Add a new online sales</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.EditDetails">
-        <Value>Edit a online sales</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.BackToList">
-        <Value>back to the list page</Value>
-    </LocaleResource>
-    
-    
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Setting">
-        <Value>Info</Value>
-    </LocaleResource>
-    
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Title">
-        <Value>Title</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Title.Hint">
-        <Value>The title of the online sales.</Value>
-    </LocaleResource>
+	<!--create or edit online sales configuration page-->
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.AddNew">
+		<Value>Add a new online sales</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.EditDetails">
+		<Value>Edit a online sales</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.BackToList">
+		<Value>back to the list page</Value>
+	</LocaleResource>
+
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Setting">
+		<Value>Info</Value>
+	</LocaleResource>
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Title">
+		<Value>Title</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Title.Hint">
+		<Value>The title of the online sales.</Value>
+	</LocaleResource>
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Title.Required">
 		<Value>Title is required.</Value>
 	</LocaleResource>
-    
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Description">
-        <Value>Description</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Description.Hint">
-        <Value>The description of the online sales.</Value>
-    </LocaleResource>
 
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Picture">
-        <Value>Picture</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Picture.Hint">
-        <Value>Upload the picture of the banner for destop view.</Value>
-    </LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Description">
+		<Value>Description</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Description.Hint">
+		<Value>The description of the online sales.</Value>
+	</LocaleResource>
 
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Published">
-        <Value>Published</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Published.Hint">
-        <Value>Check whether the online sales is active.</Value>
-    </LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Picture">
+		<Value>Picture</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Picture.Hint">
+		<Value>Upload the picture of the banner for destop view.</Value>
+	</LocaleResource>
 
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.DisplayOrder">
-        <Value>Display order</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.DisplayOrder.Hint">
-        <Value>The online sales display order. 1 represents the first item in the list.</Value>
-    </LocaleResource>
-    
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Added">
-        <Value>Online sales added successfully.</Value>
-    </LocaleResource>
-    <LocaleResource Name="ActivityLog.AddNewOnlineSales">
-        <Value>Added a new online sales (ID = {0})</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Updated">
-        <Value>Online sales updated successfully.</Value>
-    </LocaleResource>
-    <LocaleResource Name="ActivityLog.EditOnlineSales">
-        <Value>Edited a online sales (ID = {0})</Value>
-    </LocaleResource>
-    <LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Deleted">
-        <Value>Online sales deleted successfully.</Value>
-    </LocaleResource>
-    <LocaleResource Name="ActivityLog.DeleteOnlineSales">
-        <Value>Deleted a online sales (ID = {0})</Value>
-    </LocaleResource>
-    <!--create or edit online sales page-->
-    
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Published">
+		<Value>Published</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Published.Hint">
+		<Value>Check whether the online sales is active.</Value>
+	</LocaleResource>
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.DisplayOrder">
+		<Value>Display order</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.DisplayOrder.Hint">
+		<Value>The online sales display order. 1 represents the first item in the list.</Value>
+	</LocaleResource>
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Added">
+		<Value>Online sales added successfully.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ActivityLog.AddNewOnlineSales">
+		<Value>Added a new online sales (ID = {0})</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Updated">
+		<Value>Online sales updated successfully.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ActivityLog.EditOnlineSales">
+		<Value>Edited a online sales (ID = {0})</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Deleted">
+		<Value>Online sales deleted successfully.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ActivityLog.DeleteOnlineSales">
+		<Value>Deleted a online sales (ID = {0})</Value>
+	</LocaleResource>
+	<!--create or edit online sales page-->
+
+	<!--application request featrue-->
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest">
+		<Value>Application Request</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.List.Fields.FullName">
+		<Value>Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.List.Fields.Email">
+		<Value>Email</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.List.Fields.Phone">
+		<Value>Phone</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.ViewApplicationDetail">
+		<Value>Applicant's details</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.BackToList">
+		<Value>back to the list page</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Setting">
+		<Value>Info</Value>
+	</LocaleResource>
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.SearchFirstName">
+		<Value>First name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.SearchFirstName.Hint">
+		<Value>Search by applicant's first name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.SearchLastName">
+		<Value>Last name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.SearchLastName.Hint">
+		<Value>Search by applicant's last name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.SearchEmail">
+		<Value>Email</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.SearchEmail.Hint">
+		<Value>Search by applicant's email</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.SearchPhone">
+		<Value>Phone</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.SearchPhone.Hint">
+		<Value>Search by applicant's phone</Value>
+	</LocaleResource>
+	
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.FullName">
+		<Value>Full name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.FullName.Hint">
+		<Value>Applicant's full name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Email">
+		<Value>Email</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Email.Hint">
+		<Value>Applicant's Email</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Phone">
+		<Value>Phone</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Phone.Hint">
+		<Value>Applicant's Phone</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Resume">
+		<Value>Resume</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Resume.Hint">
+		<Value>Applicant's Resume</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Documents">
+		<Value>Other documents</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Documents.Hint">
+		<Value>Applicant's other documents</Value>
+	</LocaleResource>
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.FirstName.Required">
+		<Value>First name is required.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.LastName.Required">
+		<Value>Last name is required.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Email.Required">
+		<Value>Email is required.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Phone.Required">
+		<Value>Phone number is required.</Value>
+	</LocaleResource>
+	
+	
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Admin.Deleted">
+		<Value>Applicant's deleted successfully.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ActivityLog.DeleteApplicationRequest">
+		<Value>Deleted a application request (ID = {0})</Value>
+	</LocaleResource>
+
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Submit.Success">
+		<Value>Application submitted successfully, we'll contact you soon.</Value>
+	</LocaleResource>
+	<!--application request featrue-->
 </Language>
