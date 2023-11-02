@@ -194,8 +194,8 @@ public class MyFatoorahPaymentProcessor : BasePlugin, IPaymentMethod, IPlugin
 
     private async Task<SendPaymentRequest> BuildInvoiceRequestAsync(PostProcessPaymentRequest postProcessPaymentRequest)
     {
-        string returnUrl = _webHelper.GetStoreLocation((bool?)false).Replace("localhost", "127.0.0.0") + "Plugins/PaymentMyFatoorah/PDTHandler";
-        string cancelReturnUrl = _webHelper.GetStoreLocation((bool?)false).Replace("localhost", "127.0.0.0") + "Plugins/PaymentMyFatoorah/CancelOrder";
+        string returnUrl = _webHelper.GetStoreLocation((bool?)false) + "Plugins/PaymentMyFatoorah/PDTHandler";
+        string cancelReturnUrl = _webHelper.GetStoreLocation((bool?)false)+ "Plugins/PaymentMyFatoorah/CancelOrder";
         List<Invoiceitem> invoiceItems = new List<Invoiceitem>();
         _ = (await _workContext.GetCurrentCustomerAsync()).Active;
         Order currentOrder = postProcessPaymentRequest.Order;

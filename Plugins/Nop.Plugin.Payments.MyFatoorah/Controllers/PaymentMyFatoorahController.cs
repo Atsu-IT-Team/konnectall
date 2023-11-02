@@ -5,6 +5,8 @@
 // Assembly location: C:\Users\USER\Downloads\Nop.Plugin.Payments.MyFatoorah_main_4.5\Payments.MyFatoorah\Nop.Plugin.Payments.MyFatoorah.dll
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Nop.Core;
 using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Orders;
@@ -37,9 +39,8 @@ namespace Nop.Plugin.Payments.MyFatoorah.Controllers
     [AutoValidateAntiforgeryToken]
     public class PaymentMyFatoorahController : BasePaymentController
     {
-        private readonly
-#nullable disable
-        IGenericAttributeService _genericAttributeService;
+        private readonly IActionContextAccessor _actionContextAccessor;
+        private readonly IGenericAttributeService _genericAttributeService;
         private readonly IOrderProcessingService _orderProcessingService;
         private readonly IOrderService _orderService;
         private readonly IPaymentPluginManager _paymentPluginManager;
@@ -51,11 +52,12 @@ namespace Nop.Plugin.Payments.MyFatoorah.Controllers
         private readonly IStoreContext _storeContext;
         private readonly IWebHelper _webHelper;
         private readonly IWorkContext _workContext;
+        private readonly IUrlHelperFactory _urlHelperFactory;
         private readonly ShoppingCartSettings _shoppingCartSettings;
         private readonly MyFatoorahPaymentSettings _myFatoorahPaymentSettings;
         private readonly MyFatoorahHttpClient _myFatoorahHttpClient;
 
-        public PaymentMyFatoorahController(
+        public PaymentMyFatoorahController(IActionContextAccessor actionContextAccessor,
           IGenericAttributeService genericAttributeService,
           IOrderProcessingService orderProcessingService,
           IOrderService orderService,
@@ -68,10 +70,12 @@ namespace Nop.Plugin.Payments.MyFatoorah.Controllers
           IStoreContext storeContext,
           IWebHelper webHelper,
           IWorkContext workContext,
+          IUrlHelperFactory urlHelperFactory,
           ShoppingCartSettings shoppingCartSettings,
           MyFatoorahPaymentSettings myFatoorahPaymentSettings,
           MyFatoorahHttpClient myFatoorahHttpClient)
         {
+            this._actionContextAccessor = actionContextAccessor;
             this._genericAttributeService = genericAttributeService;
             this._orderProcessingService = orderProcessingService;
             this._orderService = orderService;
@@ -84,6 +88,7 @@ namespace Nop.Plugin.Payments.MyFatoorah.Controllers
             this._storeContext = storeContext;
             this._webHelper = webHelper;
             this._workContext = workContext;
+            this. _urlHelperFactory = urlHelperFactory;
             this._shoppingCartSettings = shoppingCartSettings;
             this._myFatoorahPaymentSettings = myFatoorahPaymentSettings;
             this._myFatoorahHttpClient = myFatoorahHttpClient;
@@ -450,13 +455,13 @@ namespace Nop.Plugin.Payments.MyFatoorah.Controllers
             });
         }
 
-        public async Task<IActionResult> PDTHandler()
+        public async Task<IActionResult> PDTHandler(string paymentId, string Id)
         {
             PaymentMyFatoorahController fatoorahController = this;
             int num1;
             try
             {
-                (bool, Order) valueTuple = await fatoorahController.ValidateOrderResponseAsync();
+                (bool, Order) valueTuple = await ValidateOrderResponseAsync();
                 int num2 = valueTuple.Item1 ? 1 : 0;
                 Order order = valueTuple.Item2;
                 if (num2 == 0)
@@ -504,39 +509,88 @@ namespace Nop.Plugin.Payments.MyFatoorah.Controllers
 
         private async Task<(bool isValid, Order order)> ValidateOrderResponseAsync()
         {
-            PaymentMyFatoorahController fatoorahController = this;
-            string idResponse = fatoorahController._webHelper.QueryString<string>("id");
-            if (!(await ((IPluginManager<IPaymentMethod>)fatoorahController._paymentPluginManager).LoadPluginBySystemNameAsync("Payments.MyFatoorah", (Customer)null, 0) is MyFatoorahPaymentProcessor paymentProcessor) || !fatoorahController._paymentPluginManager.IsPluginActive((IPaymentMethod)paymentProcessor))
+            ValueTuple<bool, Order> valueTuple;
+            bool flag;
+            Order transactionId;
+            string str;
+            string str1;
+            string str2 = this._webHelper.QueryString<string>("id");
+            var urlHelper = _urlHelperFactory.GetUrlHelper(_actionContextAccessor.ActionContext);
+            IPaymentMethod paymentMethod = await this._paymentPluginManager.LoadPluginBySystemNameAsync("Payments.MyFatoorah.KonnectAll", null, 0);
+            IPaymentMethod paymentMethod1 = paymentMethod;
+            MyFatoorahPaymentProcessor myFatoorahPaymentProcessor = paymentMethod1 as MyFatoorahPaymentProcessor;
+            flag = (myFatoorahPaymentProcessor == null ? true : !this._paymentPluginManager.IsPluginActive(myFatoorahPaymentProcessor));
+            if (flag)
+            {
+                paymentMethod1 = null;
+                paymentMethod = null;
                 throw new NopException("MyFatoorah module cannot be loaded");
-            GetPaymentStatusResponse orderResponse = fatoorahController._myFatoorahHttpClient.GetPaymentStatusAsync(idResponse).Result;
-            if (orderResponse == null)
-                return (false, (Order)null);
-            Order order = await fatoorahController._orderService.GetOrderByCustomOrderNumberAsync(orderResponse.Data.InvoiceId.ToString());
-            if (order == null)
-                return (false, (Order)null);
-            if (orderResponse.Data.InvoiceTransactions.Any<InvoiceTransaction>())
-            {
-                InvoiceTransaction invoiceTransaction = orderResponse.Data.InvoiceTransactions.SingleOrDefault<InvoiceTransaction>((Func<InvoiceTransaction, bool>)(x => x.TransactionStatus == "Succss"));
-                if (invoiceTransaction != null)
-                {
-                    order.AuthorizationTransactionId = invoiceTransaction.TransactionId;
-                    return (true, order);
-                }
-                orderResponse.Message = orderResponse.Data.InvoiceTransactions.LastOrDefault<InvoiceTransaction>((Func<InvoiceTransaction, bool>)(x => x.TransactionStatus != "Succss")).Error;
             }
-            string errorMessage = orderResponse.MessageSummary + ", Your order has been cancelled due to failure payment. Please try to <a href='" + ((ControllerBase)fatoorahController).Url.RouteUrl("ReOrder", (object)new
+            GetPaymentStatusResponse result = await _myFatoorahHttpClient.GetPaymentStatusAsync(str2);
+            if (result != null)
             {
-                orderId = ((BaseEntity)order).Id
-            }) + "'>Re-Order</a>";
-            await fatoorahController._orderService.InsertOrderNoteAsync(new OrderNote()
+                IOrderService orderService = this._orderService;
+                long invoiceId = result.Data.InvoiceId;
+                Order orderByCustomOrderNumberAsync = await orderService.GetOrderByCustomOrderNumberAsync(invoiceId.ToString());
+                transactionId = orderByCustomOrderNumberAsync;
+                orderByCustomOrderNumberAsync = null;
+                if (transactionId != null)
+                {
+                    if (result.Data.InvoiceTransactions.Any<InvoiceTransaction>())
+                    {
+                        IList<InvoiceTransaction> invoiceTransactions = result.Data.InvoiceTransactions;
+                        InvoiceTransaction invoiceTransaction = invoiceTransactions.SingleOrDefault<InvoiceTransaction>((InvoiceTransaction x) => x.TransactionStatus == "Succss");
+                        if (invoiceTransaction == null)
+                        {
+                            IList<InvoiceTransaction> invoiceTransactions1 = result.Data.InvoiceTransactions;
+                            InvoiceTransaction invoiceTransaction1 = invoiceTransactions1.LastOrDefault<InvoiceTransaction>((InvoiceTransaction x) => x.TransactionStatus != "Succss");
+                            result.Message = invoiceTransaction1.Error;
+                            invoiceTransaction = null;
+                            invoiceTransaction1 = null;
+                        }
+                        else
+                        {
+                            transactionId.AuthorizationTransactionId = invoiceTransaction.TransactionId;
+                            valueTuple = new ValueTuple<bool, Order>(true, transactionId);
+                            str2 = null;
+                            myFatoorahPaymentProcessor = null;
+                            result = null;
+                            transactionId = null;
+                            str = null;
+                            str1 = null;
+                            return valueTuple;
+                        }
+                    }
+                    str = urlHelper.RouteUrl("ReOrder", new { orderId = transactionId.Id });
+                    str1 = string.Concat(result.MessageSummary, ", Your order has been cancelled due to failure payment. Please try to <a href='", str, "'>Re-Order</a>");
+                    IOrderService orderService1 = this._orderService;
+                    OrderNote orderNote = new OrderNote()
+                    {
+                        OrderId = transactionId.Id,
+                        Note = string.Concat("MyFatoorah payment failed. ", result.MessageSummary),
+                        DisplayToCustomer = false,
+                        CreatedOnUtc = DateTime.UtcNow
+                    };
+                    await orderService1.InsertOrderNoteAsync(orderNote);
+                    this._notificationService.ErrorNotification(str1, true);
+                    valueTuple = new ValueTuple<bool, Order>(true, transactionId);
+                }
+                else
+                {
+                    valueTuple = new ValueTuple<bool, Order>(false, (Order)null);
+                }
+            }
+            else
             {
-                OrderId = ((BaseEntity)order).Id,
-                Note = "MyFatoorah payment failed. " + orderResponse.MessageSummary,
-                DisplayToCustomer = false,
-                CreatedOnUtc = DateTime.UtcNow
-            });
-            fatoorahController._notificationService.ErrorNotification(errorMessage, true);
-            return (true, order);
+                valueTuple = new ValueTuple<bool, Order>(false, (Order)null);
+            }
+            str2 = null;
+            myFatoorahPaymentProcessor = null;
+            result = null;
+            transactionId = null;
+            str = null;
+            str1 = null;
+            return valueTuple;
         }
     }
 }
