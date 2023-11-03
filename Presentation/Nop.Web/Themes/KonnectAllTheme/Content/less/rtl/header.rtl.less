@@ -1051,6 +1051,13 @@ section.header {
                             font-size: 12px;
                         }
 
+                        .fa-chevron-right {
+                            position: absolute;
+                            right: 10px;
+                            top: 11px;
+                            color: #666;
+                        }
+
                         &:hover {
                             color: @white-color !important;
                         }
@@ -1102,7 +1109,7 @@ section.header {
                             z-index: 10;
                             width: 250px;
                             animation: fade_in_show 0.5s;
-                            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.4);
+                            border: 1px solid #d3d3d3;
 
                             @media(max-width:1200px) {
                                 top: 52px;
@@ -1198,6 +1205,9 @@ section.header {
                                                         text-align: right;
                                                     }
 
+                                                    .dropdown-submenu.first-level {
+                                                        border: 1px solid #d3d3d3;
+                                                    }
 
                                                     .dropdown-submenu {
                                                         display: none;

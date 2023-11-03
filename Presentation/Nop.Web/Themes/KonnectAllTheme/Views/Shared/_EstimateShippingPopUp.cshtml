@@ -13,56 +13,40 @@
         <div class="row">
             <div class="col-12 col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
-                    <div class="estimate-shipping-row-item address-item row">
-                        <div class="col-sm-11 col-md-11">
-                            <select asp-for="CountryId"
-                                    asp-items="Model.AvailableCountries"
-                                    class="estimate-shipping-address-control form-control"
-                                    data-trigger="country-select"
-                                    data-url="@(Url.RouteUrl("GetStatesByCountryId"))"
-                                    data-stateprovince="#@Html.IdFor(model => model.StateProvinceId)"
-                                    data-loading="#estimate-shipping-loading-progress"
-                                    placeholder="@T("Shipping.EstimateShippingPopUp.Country")"></select>
-                        </div>
-                        <div class="col-sm-1 col-md-1 required-div">
-                            <div class="form-title-rquired"><nop-required /></div>
-                        </div>
-                    </div>
+                    <select asp-for="CountryId"
+                            asp-items="Model.AvailableCountries"
+                            class="estimate-shipping-address-control form-control"
+                            data-trigger="country-select"
+                            data-url="@(Url.RouteUrl("GetStatesByCountryId"))"
+                            data-stateprovince="#@Html.IdFor(model => model.StateProvinceId)"
+                            data-loading="#estimate-shipping-loading-progress"
+                            placeholder="@T("Shipping.EstimateShippingPopUp.Country")"></select>
+                    <div class="form-title-rquired"><nop-required /></div>
                 </div>
             </div>
             <div class="col-12 col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
-                    <div class="estimate-shipping-row-item address-item row">
-                        <div class="col-sm-12 col-md-12">
                             <select asp-for="StateProvinceId"
                                     asp-items="Model.AvailableStates"
                                     class="estimate-shipping-address-control form-control"
                                     placeholder="@T("Shipping.EstimateShippingPopUp.StateProvince")"></select>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-12 col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <div class="form-group">
-                    <div class="estimate-shipping-row-item address-item row">
-                        <div class="col-sm-11 col-md-11">
-                            @if (Model.UseCity)
-                            {
-                                <input asp-for="City"
-                                class="estimate-shipping-address-control form-control"
-                                placeholder="@T("Shipping.EstimateShippingPopUp.City")" />
-                            }
-                            else
-                            {
-                                <input asp-for="ZipPostalCode"
-                                class="estimate-shipping-address-control form-control"
-                                placeholder="@T("Shipping.EstimateShippingPopUp.ZipPostalCode")" />
-                            }
-                        </div>
-                        <div class="col-sm-1 col-md-1 required-div">
-                            <div class="form-title-rquired"><nop-required /></div>
-                        </div>
-                    </div>
+                     @if (Model.UseCity)
+                    {
+                        <input asp-for="City"
+                        class="estimate-shipping-address-control form-control"
+                        placeholder="@T("Shipping.EstimateShippingPopUp.City")" />
+                    }
+                    else
+                    {
+                        <input asp-for="ZipPostalCode"
+                        class="estimate-shipping-address-control form-control"
+                        placeholder="@T("Shipping.EstimateShippingPopUp.ZipPostalCode")" />
+                    }
+                    <div class="form-title-rquired"><nop-required /></div>                   
                 </div>
             </div>
         </div>
