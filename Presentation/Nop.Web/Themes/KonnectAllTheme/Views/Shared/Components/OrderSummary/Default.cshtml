@@ -34,14 +34,14 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th>@T("ShoppingCart.Remove")</th>
                                     @if (Model.IsEditable)
                                     {
-                                        <th></th>
+                                        <th>@T("ShoppingCart.Image")</th>
                                     }
-                                    <th></th>
                                     @if (Model.ShowSku)
                                     {
-                                        <th></th>
+                                        <th>@T("ShoppingCart.SKU")</th>
                                     }
                                     <th>@T("ShoppingCart.Product(s)")</th>
                                     <th>@T("ShoppingCart.UnitPrice")</th>
