@@ -20,7 +20,7 @@ namespace Nop.Web.Models.Discounts
 
         public Discount Discount { get; set; }
         public ProductDetailsModel SelectedProduct { get; set; }
-        public IEnumerable<ProductOverviewModel> Products { get; set; }
+        public IList<ProductOverviewModel> Products { get; set; }
         public ProductDetailsModel.AddToCartModel AddToCart { get; set; }
 
 

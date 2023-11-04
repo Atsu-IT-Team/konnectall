@@ -34,8 +34,9 @@
                             <div class="row img-product">
                                 @if (selectedProduct.PictureModels.Count > 1)
                                 {
-
-                                    <div class="col-md-3 secon-img">
+                                    <link rel="stylesheet" href="~/lib_npm/magnific-popup/magnific-popup.css" />
+                                    <script asp-exclude-from-bundle="true" src="~/lib_npm/magnific-popup/jquery.magnific-popup.min.js" asp-location="Footer"></script>
+                                    <div class="col-md-3 secon-img picture-thumbs">
                                         @foreach (var picture in selectedProduct.PictureModels)
                                         {
                                             <a class="thumb-item" href="@picture.FullSizeImageUrl" alt="@picture.AlternateText" title="@picture.Title">
@@ -43,6 +44,38 @@
                                             </a>
                                         }
                                     </div>
+                                    <script asp-location="Footer">
+                                        $(document).ready(function () {
+                                            $('.picture-thumbs').magnificPopup(
+                                                {
+                                                    type: 'image',
+                                                    delegate: 'a',
+                                                    removalDelay: 300,
+                                                    gallery: {
+                                                        enabled: true,
+                                                        navigateByImgClick: true,
+                                                        preload: [0, 1],
+                                                        tPrev: '@T("Media.MagnificPopup.Previous")',
+                                                        tNext: '@T("Media.MagnificPopup.Next")',
+                                                        tCounter: '@T("Media.MagnificPopup.Counter")'
+                                                    },
+                                                    tClose: '@T("Media.MagnificPopup.Close")',
+                                                    tLoading: '@T("Media.MagnificPopup.Loading")'
+                                                });
+                                        });
+                                    </script>
+                                    <script asp-location="Footer">
+                                        $(document).ready(function () {
+                                            $('.thumb-item > img').on('click',
+                                                function () {
+                                                    $('#main-product-img-@Model.Id').attr('src', $(this).attr('data-defaultsize'));
+                                                    $('#main-product-img-@Model.Id').attr('title', $(this).attr('title'));
+                                                    $('#main-product-img-@Model.Id').attr('alt', $(this).attr('alt'));
+                                                    $('#main-product-img-lightbox-anchor-@Model.Id').attr('href', $(this).attr('data-fullsize'));
+                                                    $('#main-product-img-lightbox-anchor-@Model.Id').attr('title', $(this).attr('title'));
+                                                });
+                                        });
+                                    </script>
                                 }
                                 <div class="col-md-9 main-img">
                                     <a href="@selectedProduct.DefaultPictureModel.FullSizeImageUrl" title="@selectedProduct.DefaultPictureModel.Title" id="main-product-img-lightbox-anchor-@Model.Id">
@@ -124,6 +157,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 wishlist-icon">
+                                        @{
+                                            var dataDictAddToWishlist = new ViewDataDictionary(ViewData);
+                                            dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = $"addtocart_{selectedProduct.Id}";
+                                            @await Html.PartialAsync("_AddToWishlist", selectedProduct.AddToCart, dataDictAddToWishlist)
+                                        }
                                         <a href="#" class="wishlist" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">
                                             <i class='fa fa-heart'></i>
                                         </a>
@@ -162,13 +200,15 @@
                                     <div title="@product.Name" class="title font-normal">
                                         @product.Name
                                     </div>
-                                    <div class="review">
+                                    @* <div class="review">
                                         <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
                                         <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
                                         <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
                                         <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
                                         <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-gray.png">
-                                    </div>
+                                    </div> *@
+                                    <!--product reviews-->
+                                    @await Html.PartialAsync("_ProductReviewOverview", product.ReviewOverviewModel)
                                     <div class="price font-normal text-uppercase">
                                         @product.ProductPrice.Price
                                     </div>
