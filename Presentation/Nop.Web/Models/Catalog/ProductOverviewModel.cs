@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Nop.Core.Domain.Catalog;
 using Nop.Web.Framework.Models;
 using Nop.Web.Models.Media;
@@ -37,8 +38,7 @@ namespace Nop.Web.Models.Catalog
         public ProductSpecificationModel ProductSpecificationModel { get; set; }
         //price
         public ProductReviewOverviewModel ReviewOverviewModel { get; set; }
-
-		#region Nested Classes
+        #region Nested Classes
 
         public partial record ProductPriceModel : BaseNopModel
         {
@@ -69,6 +69,6 @@ namespace Nop.Web.Models.Catalog
             public bool DisplayTaxShippingInfo { get; set; }
         }
 
-		#endregion
+        #endregion
     }
 }

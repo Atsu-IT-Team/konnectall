@@ -143,7 +143,7 @@
             <div class="col-md-5 content-product">
                 <div class="product-info">
                     <h4 class="title-product text-left text-capitalize">@Model.Name</h4>
-                    <div class="review">
+                    @* <div class="review">
                         <div class="reviews-star">
                             <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
                             <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
@@ -152,7 +152,9 @@
                             <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-gray.png">
                         </div>
                         <span class="text-capitalize">(3 reviews)</span>
-                    </div>
+                    </div> *@
+                    <!--product reviews-->
+                    @await Html.PartialAsync("_ProductReviewOverview", Model.ProductReviewOverview)
                     <div class="price">
                         @*<h6 class="text-left">@Model.ProductPrice.Price - @Model.ProductPrice.OldPrice</h6>*@
                         <h6 class="text-left">@Model.ProductPrice.Price </h6>

@@ -15,13 +15,12 @@ namespace Nop.Web.Models.Discounts
             Discount = new Discount();
             Products = new List<ProductOverviewModel>();
             AddToCart = new ProductDetailsModel.AddToCartModel();
-
+            SelectedProduct = new ProductDetailsModel();
         }
 
         public Discount Discount { get; set; }
-        public ProductOverviewModel SelectedProduct { get; set; }
+        public ProductDetailsModel SelectedProduct { get; set; }
         public IEnumerable<ProductOverviewModel> Products { get; set; }
-
         public ProductDetailsModel.AddToCartModel AddToCart { get; set; }
 
 

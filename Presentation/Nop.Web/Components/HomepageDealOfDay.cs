@@ -14,6 +14,8 @@ using Nop.Web.Framework.Components;
 using Nop.Web.Infrastructure.Cache;
 using Nop.Core.Domain.Discounts;
 using SkiaSharp;
+using Nop.Web.Models.Catalog;
+using System;
 
 namespace Nop.Web.Components
 {
@@ -66,15 +68,23 @@ namespace Nop.Web.Components
 
             var productList = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, true, true)).ToList();
 
+            ProductDetailsModel productDetailModel = new ProductDetailsModel();
+            if (selectedProductId.HasValue)
+            {
+                Product p = products.Where(x => x.Id == Convert.ToInt32(selectedProductId)).FirstOrDefault();
+                productDetailModel = await _productModelFactory.PrepareProductDetailsModelAsync(p, null);
+            }
+            else 
+            {
+                Product p = products.Where(x => x.Id == productList.FirstOrDefault().Id).FirstOrDefault();
+                productDetailModel = await _productModelFactory.PrepareProductDetailsModelAsync(p, null);
+            }
             var resultModel = new Nop.Web.Models.Discounts.ProductsDealModel
             {
                 Discount = productDiscout,
                 Products = productList,
-                SelectedProduct = selectedProductId.HasValue
-                                ? productList.FirstOrDefault(p => p.Id == selectedProductId.Value)
-                                : productList.FirstOrDefault()
+                SelectedProduct = productDetailModel
             };
-
 
             return View(resultModel);
         }

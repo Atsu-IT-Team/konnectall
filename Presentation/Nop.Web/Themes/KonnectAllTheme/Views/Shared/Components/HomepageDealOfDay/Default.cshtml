@@ -32,12 +32,27 @@
 
                         <div class="col-md-6 left-section">
                             <div class="row img-product">
-                                <div class="col-md-3 secon-img">
-                                    <img alt="" src="@selectedProduct.DefaultPictureModel.ImageUrl">
-                                    <img alt="" src="@selectedProduct.DefaultPictureModel.ImageUrl">
-                                </div>
+                                @if (selectedProduct.PictureModels.Count > 1)
+                                {
+
+                                    <div class="col-md-3 secon-img">
+                                        @foreach (var picture in selectedProduct.PictureModels)
+                                        {
+                                            <a class="thumb-item" href="@picture.FullSizeImageUrl" alt="@picture.AlternateText" title="@picture.Title">
+                                                <img src="@picture.ThumbImageUrl" alt="@picture.AlternateText" title="@picture.Title" data-defaultsize="@picture.ImageUrl" data-fullsize="@picture.FullSizeImageUrl" />
+                                            </a>
+                                        }
+                                    </div>
+                                }
                                 <div class="col-md-9 main-img">
-                                    <img alt="" src="@selectedProduct.DefaultPictureModel.ImageUrl">
+                                    <a href="@selectedProduct.DefaultPictureModel.FullSizeImageUrl" title="@selectedProduct.DefaultPictureModel.Title" id="main-product-img-lightbox-anchor-@Model.Id">
+                                        <img alt="@selectedProduct.DefaultPictureModel.AlternateText" src="@selectedProduct.DefaultPictureModel.ImageUrl" title="@selectedProduct.DefaultPictureModel.Title" id="main-product-img-@selectedProduct.Id"  />
+                                    </a>
+                                    <script asp-location="Footer">
+                                        $(document).ready(function () {
+                                            $('#main-product-img-lightbox-anchor-@Model.Id').magnificPopup({ type: 'image' });
+                                        });
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +82,7 @@
                                                 </span>
                                             </div>
                                         }
-                                        <div class="review">
+                                        @*<div class="review">
                                             <div class="reviews-star">
                                                 <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
                                                 <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
@@ -80,7 +95,15 @@
                                             <span>size : </span>
                                             <span class="lr">Large</span>
                                             <span class="sm">Small</span>
-                                        </div>
+                                        </div> *@
+                                        <!--product reviews-->
+                                        @await Html.PartialAsync("_ProductReviewOverview", Model.SelectedProduct.ProductReviewOverview)
+                                        <!--attributes-->
+                                        @{
+                                            var dataDictAttributes = new ViewDataDictionary(ViewData);
+                                            dataDictAttributes.TemplateInfo.HtmlFieldPrefix = $"attributes_{Model.SelectedProduct.Id}";
+                                            @await Html.PartialAsync("_ProductAttributes", Model.SelectedProduct, dataDictAttributes)
+                                        }
                                     </div>
                                 </div>
                                 <div class="row">
@@ -98,15 +121,6 @@
                                 <div class="row">
                                     <div class="col-md-6 social-media-icon">
                                         <div class="social-media">
-                                            <a href="#" target="_blank" class="icon-facebook">
-                                                <i class="share-media fab fa-facebook-f"></i>
-                                            </a>
-                                            <a href="#" target="_blank" class="icon-twitter">
-                                                <i class="share-media fab fa-twitter"></i>
-                                            </a>
-                                            <a href="#" target="_blank" class="icon-instagram">
-                                                <i class="share-media fab fa-instagram"></i>
-                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 wishlist-icon">
