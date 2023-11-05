@@ -9,13 +9,13 @@
 @inject CatalogSettings catalogSettings
 @if (Model.ProductAttributes.Count > 0)
 {
-    <div class="attributes">
-        <dl class="row">
+    <div class="attributes attributes-dealof">
+        <dl>
             @foreach (var attribute in Model.ProductAttributes)
             {
                 var controlId = $"{NopCatalogDefaults.ProductAttributePrefix}{attribute.Id}";
                 var textPrompt = !string.IsNullOrEmpty(attribute.TextPrompt) ? attribute.TextPrompt : attribute.Name;
-                <dt id="@($"{NopCatalogDefaults.ProductAttributePrefix}label_{attribute.Id}")" class="col-sm-4 col-md-4 product-attribute-label">
+                <dt id="@($"{NopCatalogDefaults.ProductAttributePrefix}label_{attribute.Id}")" class="product-attribute-label">
                     <label class="text-prompt">
                         @textPrompt
                     </label>
@@ -30,7 +30,7 @@
                         </div>
                     }
                 </dt>
-                <dd id="@($"{NopCatalogDefaults.ProductAttributePrefix}input_{attribute.Id}")" class=" col-sm-8 col-md-8 product-attribute-field">
+                <dd id="@($"{NopCatalogDefaults.ProductAttributePrefix}input_{attribute.Id}")" class="product-attribute-field">
                     @switch (attribute.AttributeControlType)
                     {
                         case AttributeControlType.DropdownList:
@@ -97,7 +97,7 @@
                                 <script asp-location="Footer">
                                         $(document).ready(function() {
                                             showHideRadioQuantity("@controlId");
-                                        });
+                                        }); 
                                 </script>
                             }
                             break;

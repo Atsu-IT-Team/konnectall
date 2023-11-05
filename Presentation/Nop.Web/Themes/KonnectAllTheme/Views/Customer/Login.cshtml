@@ -52,8 +52,9 @@
                             <div class="remember">
                                 <div class="toggle">
                                     <input asp-for="RememberMe" type="checkbox" />
-                                    <label asp-for="RememberMe"></label>
+                                    <label></label>
                                 </div>
+                                <span>@T("Account.Login.Fields.RememberMe")</span>
                             </div>
                             <a asp-route="PasswordRecovery">@T("Account.Login.ForgotPassword")</a>
 
