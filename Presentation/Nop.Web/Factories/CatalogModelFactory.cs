@@ -462,31 +462,26 @@ namespace Nop.Web.Factories
                     };
 
                     //prepare picture model
-                    var categoryPictureCacheKey = _staticCacheManager.PrepareKeyForDefaultCache(NopModelCacheDefaults.CategoryPictureModelKey, curCategory,
-                        pictureSize, true, await _workContext.GetWorkingLanguageAsync(), _webHelper.IsCurrentConnectionSecured(),
-                        currentStore);
+                    //var categoryPictureCacheKey = _staticCacheManager.PrepareKeyForDefaultCache(NopModelCacheDefaults.CategoryPictureModelKey, curCategory,
+                    //    pictureSize, true, await _workContext.GetWorkingLanguageAsync(), _webHelper.IsCurrentConnectionSecured(),
+                    //    currentStore);
 
-                    subCatModel.PictureModel = await _staticCacheManager.GetAsync(categoryPictureCacheKey, async () =>
+                    var picture = await _pictureService.GetPictureByIdAsync(curCategory.IconId);
+                    string fullSizeImageUrl, imageUrl;
+
+                    (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
+                    (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, pictureSize);
+
+                    subCatModel.PictureModel = new PictureModel
                     {
-                        var picture = await _pictureService.GetPictureByIdAsync(curCategory.IconId);
-                        string fullSizeImageUrl, imageUrl;
-
-                        (fullSizeImageUrl, picture) = await _pictureService.GetPictureUrlAsync(picture);
-                        (imageUrl, _) = await _pictureService.GetPictureUrlAsync(picture, pictureSize);
-
-                        var pictureModel = new PictureModel
-                        {
-                            FullSizeImageUrl = fullSizeImageUrl,
-                            IconUrl = imageUrl,
-                            Title = string.Format(await _localizationService
-                                .GetResourceAsync("Media.Category.ImageLinkTitleFormat"), subCatModel.Name),
-                            AlternateText = string.Format(await _localizationService
-                                .GetResourceAsync("Media.Category.ImageAlternateTextFormat"), subCatModel.Name)
-                        };
-
-                        return pictureModel;
-                    });
-
+                        FullSizeImageUrl = fullSizeImageUrl,
+                        IconUrl = imageUrl,
+                        Title = string.Format(await _localizationService
+                            .GetResourceAsync("Media.Category.ImageLinkTitleFormat"), subCatModel.Name),
+                        AlternateText = string.Format(await _localizationService
+                            .GetResourceAsync("Media.Category.ImageAlternateTextFormat"), subCatModel.Name)
+                    };
+                    
                     return subCatModel;
                 }).ToListAsync();
 

@@ -94,7 +94,11 @@
 
                             <div class="product-page bottom-info-deals">
                                 <div class="product-info">
-                                    <div title="@selectedProduct.Name" class="title-product text-left">@selectedProduct.Name</div>
+                                    <div title="@selectedProduct.Name" class="title-product text-left">
+                                        <a href="@Url.RouteUrl("Product", new { SeName = selectedProduct.SeName })" title="@selectedProduct.DefaultPictureModel.Title">
+                                            @selectedProduct.Name
+                                        </a>
+                                    </div>
                                     <div class="info-product">
                                         <div class="price">
                                             <h3 class="text-left">
@@ -115,20 +119,6 @@
                                                 </span>
                                             </div>
                                         }
-                                        @*<div class="review">
-                                            <div class="reviews-star">
-                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
-                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
-                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
-                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
-                                                <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-gray.png">
-                                            </div>
-                                        </div>
-                                        <div class="size">
-                                            <span>size : </span>
-                                            <span class="lr">Large</span>
-                                            <span class="sm">Small</span>
-                                        </div> *@
                                         <!--product reviews-->
                                         @await Html.PartialAsync("_ProductReviewOverview", Model.SelectedProduct.ProductReviewOverview)
                                         <!--attributes-->
@@ -198,15 +188,10 @@
                                 </div>
                                 <div class="product-info">
                                     <div title="@product.Name" class="title font-normal">
-                                        @product.Name
+                                        <a href="@Url.RouteUrl("Product", new { SeName = product.SeName })" title="@product.DefaultPictureModel.Title">
+                                            @product.Name
+                                        </a>
                                     </div>
-                                    @* <div class="review">
-                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
-                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
-                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
-                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-yellow.png">
-                                        <img alt="" src="./assets/img/b2b-category/deals-day/product-desc/star-gray.png">
-                                    </div> *@
                                     <!--product reviews-->
                                     @await Html.PartialAsync("_ProductReviewOverview", product.ReviewOverviewModel)
                                     <div class="price font-normal text-uppercase">
