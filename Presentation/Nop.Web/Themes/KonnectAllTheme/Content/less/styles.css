@@ -4858,9 +4858,9 @@ ul li a:hover {
   left: 0;
 }
 .attributes-dealof .color-squares .color-container .color {
-  width: 25px;
-  height: 25px;
-  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 180px;
   display: inline-block;
 }
 .attributes-dealof .color-squares .tooltip-container {
@@ -5076,6 +5076,19 @@ ul li a:hover {
 }
 .btn-primary.write-product-review-button {
   color: #fff;
+  font-size: 15px;
+}
+.add-to-wishlist-button {
+  padding: 0;
+  border: none;
+  background: #fff;
+  margin: 10px 0 0;
+  font-size: 20px;
+}
+.html-product-details-page .add-to-wishlist-button {
+  display: flex;
+  align-items: center;
+  margin: 0;
   font-size: 15px;
 }
 /*--------------------------------------------------------------
@@ -7761,6 +7774,7 @@ ul li a:hover {
   border-radius: 50px;
   display: inline-block;
   position: relative;
+  margin: 7px 0 0;
 }
 .estimate-shipping-radio:checked + label:after {
   content: ' ';

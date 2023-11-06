@@ -152,10 +152,6 @@
                                             dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = $"addtocart_{selectedProduct.Id}";
                                             @await Html.PartialAsync("_AddToWishlist", selectedProduct.AddToCart, dataDictAddToWishlist)
                                         }
-                                        <a href="#" class="wishlist" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">
-                                            <i class='fa fa-heart'></i>
-                                        </a>
-                                        <span class="font-light" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@T("ShoppingCart.AddToWishlist")</span>
                                     </div>
                                 </div>
 

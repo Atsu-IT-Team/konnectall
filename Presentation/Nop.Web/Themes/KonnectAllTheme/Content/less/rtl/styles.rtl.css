@@ -5012,9 +5012,9 @@ ul li a:hover {
   right: 0;
 }
 .attributes-dealof .color-squares .color-container .color {
-  width: 25px;
-  height: 25px;
-  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 180px;
   display: inline-block;
 }
 .attributes-dealof .color-squares .tooltip-container {
@@ -5219,6 +5219,19 @@ ul li a:hover {
 .product-review-item .review-type-rating-ext {
   overflow: hidden;
   margin: 0 0 20px;
+}
+.add-to-wishlist-button {
+  padding: 0;
+  border: none;
+  background: #fff;
+  margin: 10px 0 0;
+  font-size: 20px;
+}
+.html-product-details-page .add-to-wishlist-button {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: 15px;
 }
 /*--------------------------------------------------------------
 # product page style
@@ -5467,7 +5480,6 @@ ul li a:hover {
   align-items: center;
   border-bottom: 1px solid #ccc;
   padding: 7px;
-  flex-direction: row-reverse;
 }
 @media (max-width: 991px) {
   .product-page .right-section .services-section .content-service {
@@ -7983,6 +7995,7 @@ ul li a:hover {
   border-radius: 50px;
   display: inline-block;
   position: relative;
+  margin: 7px 0 0;
 }
 .estimate-shipping-radio:checked + label:after {
   content: ' ';
