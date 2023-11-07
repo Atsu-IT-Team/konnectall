@@ -35,7 +35,7 @@
                             <a style="min-height:55px !important; " class="name-product" href="@Url.RouteUrl("Product", new {SeName = @product.SeName})" title="@product.Name">
                                 @FormatProductName(@product.Name)
                             </a>
-                            <div class="text-center">@product.DeliveryDate</div>
+                            @* <div class="text-center">@product.DeliveryDate</div> *@
                             <div class="price-product shop-item-price">
                                 @product.ProductPrice.Price
                             </div>
