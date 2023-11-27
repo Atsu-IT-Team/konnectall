@@ -103,5 +103,10 @@ namespace Nop.Core.Domain.Vendors
         /// Gets or sets a value indicating whether the price range should be entered manually
         /// </summary>
         public bool ManuallyPriceRange { get; set; }
+
+        /// <summary>
+        /// Gets or sets the konnectAll commission
+        /// </summary>
+        public decimal Commission { get; set; }
     }
 }

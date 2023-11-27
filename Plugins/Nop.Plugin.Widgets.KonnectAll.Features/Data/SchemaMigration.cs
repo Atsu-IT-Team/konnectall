@@ -16,6 +16,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Data
             Create.TableFor<OnlineSales>();
             Create.TableFor<ApplicationRequest>();
             Create.TableFor<ApplicationDocuments>();
+            Create.TableFor<Commission>();
         }
     }
 }

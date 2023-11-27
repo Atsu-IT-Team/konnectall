@@ -1,47 +1,67 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Nop.Core;
+using Nop.Core.Domain.Catalog;
+using Nop.Core.Infrastructure;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.ApplicationRequest;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.Commission;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales;
 using Nop.Plugin.Widgets.KonnectAll.Features.Domain;
+using Nop.Plugin.Widgets.KonnectAll.Features.Models;
 using Nop.Plugin.Widgets.KonnectAll.Features.Services;
+using Nop.Services.Catalog;
+using Nop.Services.Customers;
 using Nop.Services.Localization;
 using Nop.Services.Media;
-using Nop.Web.Framework.Models.Extensions;
+using Nop.Services.Vendors;
+using Nop.Web.Areas.Admin.Factories;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
+using Nop.Web.Framework.Factories;
+using Nop.Web.Framework.Models.Extensions;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Reflection;
-using Nop.Web.Framework.Factories;
-using System.Collections.Generic;
-using Nop.Plugin.Widgets.KonnectAll.Features.Models;
-using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales;
-using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.ApplicationRequest;
-using Nop.Core.Infrastructure;
-using Nop.Core.Domain.Customers;
-using System.IO;
 
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
 {
     public class KonnectAllModelFactory : IKonnectAllModelFactory
     {
         #region Fields
+        private readonly IBaseAdminModelFactory _baseAdminModelFactory;
+        private readonly ICustomerService _customerService;
         private readonly IKonnectAllService _konnectAllService;
         private readonly ILocalizedModelFactory _localizedModelFactory;
         private readonly ILocalizationService _localizationService;
         private readonly INopFileProvider _fileProvider;
         private readonly IPictureService _pictureService;
+        private readonly IPriceFormatter _priceFormatter;
+        private readonly IVendorService _vendorService;
+        private readonly IWorkContext _workContext;
         #endregion
 
         #region Ctor
-        public KonnectAllModelFactory(IKonnectAllService konnectAllService,
+        public KonnectAllModelFactory(IBaseAdminModelFactory baseAdminModelFactory,
+            ICustomerService customerService,
+            IKonnectAllService konnectAllService,
             ILocalizedModelFactory localizedModelFactory,
             ILocalizationService localizationService,
             INopFileProvider fileProvider,
-            IPictureService pictureService)
+            IPictureService pictureService,
+            IPriceFormatter priceFormatter,
+            IWorkContext workContext,
+            IVendorService vendorService)
         {
+            _baseAdminModelFactory = baseAdminModelFactory;
+            _customerService = customerService;
             _konnectAllService = konnectAllService;
             _localizedModelFactory = localizedModelFactory;
             _localizationService = localizationService;
             _fileProvider = fileProvider;
             _pictureService = pictureService;
+            _priceFormatter = priceFormatter;
+            _workContext = workContext;
+            _vendorService = vendorService;
         }
         #endregion
 
@@ -298,6 +318,80 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
 
             return model;
         }
+        #endregion
+
+        #region Commission
+
+        /// <summary>
+        /// Prepare commission search model
+        /// </summary>
+        /// <param name="searchModel">Commission search model</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the commission search model
+        /// </returns>
+        public async Task<CommissionSearchModel> PrepareCommissionSearchModelAsync(CommissionSearchModel searchModel) 
+        {
+            if (searchModel == null)
+                throw new ArgumentNullException(nameof(searchModel));
+
+            await _baseAdminModelFactory.PrepareVendorsAsync(searchModel.AvailableVendors);
+
+            //prepare page parameters
+            searchModel.SetGridPageSize();
+
+            return searchModel;
+        }
+
+        /// <summary>
+        /// Prepare paged commission list model
+        /// </summary>
+        /// <param name="searchModel">Commission search model</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the commission list model
+        /// </returns>
+        public async Task<CommissionListModel> PrepareCommissionListModelAsync(CommissionSearchModel searchModel) 
+        {
+            if (searchModel == null)
+                throw new ArgumentNullException(nameof(searchModel));
+
+            //whether current customer is vendor
+            var customer = await _workContext.GetCurrentCustomerAsync();
+            if (await _customerService.IsVendorAsync(customer)) 
+                searchModel.SelectedVendorId = customer.VendorId;
+
+                //get commission
+                var commissions = await _konnectAllService.GetAllCommissionAsync(vendorId: searchModel.SelectedVendorId,
+                pageIndex: searchModel.Page - 1, pageSize: searchModel.PageSize);
+
+            var currentLanguageId = await _workContext.GetWorkingLanguageAsync();
+            //prepare grid model
+            var model = await new CommissionListModel().PrepareToGridAsync(searchModel, commissions, () =>
+            {
+                return commissions.SelectAwait(async c =>
+                {
+                    //fill in model values from the entity
+
+                    var vendor = await _vendorService.GetVendorByIdAsync(c.VendorId);
+
+                    var commission = new CommissionModel { 
+                        OrderId = c.OrderId,
+                        VendorId = c.VendorId,
+                        VendorName = await _localizationService.GetLocalizedAsync(vendor, v => v.Name, currentLanguageId.Id),
+                        CommissionRate = await _priceFormatter.FormatPriceAsync(c.CommissionRate, true, false),
+                        CommissionAmount = await _priceFormatter.FormatPriceAsync(c.CommissionAmount, true, false),
+                        OrderTotalInclTax = await _priceFormatter.FormatPriceAsync(c.OrderTotalInclTax, true, false),
+                        OrderTotalExclTax = await _priceFormatter.FormatPriceAsync(c.OrderTotalExclTax, true, false)
+                    };
+
+                    return commission;
+                });
+            });
+
+            return model;
+        }
+
         #endregion
 
         #endregion

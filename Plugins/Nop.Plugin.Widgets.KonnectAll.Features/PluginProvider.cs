@@ -179,6 +179,16 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features
                         IconClass = "nav-icon far fa-dot-circle",
                         Visible = true,
                         RouteValues = new RouteValueDictionary { { "area", AreaNames.Admin } }
+                    },
+                    new SiteMapNode()
+                    {
+                        SystemName = PluginDefaults.Commission_Menu_SystemName,
+                        Title = await _localizationService.GetResourceAsync(PluginDefaults.Commission_Menu_SystemName),
+                        ControllerName = "KonnectAllFeatures",
+                        ActionName = "CommissionList",
+                        IconClass = "nav-icon far fa-dot-circle",
+                        Visible = true,
+                        RouteValues = new RouteValueDictionary { { "area", AreaNames.Admin } }
                     }
                 }
             };

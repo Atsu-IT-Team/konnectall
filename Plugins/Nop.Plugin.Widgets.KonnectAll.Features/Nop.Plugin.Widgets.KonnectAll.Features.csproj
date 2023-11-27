@@ -15,6 +15,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Areas\Admin\Views\Order\_OrderDetails.Info.cshtml" />
+		<None Remove="Areas\Admin\Views\Order\_OrderDetails.Products.cshtml" />
 		<None Remove="Areas\Admin\Views\_ViewImports.cshtml" />
 		<None Remove="logo.jpg" />
 		<None Remove="plugin.json" />
@@ -26,6 +28,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Content Include="Areas\Admin\Views\Order\_OrderDetails.Info.cshtml">
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Order\_OrderDetails.Products.cshtml">
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Areas\Admin\Views\_ViewImports.cshtml">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -61,6 +72,9 @@
 
 	<ItemGroup>
 	  <None Update="Areas\Admin\Views\KonnectAllFeatures\ApplicationDetail.cshtml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Areas\Admin\Views\KonnectAllFeatures\CommissionList.cshtml">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	  <None Update="Areas\Admin\Views\KonnectAllFeatures\Create.cshtml">

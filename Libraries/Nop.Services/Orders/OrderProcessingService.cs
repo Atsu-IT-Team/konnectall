@@ -1766,6 +1766,7 @@ namespace Nop.Services.Orders
                 updatedOrder.ShippingRateComputationMethodSystemName = updateOrderParameters.PickupPoint.ProviderSystemName;
             }
 
+            await _orderService.UpdateOrderItemAsync(updatedOrderItem);
             await _orderService.UpdateOrderAsync(updatedOrder);
 
             //discount usage history

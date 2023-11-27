@@ -1,9 +1,12 @@
 ﻿using Nop.Core;
+using Nop.Core.Domain.Catalog;
+using Nop.Core.Domain.Orders;
+using Nop.Core.Domain.Vendors;
 using Nop.Core.Infrastructure;
 using Nop.Data;
 using Nop.Plugin.Widgets.KonnectAll.Features.Domain;
-using Nop.Services.Common;
-using Nop.Services.Media;
+using Nop.Services.Logging;
+using Nop.Services.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,20 +19,35 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Services
         #region Fields
         private readonly IRepository<ApplicationRequest> _appRequestRepository;
         private readonly IRepository<ApplicationDocuments> _appDocumentsRepository;
+        private readonly IRepository<Commission> _commissionRepository;
         private readonly IRepository<OnlineSales> _onlineSalesRepository;
+        private readonly IRepository<Product> _productRepository;
+        private readonly IRepository<Vendor> _vendorRepository;
+        private readonly ILogger _logger;
         private readonly INopFileProvider _fileProvider;
+        private readonly IOrderService _orderService;
         #endregion
 
         #region Ctor
         public KonnectAllService(IRepository<ApplicationRequest> appRequestRepository,
             IRepository<ApplicationDocuments> appDocumentsRepository,
+            IRepository<Commission> commissionRepository,
             IRepository<OnlineSales> onlineSalesRepository,
-            INopFileProvider fileProvider) 
+            IRepository<Product> productRepository,
+            IRepository<Vendor> vendorRepository,
+            ILogger logger,
+            INopFileProvider fileProvider,
+            IOrderService orderService) 
         {
             _appRequestRepository = appRequestRepository;
             _appDocumentsRepository = appDocumentsRepository;
+            _commissionRepository = commissionRepository;
             _onlineSalesRepository = onlineSalesRepository;
+            _productRepository = productRepository;
+            _vendorRepository = vendorRepository;
+            _logger = logger;
             _fileProvider = fileProvider;
+            _orderService = orderService;
         }
 
         #endregion
@@ -316,6 +334,172 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Services
             await _appDocumentsRepository.InsertAsync(appDocument);
         }
         #endregion
+
+        #endregion
+
+        #region Commission
+        /// <summary>
+        /// Delete commission
+        /// </summary>
+        /// <param name="commission">Commission</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task DeleteCommissionAsync(Commission commission) 
+        {
+            await _commissionRepository.DeleteAsync(commission);
+        }
+
+        /// <summary>
+        /// Gets all commission
+        /// </summary>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales
+        /// </returns>
+        public virtual async Task<IList<Commission>> GetAllCommissionAsync() 
+        {
+            var records = await _commissionRepository.GetAllAsync(query =>
+            {
+                return query.OrderBy(x => x.Id);
+            });
+
+            return records.ToList();
+        }
+
+        /// <summary>
+        /// Gets all commission
+        /// </summary>
+        /// <param name="vendorId">Vendor identity</param>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales
+        /// </returns>
+        public virtual async Task<IPagedList<Commission>> GetAllCommissionAsync(int vendorId,
+            int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            var records = await _commissionRepository.GetAllAsync(query =>
+            {
+                if (vendorId > 0)
+                    query = query.Where(c => c.VendorId == vendorId);
+
+                return query.OrderBy(x => x.Id);
+            });
+
+            //paging
+            return new PagedList<Commission>(records, pageIndex, pageSize);
+        }
+
+        /// <summary>
+        /// Gets a commission
+        /// </summary>
+        /// <param name="commissionId">Commission identifier</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales
+        /// </returns>
+        public virtual async Task<Commission> GetCommissionByIdAsync(int commissionId) 
+        {
+            return await _commissionRepository.GetByIdAsync(commissionId);
+        }
+
+        /// <summary>
+        /// Gets a commission by order and vendor
+        /// </summary>
+        /// <param name="orderId">Order identifier</param>
+        /// <param name="vendorId">Vendor identifier</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales
+        /// </returns>
+        public virtual async Task<decimal> GetCommissionByOrderIdAndVendorAsync(int orderId, int vendorId)
+        {
+            var commission = (from c in _commissionRepository.Table
+                               where c.OrderId == orderId &&
+                               (vendorId > 0 ? c.VendorId == vendorId : true)
+                               group c by new { c.OrderId } into g
+                               let total = (g.Sum(x => x.CommissionAmount))
+                              select total);
+
+            return await commission.FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// Inserts commission
+        /// </summary>
+        /// <param name="commission">Commission</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task InsertCommissionAsync(Commission commission) 
+        {
+            await _commissionRepository.InsertAsync(commission);
+        }
+
+        /// <summary>
+        /// Updates commission
+        /// </summary>
+        /// <param name="commission">Commission</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        public virtual async Task UpdateCommissionAsync(Commission commission) 
+        {
+            await _commissionRepository.UpdateAsync(commission);
+        }
+
+        public virtual async Task<bool> ConfirmOrderProductsByVendor(Order order, int[] itemIds) 
+        {
+            bool result = true;
+
+            try
+            {
+                await _orderService.UpdateOrderAsync(order);
+
+                var orderItems = await _orderService.GetOrderItemsAsync(order.Id);
+
+                orderItems = orderItems.Where(x => itemIds.Contains(x.Id)).ToList();
+
+                var productIds = orderItems.Select(x => x.ProductId).Distinct().ToList();
+
+                var query = from oi in orderItems
+                            join p in _productRepository.Table on oi.ProductId equals p.Id
+                            join v in _vendorRepository.Table on p.VendorId equals v.Id
+                            group oi by new { oi.OrderId, v } into g
+                            select new
+                            {
+                                OrderId = g.Key.OrderId,
+                                Vendor = g.Key.v,
+                                PriceInclTax = g.Sum(x => x.PriceInclTax),
+                                PriceExclTax = g.Sum(x => x.PriceExclTax)
+                            };
+
+                foreach (var item in query)
+                {
+                    var commission = new Commission
+                    {
+                        OrderId = item.OrderId,
+                        VendorId = item.Vendor.Id,
+                        CommissionRate = item.Vendor.Commission,
+                        OrderTotalInclTax = item.PriceInclTax,
+                        OrderTotalExclTax = item.PriceExclTax,
+                        CommissionAmount = ((item.PriceExclTax * item.Vendor.Commission) / 100),
+                        CreatedOnUtc = DateTime.UtcNow
+                    };
+
+                    await InsertCommissionAsync(commission);
+                }
+
+                foreach (var item in orderItems)
+                {
+                    item.Confirmed = true;
+                    await _orderService.UpdateOrderItemAsync(item);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                await _logger.ErrorAsync(ex.Message);
+            }
+            return result;
+        }
 
         #endregion
 

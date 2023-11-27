@@ -1,0 +1,95 @@
+﻿@using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.ApplicationRequest;
+@model ApplicationRequestModel
+
+
+<div class="container">
+    <div class="title-sec">
+        <h4 class="text-black text-left"> the big familly grows, will you join the challenge? </h4>
+        <span class="line-after"></span>
+    </div>
+    <p> Please fill in the following form. If you have problems uploading documents, please email them to hiring@konnectall.com. </p>
+    <form asp-controller="ApplicationRequest" asp-action="SubmitApplication" id="applicationform" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="message-error"></div>
+        <div class="row field">
+            <div class="col-md-6">
+                <label asp-for="FirstName"></label>
+                <nop-required />
+                <input asp-for="FirstName" placeholder="First name" />
+                <span asp-validation-for="FirstName"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="LastName"></label>
+                <nop-required />
+                <input asp-for="LastName" placeholder="Last name" />
+                <span asp-validation-for="LastName"></span>
+            </div>
+        </div>
+        <div class="formbold-input-flex field">
+            <label asp-for="Email"></label>
+            <nop-required />
+            <input asp-for="Email" placeholder="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="formbold-input-flex field">
+            <label asp-for="Phone"></label>
+            <nop-required />
+            <input asp-for="Phone" placeholder="Phone" />
+            <span asp-validation-for="Phone"></span>
+        </div>
+        <div class="field">
+            <label for="">DOCUMENTS*</label>
+            <P>Please upload your resume, current certificates and a short motivation letter (max. 20 MB in total).</P>
+        </div>
+        <div class="row file-upload field">
+            <div class="col-md-6 formbold-input-flex upload-left">
+                <label asp-for="Resume"></label>
+                <input type="file" id="uploadedFile" name="uploadedFile" class="upload-hide">
+                <p class="content-file">Click to select multiple files or drag and drop them</p>
+            </div>
+            <div class="col-md-6 formbold-input-flex upload-right">
+                <label asp-for="Documents"></label>
+                <input type="file" id="OtherDocuments" name="OtherDocuments" class="upload-hide" multiple="multiple">
+                <p class="content-file">Click to select multiple files or drag and drop them</p>
+            </div>
+        </div>
+        <div>
+            <input type=checkbox method="post" name="checked"> I confirm that i have read and understood the <a href="#">Data Protection Declaration</a>.*
+        </div>
+        <button type="submit" name="submit-application" id="submit-application" class="btn btn-primary apply-vendor-button">Submit</button>
+    </form>
+</div>
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+
+        $('#submit-application').click(function () {
+            if (!$("#applicationform").valid()) {
+                return false;
+            }
+
+            var resumeFiles = $('#uploadedFile').prop("files");
+            var otherFiles = $('#OtherDocuments').prop("files");
+
+            var form = $('#applicationform');
+            var formData = new FormData(form.get(0));
+
+            formData.append("uploadedFile", resumeFiles);
+            formData.append("OtherDocuments", otherFiles);
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SubmitApplication", "ApplicationRequest")",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data, textStatus, jqXHR) {
+                    $('#application-form').html(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Something went wrong...!");
+                }
+            });
+            return false;
+        });
+    });
+</script>

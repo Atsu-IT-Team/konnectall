@@ -4,8 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nop.Core.Infrastructure;
 using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories;
+using Nop.Plugin.Widgets.KonnectAll.Features.Factories;
 using Nop.Plugin.Widgets.KonnectAll.Features.Services;
-using Nop.Services.Catalog;
+using Nop.Web.Areas.Admin.Factories;
 
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Infrastructure
 {
@@ -23,6 +24,11 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Infrastructure
         {
             services.AddScoped<IKonnectAllService, KonnectAllService>();
             services.AddScoped<IKonnectAllModelFactory, KonnectAllModelFactory>();
+
+            //override services
+            services.AddScoped<IOrderModelFactory, CustomOrderModelFactory>();
+
+            //view engine
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.ViewLocationExpanders.Add(new OnlineSalesViewLocationExpander());
@@ -41,6 +47,6 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Infrastructure
         /// <summary>
         /// Gets order of this startup configuration implementation
         /// </summary>
-        public int Order => 1;
+        public int Order => 10000;
     }
 }

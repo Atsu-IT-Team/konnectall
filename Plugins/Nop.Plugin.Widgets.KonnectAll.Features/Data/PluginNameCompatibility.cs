@@ -11,7 +11,8 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Data
         {
             { typeof(OnlineSales), PluginDefaults.OnlineSales_TableName },
             { typeof(ApplicationRequest), PluginDefaults.ApplicationRequest_TableName},
-            { typeof(ApplicationDocuments), PluginDefaults.ApplicationDocument_TableName}
+            { typeof(ApplicationDocuments), PluginDefaults.ApplicationDocument_TableName},
+            { typeof(Commission), PluginDefaults.Commission_TableName}
         };
 
         public Dictionary<(Type, string), string> ColumnName => new Dictionary<(Type, string), string>()

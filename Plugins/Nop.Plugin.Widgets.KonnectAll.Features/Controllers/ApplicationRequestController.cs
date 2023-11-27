@@ -13,7 +13,6 @@ using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Infrastructure;
 using System;
 using System.IO;
-using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Controllers

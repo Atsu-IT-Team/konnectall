@@ -27,6 +27,11 @@
         public static string ApplicationDocument_TableName => TablePrefix + "ApplicationDocuments";
 
         /// <summary>
+        /// Commission table name
+        /// </summary>
+        public static string Commission_TableName => TablePrefix + "Commission";
+
+        /// <summary>
         /// Online sales admin menu system name
         /// </summary>
         public static string OnlineSales_Menu_SystemName => "Plugin.Widgets.KonnectAll.Features.OnlineSales.Admin.Menu";
@@ -35,6 +40,11 @@
         /// Application request admin menu system name
         /// </summary>
         public static string ApplicationRequest_Menu_SystemName => "Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Admin.Menu";
+
+        /// <summary>
+        /// Commission admin menu system name
+        /// </summary>
+        public static string Commission_Menu_SystemName => "Plugin.Widgets.KonnectAll.Features.Commission.Admin.Menu";
 
         /// <summary>
         /// Get the localize resource string path

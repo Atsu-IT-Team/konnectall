@@ -1,4 +1,5 @@
 ﻿using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.ApplicationRequest;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.Commission;
 using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales;
 using Nop.Plugin.Widgets.KonnectAll.Features.Domain;
 using Nop.Plugin.Widgets.KonnectAll.Features.Models;
@@ -85,6 +86,30 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories
         /// The task result contains the onlineSales model
         /// </returns>
         Task<ApplicationRequestModel> PrepareApplicationRequestModelAsync(ApplicationRequestModel model, ApplicationRequest applicationRequest);
+        #endregion
+
+        #region Commission
+
+        /// <summary>
+        /// Prepare commission search model
+        /// </summary>
+        /// <param name="searchModel">Commission search model</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the commission search model
+        /// </returns>
+        Task<CommissionSearchModel> PrepareCommissionSearchModelAsync(CommissionSearchModel searchModel);
+
+        /// <summary>
+        /// Prepare paged commission list model
+        /// </summary>
+        /// <param name="searchModel">Commission search model</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the commission list model
+        /// </returns>
+        Task<CommissionListModel> PrepareCommissionListModelAsync(CommissionSearchModel searchModel);
+
         #endregion
     }
 }

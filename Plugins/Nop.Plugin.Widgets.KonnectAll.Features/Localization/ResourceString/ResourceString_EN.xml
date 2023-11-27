@@ -10,6 +10,9 @@
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Admin.Menu">
 		<Value>Application Requests</Value>
 	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Commission.Admin.Menu">
+		<Value>Commissions</Value>
+	</LocaleResource>
 	<!--site menu-->
 
 	<!--list page-->
@@ -172,7 +175,7 @@
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.SearchPhone.Hint">
 		<Value>Search by applicant's phone</Value>
 	</LocaleResource>
-	
+
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.FullName">
 		<Value>Full name</Value>
 	</LocaleResource>
@@ -216,8 +219,8 @@
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Phone.Required">
 		<Value>Phone number is required.</Value>
 	</LocaleResource>
-	
-	
+
+
 	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.ApplicationRequest.Admin.Deleted">
 		<Value>Applicant's deleted successfully.</Value>
 	</LocaleResource>
@@ -229,4 +232,31 @@
 		<Value>Application submitted successfully, we'll contact you soon.</Value>
 	</LocaleResource>
 	<!--application request featrue-->
+
+	<!--commission feature-->
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Commission">
+		<Value>Commission</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Commission.Search.Vendor">
+		<Value>Vendor</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Commission.List.Fields.OrderId">
+		<Value>Order</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Commission.List.Fields.VendorName">
+		<Value>Vendor</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Commission.List.Fields.OrderTotalInclTax">
+		<Value>Order total(Incl Tax)</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Commission.List.Fields.OrderTotalExclTax">
+		<Value>Order total(Excl Tax)</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Commission.List.Fields.CommissionRate">
+		<Value>Rate(%)</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugin.Widgets.KonnectAll.Features.Commission.List.Fields.CommissionAmount">
+		<Value>Amount</Value>
+	</LocaleResource>
+	<!--commission feature-->
 </Language>

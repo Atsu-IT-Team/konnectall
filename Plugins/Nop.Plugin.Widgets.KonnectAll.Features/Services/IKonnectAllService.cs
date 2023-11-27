@@ -1,4 +1,5 @@
 ﻿using Nop.Core;
+using Nop.Core.Domain.Orders;
 using Nop.Plugin.Widgets.KonnectAll.Features.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -181,6 +182,74 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Services
         Task InsertApplicationDocumentAsync(ApplicationDocuments appDocument);
         #endregion
 
+        #endregion
+
+        #region Commission
+        /// <summary>
+        /// Delete commission
+        /// </summary>
+        /// <param name="commission">Commission</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task DeleteCommissionAsync(Commission commission);
+
+        /// <summary>
+        /// Gets all commission
+        /// </summary>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales
+        /// </returns>
+        Task<IList<Commission>> GetAllCommissionAsync();
+
+        /// <summary>
+        /// Gets all commission
+        /// </summary>
+        /// <param name="vendorId">Vendor identity</param>
+        /// <param name="pageIndex">Page index</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales
+        /// </returns>
+        Task<IPagedList<Commission>> GetAllCommissionAsync(int vendorId,
+            int pageIndex = 0, int pageSize = int.MaxValue);
+
+        /// <summary>
+        /// Gets a commission
+        /// </summary>
+        /// <param name="commissionId">Commission identifier</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales
+        /// </returns>
+        Task<Commission> GetCommissionByIdAsync(int commissionId);
+
+        /// <summary>
+        /// Gets a commission by order and vendor
+        /// </summary>
+        /// <param name="orderId">Order identifier</param>
+        /// <param name="vendorId">Vendor identifier</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the onlineSales
+        /// </returns>
+        Task<decimal> GetCommissionByOrderIdAndVendorAsync(int orderId, int vendorId);
+
+        /// <summary>
+        /// Inserts commission
+        /// </summary>
+        /// <param name="commission">Commission</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task InsertCommissionAsync(Commission commission);
+
+        /// <summary>
+        /// Updates commission
+        /// </summary>
+        /// <param name="commission">Commission</param>
+        /// <returns>A task that represents the asynchronous operation</returns>
+        Task UpdateCommissionAsync(Commission commission);
+
+        Task<bool> ConfirmOrderProductsByVendor(Order order, int[] itemIds);
         #endregion
     }
 }

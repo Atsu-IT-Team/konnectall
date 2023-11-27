@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
+using MySqlX.XDevAPI.Common;
 using Nop.Core.Infrastructure;
 using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Factories;
 using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.ApplicationRequest;
+using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.Commission;
 using Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Models.OnlineSales;
 using Nop.Plugin.Widgets.KonnectAll.Features.Domain;
 using Nop.Plugin.Widgets.KonnectAll.Features.Services;
@@ -11,12 +13,14 @@ using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Messages;
+using Nop.Services.Orders;
 using Nop.Services.Security;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Mvc;
 using Nop.Web.Framework.Mvc.Filters;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
@@ -34,6 +38,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
         private readonly ILocalizationService _localizationService;
         private readonly INopFileProvider _fileProvider;
         private readonly INotificationService _notificationService;
+        private readonly IOrderService _orderService;
         private readonly IPermissionService _permissionService;
         private readonly IPictureService _pictureService;
 
@@ -47,6 +52,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
             ILocalizationService localizationService,
             INopFileProvider fileProvider,
             INotificationService notificationService,
+            IOrderService orderService,
             IPermissionService permissionService,
             IPictureService pictureService)
         {
@@ -57,6 +63,7 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
             _localizationService = localizationService;
             _fileProvider = fileProvider;
             _notificationService = notificationService;
+            _orderService = orderService;
             _permissionService = permissionService;
             _pictureService = pictureService;
         }
@@ -311,6 +318,38 @@ namespace Nop.Plugin.Widgets.KonnectAll.Features.Areas.Admin.Controllers
             }
 
             return Content("Download data is not available any more.");
+        }
+        #endregion
+
+        #region Commission
+        public async Task<IActionResult> CommissionList()
+        {
+            //prepare model
+            var model = await _konnectAllModelFactory.PrepareCommissionSearchModelAsync(new CommissionSearchModel());
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public virtual async Task<IActionResult> CommissionList(CommissionSearchModel searchModel)
+        {
+            //prepare model
+            var model = await _konnectAllModelFactory.PrepareCommissionListModelAsync(searchModel);
+
+            return Json(model);
+        }
+
+        [HttpPost]
+        public virtual async Task<IActionResult> ConfirmOrderProducts(int id, int[] itemIds)
+        {
+            var order = await _orderService.GetOrderByIdAsync(id);
+
+            if (order == null)
+                return Json(new { IsSuccess = false, Message = "No order found." });
+
+            var result = await _konnectAllService.ConfirmOrderProductsByVendor(order, itemIds);
+
+            return Json(new { IsSuccess = result });
         }
         #endregion
 

@@ -73,3 +73,56 @@ GO
 ALTER TABLE [dbo].[KA_ApplicationDocuments] CHECK CONSTRAINT [FK_KA_ApplicationDocuments_ApplicationId_KA_ApplicationRequest_Id]
 GO
 --Changes on 01-11-2023
+
+--Changes on 07-11-2023
+IF NOT EXISTS(SELECT 1 FROM SYS.COLUMNS WHERE Name = 'Commission' AND Object_ID = Object_ID('Vendor'))
+BEGIN
+    ALTER TABLE [Vendor] 
+	ADD Commission decimal(18,4) NOT NULL
+	CONSTRAINT Commission_Default_Standard DEFAULT 0.0000
+	WITH VALUES
+END
+
+IF NOT EXISTS(SELECT 1 FROM SYS.COLUMNS WHERE Name = 'Confirmed' AND Object_ID = Object_ID('OrderItem'))
+BEGIN
+    ALTER TABLE [OrderItem] 
+	ADD Confirmed BIT NOT NULL
+	CONSTRAINT Confirmed_Default_Standard DEFAULT 0
+	WITH VALUES
+END
+--Changes on 07-11-2023
+
+--Changes on 09-11-2023
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[KA_Commission](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[OrderId] [int] NULL,
+	[VendorId] [int] NULL,
+	[OrderTotalInclTax] [decimal](18,4) NOT NULL,
+	[OrderTotalExclTax] [decimal](18,4) NOT NULL,
+	[CommissionRate] [decimal](18,4) NOT NULL,
+	[CommissionAmount] [decimal](18,4) NOT NULL,
+	[CreatedOnUtc] [datetime2](7) NOT NULL,
+ CONSTRAINT [PK_KA_Comission] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[KA_Commission]  WITH CHECK ADD  CONSTRAINT [FK_KA_Commission_OrderId_Order_Id] FOREIGN KEY([OrderId])
+REFERENCES [dbo].[Order] ([Id])
+GO
+ALTER TABLE [dbo].[KA_Commission] CHECK CONSTRAINT [FK_KA_Commission_OrderId_Order_Id]
+
+GO
+
+ALTER TABLE [dbo].[KA_Commission]  WITH CHECK ADD  CONSTRAINT [FK_KA_Commission_VendorId_Vendor_Id] FOREIGN KEY([VendorId])
+REFERENCES [dbo].[Vendor] ([Id])
+GO
+ALTER TABLE [dbo].[KA_Commission] CHECK CONSTRAINT [FK_KA_Commission_VendorId_Vendor_Id]
+--Changes on 09-11-2023

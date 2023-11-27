@@ -28,6 +28,11 @@ namespace Nop.Core.Domain.Orders
         public int Quantity { get; set; }
 
         /// <summary>
+        /// Gets or sets the order item is confirmed or not
+        /// </summary>
+        public bool Confirmed { get; set; }
+
+        /// <summary>
         /// Gets or sets the unit price in primary store currency (include tax)
         /// </summary>
         public decimal UnitPriceInclTax { get; set; }

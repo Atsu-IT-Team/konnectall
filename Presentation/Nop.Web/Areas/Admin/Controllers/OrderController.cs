@@ -1241,8 +1241,8 @@ namespace Nop.Web.Areas.Admin.Controllers
                 return RedirectToAction("List");
 
             //a vendor does not have access to this functionality
-            if (await _workContext.GetCurrentVendorAsync() != null)
-                return RedirectToAction("Edit", "Order", new { id });
+            //if (await _workContext.GetCurrentVendorAsync() != null)
+            //    return RedirectToAction("Edit", "Order", new { id });
 
             //get order item identifier
             var orderItemId = 0;
@@ -2878,6 +2878,21 @@ namespace Nop.Web.Areas.Admin.Controllers
             return Json(result);
         }
 
+        #endregion
+
+        #region Confirm order products
+        [HttpPost]
+        public virtual async Task<IActionResult> ConfirmOrderProducts(int id) 
+        {
+            var order = await _orderService.GetOrderByIdAsync(id);
+
+            if (order == null)
+                return Json(new { IsSuccess = false, Message = "No order found." });
+            
+            await _orderService.UpdateOrderAsync(order);
+
+            return Json(new { IsSuccess = true });
+        }
         #endregion
     }
 }

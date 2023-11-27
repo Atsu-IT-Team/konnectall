@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Nop.Core.Domain.Catalog;
 using Nop.Web.Framework.Models;
+using Nop.Web.Framework.Mvc.ModelBinding;
 
 namespace Nop.Web.Areas.Admin.Models.Orders
 {
@@ -29,6 +30,8 @@ namespace Nop.Web.Areas.Admin.Models.Orders
         public string VendorName { get; set; }
 
         public string Sku { get; set; }
+
+        public bool Confirmed { get; set; }
 
         public string PictureThumbnailUrl { get; set; }
 

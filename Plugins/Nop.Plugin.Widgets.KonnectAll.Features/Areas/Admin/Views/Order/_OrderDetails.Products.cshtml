@@ -2,6 +2,7 @@
 
 @using Nop.Core.Domain.Tax;
 @using Nop.Core.Domain.Catalog;
+@using Nop.Web.Areas.Admin.Models.Orders;
 
 <div class="card-body">
     <div class="form-group row">
@@ -109,7 +110,7 @@
                 <tbody>
                     @foreach (var item in Model.Items)
                     {
-                        <tr>
+                        <tr id="@item.Id">
                             <td class="text-center">
                                 <img src="@item.PictureThumbnailUrl" alt="" title="" />
                             </td>
@@ -418,14 +419,24 @@
         </div>
         <script>
             function confirmProducts(orderId) {
+                var arr = [];
+
+                $("#order-product-tbl tbody tr").each(function () {
+                    arr.push(this.id);
+                });
+
+                console.log(arr);
+
                 var postData = {
-                    id: orderId
+                    id: orderId,
+                    itemIds: arr
                 };
+
                 addAntiForgeryToken(postData);
                 $.ajax({
                     cache: false,
                     type: "POST",
-                    url: "@(Url.Action("ConfirmOrderProducts", "Order"))",
+                    url: "@(Url.Action("ConfirmOrderProducts", "KonnectAllFeatures"))",
                     data: postData,
                     success: function (result, textStatus) {
                         console.log(result.IsSuccess);
